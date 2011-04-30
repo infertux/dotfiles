@@ -17,7 +17,7 @@ Adding Plugin Bundles
 Plugins that are published on github can be installed as submodules. For
 example, to install the [Tagbar bundle], follow these steps:
 
-    cd ~/dotfiles
+    cd dotfiles
     git submodule add https://github.com/vim-scripts/Tagbar.git .vim/bundle/Tagbar
 
 This will update the `.gitmodules` file by appending something like:
@@ -31,5 +31,5 @@ As well as checkout out the git repo into the
 as follows:
 
     git add .
-    git ci -m "Added the Tagbar bundle"
+    git commit -m "Added the Tagbar bundle"
 

@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/colorizer"]
 	path = .vim/bundle/colorizer
 	url = https://github.com/vim-scripts/colorizer
+[submodule "bin"]
+	path = bin
+	url = https://github.com/infertux/bin-scripts.git
