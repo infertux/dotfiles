@@ -1,0 +1,23 @@
+[alias]
+	addrm = add -u
+	br = branch
+	ci = commit
+	co = checkout
+	st = status -s
+	staged = diff --cached
+	unstage = reset HEAD --
+	ignored = ls-files --others
+	oneline = log --oneline --decorate
+	last = log --oneline -1 HEAD
+	out = log --oneline origin/master..HEAD
+	wdiff = diff --color-words
+	info = remote -v
+	initial = "!sh -c 'git init && git add . && git ci -m \"Initial import\"'"
+	up = "!sh -c 'git stash && git pull && git stash pop'"
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[user]
+	name = Infertux
+	email = infertux@infertux.com
