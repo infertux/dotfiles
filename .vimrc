@@ -1,5 +1,9 @@
 " vim configuration file
 
+" pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " auto reload .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
 " set UTF-8 encoding
