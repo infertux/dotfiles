@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/Tagbar"]
 	path = .vim/bundle/Tagbar
 	url = https://github.com/vim-scripts/Tagbar.git
+[submodule ".vim/bundle/colorizer"]
+	path = .vim/bundle/colorizer
+	url = https://github.com/vim-scripts/colorizer
