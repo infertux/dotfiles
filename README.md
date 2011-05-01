@@ -33,15 +33,15 @@ as follows:
     git commit -m "Added the Tagbar bundle"
 
 Updating plugin bundles
-=======================
+---------------------
 
 TODO
 
 Removing plugin bundles
-=======================
+---------------------
 
 TODO
 
 
-[Tagbar]: https://github.com/vim-scripts/Tagbar.git
+[Tagbar]: https://github.com/vim-scripts/Tagbar
 
