@@ -1,21 +1,20 @@
 Installation
+============
 
-    git clone git://github.com/infertux/dotfiles.git
+This repository contains some git submodules (Vim plugins & my ~/bin), thus you
+have to pass the `--recursive` option to `git clone`.
 
-Where possible, Vim plugins are installed as git submodules. Check these out by
-running the commands:
+    git clone --recursive git://github.com/infertux/dotfiles.git
 
-    cd dotfiles
-    git submodule update --init
 
 VIM
 ===
 
-Adding Plugin Bundles
+Adding plugin bundles
 ---------------------
 
-Plugins that are published on github can be installed as submodules. For
-example, to install the [Tagbar bundle], follow these steps:
+Plugins that are versioned with Git can be installed as submodules. For example,
+to install the [Tagbar bundle][Tagbar], follow these steps:
 
     cd dotfiles
     git submodule add https://github.com/vim-scripts/Tagbar.git .vim/bundle/Tagbar
@@ -32,4 +31,17 @@ as follows:
 
     git add .
     git commit -m "Added the Tagbar bundle"
+
+Updating plugin bundles
+-----------------------
+
+TODO
+
+Removing plugin bundles
+-----------------------
+
+TODO
+
+
+[Tagbar]: https://github.com/vim-scripts/Tagbar
 
