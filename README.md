@@ -33,12 +33,12 @@ as follows:
     git commit -m "Added the Tagbar bundle"
 
 Updating plugin bundles
----------------------
+-----------------------
 
 TODO
 
 Removing plugin bundles
----------------------
+-----------------------
 
 TODO
 
