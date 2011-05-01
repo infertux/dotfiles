@@ -147,10 +147,10 @@ noremap <C-Space> <C-d>
 noremap <Return> zz
 
 " bad stuff
-map <C-a> ggVG
-map <C-c> "+ygtv
-map <C-x> "+x
-map <C-p> "+gP
+"map <C-a> ggVG
+"map <C-c> "+ygtv
+"map <C-x> "+x
+"map <C-p> "+gP
 
 " web browser into Vim!
 com! -nargs=+ WebBrowser      call OpenWebBrowser(<q-args>)
