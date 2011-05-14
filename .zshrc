@@ -237,7 +237,10 @@ alias vpn='cd /etc/openvpn && sudo openvpn '
 ###############################################################################
 # Nice banner
 
-cat << "EOF"
+declare -i index=$RANDOM%2
+case $index in
+    0)
+    cat << "EOF"
 o          `O    Oo    `o    O  o.OOoOoo       O       o OooOOo.
 O           o   o  O    o   O    O             o       O O     `O
 o           O  O    o   O  O     o             O       o o      O
@@ -258,7 +261,10 @@ O     O     O O      o  O   O    o             O       O o
    `oooO'  o      O ooOooOoO ooOooOoO o'       OOoOooO ooOooOoO
 
                   FACEBOOK IS RUN BY THE CIA
-
+EOF
+    ;;
+    1)
+    cat << "EOF"
         .-/                                      .-.
       _.-~ /  _____  ______ __  _    _     _   ___ | ~-._
       \:/  -~||  __||_  __//  || |  | |  /| | / __/| .\:/
@@ -271,8 +277,12 @@ O     O     O O      o  O   O    o             O       O o
  /::::::::-                                         -::::::::\
  \:::::-~                   RULES!                     ~-:::::/
   \:-~                                                    ~-:/
-
 EOF
+    ;;
+    *)
+    echo WTF
+    ;;
+esac
 
 # Display system info
 uname -snr
