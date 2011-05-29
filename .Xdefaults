@@ -6,7 +6,7 @@ urxvt*background: #000000
 urxvt*scrollBar: true
 urxvt*scrollBar_right: true
 urxvt*saveLines: 100000
-#urxvt*geometry: 144x39 
+#urxvt*geometry: 144x39
 urxvt*cursorBlink: true
 urxvt*urgentOnBell: true
 urxvt*font: xft:Bitstream Vera Sans Mono:style=Regular:pixelsize=12:antialias=true
