@@ -104,38 +104,6 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ###############################################################################
 # Key bindings
 
-typeset -g -A key
-bindkey '^?' backward-delete-char
-bindkey '^[[5~' up-line-or-history
-bindkey '^[[6~' down-line-or-history
-bindkey '^[[A' up-line-or-search
-bindkey '^[[D' backward-char
-bindkey '^[[B' down-line-or-search
-bindkey '^[[C' forward-char
-# completion in the middle of a line
-bindkey '^i' expand-or-complete-prefix
-
-bindkey "^[[H" beginning-of-line # Home
-bindkey "^[[F" end-of-line       # End
-bindkey "^[[3~" delete-char      # Del
-
-# rxvt and derivatives: wterm, ... and TERM=linux consoles
-bindkey "^[[1~" beginning-of-line # Home
-bindkey "^[[4~" end-of-line       # End
-
-# for terminals
-bindkey "^[OH"  beginning-of-line # Home
-bindkey "^[OF"  end-of-line       # End
-
-# for vte terminals
-bindkey "^[[2~" overwrite-mode          # Insert
-bindkey "^[[5~" history-search-backward # PgUp
-bindkey "^[[6~" history-search-forward  # PgDn
-
-# Others
-bindkey "Left"  beginning-of-line # Home
-bindkey '^C'  end-of-line         # End
-
 # Vi mode
 set -o vi
 autoload edit-command-line
@@ -166,7 +134,7 @@ zle-line-init () {
 }
 zle -N zle-line-init
 
-if [[ -z $DISPLAY && $(setxkbmap -print | grep bepo) != '' ]]; then
+if [[ -z $DISPLAY && -n "$(setxkbmap -print | grep bepo)" ]]; then
     bindkey -v
 
     # remap
@@ -216,6 +184,7 @@ alias la='ls --color=auto -A'
 alias grep='grep --color'
 
 alias -g L='| less'
+alias -g G='| grep'
 alias -g S='&> /dev/null &'
 
 # Last chance before PNR ;)
@@ -227,6 +196,13 @@ alias rm='rm -i'
 alias bitch,=sudo # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias vpn='cd /etc/openvpn && sudo openvpn '
+
+alias todo="ack 'TODO|FIXME|XXX|HACK'"
+
+alias gs='git st'
+alias unsvn='find . -name .svn -print0 | xargs -0 rm -rf'
+alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+
 
 ###############################################################################
 # Additional configuration
