@@ -9,5 +9,5 @@ vbell on
 nethack off             # makes error messages cryptic :)
 pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 defutf8 on
-hardstatus alwayslastline "%{=b}%{G} : %{b}%w %=%{kG}%C%A"  # status line
+hardstatus alwayslastline "%{=b}%{G} : %{b}%w %=%{G}%C%A"  # status line
 
