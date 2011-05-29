@@ -7,14 +7,14 @@ have to pass the `--recursive` option to `git clone`.
     git clone --recursive git://github.com/infertux/dotfiles.git
 
 
-VIM
-===
+Submodules
+==========
 
-Adding plugin bundles
----------------------
+Adding Submodules
+-----------------
 
-Plugins that are versioned with Git can be installed as submodules. For example,
-to install the [Tagbar bundle][Tagbar], follow these steps:
+Vim plugins that are versioned with Git can be installed as submodules.
+For example, to install the [Tagbar bundle][Tagbar], follow these steps:
 
     cd dotfiles
     git submodule add https://github.com/vim-scripts/Tagbar.git .vim/bundle/Tagbar
@@ -34,26 +34,31 @@ as follows:
 
 Most of Vim plugins can be found at https://github.com/vim-scripts.
 
-Updating plugin bundles
------------------------
+Updating Submodules
+-------------------
 
-cd dotfiles
-git submodule update
-cd .vim/bundle/Tagbar
-git checkout master
-git pull
-cd ..
-git add .vim/bundle/Tagbar
-git commit
+Here is an example with Tagbar bundle:
 
-Removing plugin bundles
------------------------
+    cd dotfiles
+    git submodule update
+    cd .vim/bundle/Tagbar
+    git checkout master
+    git pull
+    cd ..
+    git add .vim/bundle/Tagbar
+    git commit
 
-(delete the relevant line from the .gitmodules file)
-(delete the relevant section from .git/config)
-git rm --cached .vim/bundle/Tagbar  # no trailing slash
-git commit
-rm -rf .vim/bundle/Tagbar
+Removing Submodules
+-------------------
+
+Git is a little tricky for that.
+First, delete the relevant line from the .gitmodules file.
+Then, delete the relevant section from .git/config.
+Finally:
+
+    git rm --cached .vim/bundle/Tagbar  # no trailing slash
+    git commit
+    rm -rf .vim/bundle/Tagbar
 
 
 [Tagbar]: https://github.com/vim-scripts/Tagbar
