@@ -21,7 +21,7 @@
 [color]
 	ui = auto
 [merge]
-	tool = vimdiff
+	tool = meld
 [diff]
 	renames = copies
 	mnemonicprefix = true
