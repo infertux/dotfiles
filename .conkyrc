@@ -1,0 +1,146 @@
+# Set to yes if you want Conky to be forked in the background
+background yes
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+out_to_console no
+
+use_xft yes
+
+# Text alpha when using Xft
+xftalpha 0.8
+
+# Mail spool
+mail_spool $MAIL
+
+# Update interval in seconds
+update_interval 2
+
+# Create own window instead of using desktop (required in nautilus)
+own_window        yes
+own_window_type   override
+own_window_hints  undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_transparent yes
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 340
+maximum_width 340
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 10
+
+# Border margins
+#border_margin 4
+
+# Border width
+border_width 1
+
+# Default colors and also border colors
+default_color white
+default_shade_color white
+default_outline_color white
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+gap_x 13
+gap_y 34
+
+# Add spaces to keep things from moving about? This only affects certain objects.
+use_spacer none
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# Set to yes if you want all text to be in uppercase
+uppercase no
+
+TEXT
+${font Dungeon:style=Bold:pixelsize=12}
+$sysname $kernel on $machine
+${color lightgrey}$stippled_hr
+${color lightgrey}Uptime:$color $uptime ${color lightgrey}- Load:$color $loadavg
+${color lightgrey}CPU Usage:${color #5000a0} ${cpu}% ${cpubar}
+${color black}${cpugraph 000000 5000a0}
+${color lightgrey}RAM Usage:$color $mem/$memmax - $memperc% $membar
+${color lightgrey}Processes:$color $processes  ${color grey}Running:$color $running_processes
+${color lightgrey}$stippled_hr
+${color lightgrey}File systems:
+ ${color lightgrey}system   $color${fs_free /} free ${fs_bar /}
+ ${color lightgrey}data        $color${fs_free /data} free ${fs_bar /data}
+${color lightgrey}$stippled_hr
+${color lightgrey}Networking:
+ ${color lightgrey}Public IP: $color}${execi 300 curl ifconfig.me}
+ ${color lightgrey}Local IP: $color${addr eth0}
+ ${color lightgrey}Down:${color #8844ee} ${downspeed eth0}/s (${totaldown eth0})${color lightgrey} ${alignr}Up:${color #22ccff} ${upspeed eth0}/s (${totalup eth0})
+${color black}${downspeedgraph eth0 32,150 ff0000 0000ff} $alignr${color black}${upspeedgraph eth0 32,150 0000ff ff0000}
+#${color lightgrey}Wireless:${color #ffbb00} ${wireless_bitrate eth0} | ${wireless_link_qual_perc eth0}% ${wireless_link_bar eth0}
+# $color${wireless_essid eth0} ${alignr}${wireless_ap eth0}
+${color lightgrey}$stippled_hr
+${color}Name ${alignr}PID     CPU%   MEM%
+${color #ddaa00} ${top name 1} ${alignr}${top pid 1} ${top cpu 1} ${top mem 1}
+${color lightgrey} ${top name 2} ${alignr}${top pid 2} ${top cpu 2} ${top mem 2}
+${color lightgrey} ${top name 3} ${alignr}${top pid 3} ${top cpu 3} ${top mem 3}
+${color lightgrey} ${top name 4} ${alignr}${top pid 4} ${top cpu 4} ${top mem 4}
+${color lightgrey} ${top name 5} ${alignr}${top pid 5} ${top cpu 5} ${top mem 5}
+${color}Mem usage
+${color #ddaa00} ${top_mem name 1} ${alignr}${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+${color lightgrey} ${top_mem name 2} ${alignr}${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+${color lightgrey} ${top_mem name 3} ${alignr}${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+${color lightgrey} ${top_mem name 4} ${alignr}${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
+${color lightgrey} ${top_mem name 5} ${alignr}${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
+$stippled_hr
+#${mpd_smart}
+#${mpd_bar 8,180}  ${mpd_elapsed} / ${mpd_length}  @${mpd_bitrate}Kbps
+${execi 3600 ca.sh}
+$stippled_hr
+${color #ddaa00}TCP ports${alignr}#Connections
+$color Inbound: ${tcp_portmon 1 32767 count}  Outbound: ${tcp_portmon 32768 61000 count} ${alignr}ALL: ${tcp_portmon 1 65535 count}
+${color #ddaa00}Outbound Connection ${alignr} Remote port$color
+ ${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rport 0}
+ ${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rport 1}
+ ${tcp_portmon 32768 61000 rhost 2} ${alignr} ${tcp_portmon 32768 61000 rport 2}
+ ${tcp_portmon 32768 61000 rhost 3} ${alignr} ${tcp_portmon 32768 61000 rport 3}
+ ${tcp_portmon 32768 61000 rhost 4} ${alignr} ${tcp_portmon 32768 61000 rport 4}
+ ${tcp_portmon 32768 61000 rhost 5} ${alignr} ${tcp_portmon 32768 61000 rport 5}
+ ${tcp_portmon 32768 61000 rhost 6} ${alignr} ${tcp_portmon 32768 61000 rport 6}
+ ${tcp_portmon 32768 61000 rhost 7} ${alignr} ${tcp_portmon 32768 61000 rport 7}
+ ${tcp_portmon 32768 61000 rhost 8} ${alignr} ${tcp_portmon 32768 61000 rport 8}
+ ${tcp_portmon 32768 61000 rhost 9} ${alignr} ${tcp_portmon 32768 61000 rport 9}
+ ${tcp_portmon 32768 61000 rhost 10} ${alignr} ${tcp_portmon 32768 61000 rport 10}
+ ${tcp_portmon 32768 61000 rhost 11} ${alignr} ${tcp_portmon 32768 61000 rport 11}
+ ${tcp_portmon 32768 61000 rhost 12} ${alignr} ${tcp_portmon 32768 61000 rport 12}
+ ${tcp_portmon 32768 61000 rhost 13} ${alignr} ${tcp_portmon 32768 61000 rport 13}
+ ${tcp_portmon 32768 61000 rhost 14} ${alignr} ${tcp_portmon 32768 61000 rport 14}
+ ${tcp_portmon 32768 61000 rhost 15} ${alignr} ${tcp_portmon 32768 61000 rport 15}
+ ${tcp_portmon 32768 61000 rhost 16} ${alignr} ${tcp_portmon 32768 61000 rport 16}
+ ${tcp_portmon 32768 61000 rhost 17} ${alignr} ${tcp_portmon 32768 61000 rport 17}
+ ${tcp_portmon 32768 61000 rhost 18} ${alignr} ${tcp_portmon 32768 61000 rport 18}
+ ${tcp_portmon 32768 61000 rhost 19} ${alignr} ${tcp_portmon 32768 61000 rport 19}
+ ${tcp_portmon 32768 61000 rhost 20} ${alignr} ${tcp_portmon 32768 61000 rport 20}
+ ${tcp_portmon 32768 61000 rhost 21} ${alignr} ${tcp_portmon 32768 61000 rport 21}
+ ${tcp_portmon 32768 61000 rhost 22} ${alignr} ${tcp_portmon 32768 61000 rport 22}
+${color #ddaa00}Inbound Connection ${alignr} Local port$color
+ ${tcp_portmon 1 32767 rhost 0} ${alignr} ${tcp_portmon 1 32767 lport 0}
+ ${tcp_portmon 1 32767 rhost 1} ${alignr} ${tcp_portmon 1 32767 lport 1}
+ ${tcp_portmon 1 32767 rhost 2} ${alignr} ${tcp_portmon 1 32767 lport 2}
+ ${tcp_portmon 1 32767 rhost 3} ${alignr} ${tcp_portmon 1 32767 lport 3}
+ ${tcp_portmon 1 32767 rhost 4} ${alignr} ${tcp_portmon 1 32767 lport 4}
+
