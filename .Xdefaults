@@ -1,0 +1,18 @@
+urxvt*borderLess: false
+urxvt*loginShell: true
+#urxvt*transparent: true
+#urxvt*shading: 40
+#urxvt*inheritPixmap: true
+urxvt*foreground: #00dd00
+urxvt*background: #000000
+urxvt*scrollBar: true
+urxvt*scrollBar_right: true
+urxvt*saveLines: 100000
+#urxvt*geometry: 144x39 
+urxvt*cursorBlink: true
+urxvt*urgentOnBell: true
+urxvt*font: xft:Bitstream Vera Sans Mono:style=Regular:pixelsize=12:antialias=true
+urxvt*perl-ext-common: default,matcher
+urxvt*urlLauncher: firefox
+urxvt*matcher.button: 1
+
