@@ -32,15 +32,28 @@ as follows:
     git add .
     git commit -m "Added the Tagbar bundle"
 
+Most of Vim plugins can be found at https://github.com/vim-scripts.
+
 Updating plugin bundles
 -----------------------
 
-TODO
+cd dotfiles
+git submodule update
+cd .vim/bundle/Tagbar
+git checkout master
+git pull
+cd ..
+git add .vim/bundle/Tagbar
+git commit
 
 Removing plugin bundles
 -----------------------
 
-TODO
+(delete the relevant line from the .gitmodules file)
+(delete the relevant section from .git/config)
+git rm --cached .vim/bundle/Tagbar  # no trailing slash
+git commit
+rm -rf .vim/bundle/Tagbar
 
 
 [Tagbar]: https://github.com/vim-scripts/Tagbar

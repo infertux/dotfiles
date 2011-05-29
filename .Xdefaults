@@ -1,8 +1,6 @@
 urxvt*borderLess: false
 urxvt*loginShell: true
-#urxvt*transparent: true
-#urxvt*shading: 40
-#urxvt*inheritPixmap: true
+urxvt*transparent: false
 urxvt*foreground: #00dd00
 urxvt*background: #000000
 urxvt*scrollBar: true
