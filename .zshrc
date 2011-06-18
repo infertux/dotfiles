@@ -197,6 +197,7 @@ alias bitch,=sudo # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias vpn='cd /etc/openvpn && sudo openvpn '
 
+alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 
 alias gs='git st'
