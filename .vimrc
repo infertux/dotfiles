@@ -176,7 +176,7 @@ vmap ,w :call OpenWebBrowser("http://en.wikipedia.org/wiki/<C-R><C-W>")<CR>
 vmap ,o :call OpenWebBrowser("<C-R><C-A>")<CR>
 
 " bépo
-"if filereadable('~/.vimrc.bepo')
-    "source ~/.vimrc.bepo
-"endif
+if filereadable('.vimrc.bepo')
+    source .vimrc.bepo
+endif
 
