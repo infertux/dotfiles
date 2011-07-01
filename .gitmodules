@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/colorizer"]
 	path = .vim/bundle/colorizer
 	url = https://github.com/vim-scripts/colorizer.git
+[submodule ".vim/bundle/rails"]
+	path = .vim/bundle/rails
+	url = https://github.com/vim-scripts/rails.vim.git
