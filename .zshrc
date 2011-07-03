@@ -134,7 +134,11 @@ zle-line-init () {
 }
 zle -N zle-line-init
 
-if [[ -z $DISPLAY && -n "$(setxkbmap -print | grep bepo)" ]]; then
+# just press the beginning of a previous command then press Up/Down
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
+[ "$DISPLAY" ] && [ "$(setxkbmap -print | grep bepo)" ] && {
     bindkey -v
 
     # remap
@@ -150,7 +154,7 @@ if [[ -z $DISPLAY && -n "$(setxkbmap -print | grep bepo)" ]]; then
     bindkey -a l vi-replace-chars
     bindkey -a L vi-replace
     bindkey -a k vi-substitute
-fi
+}
 
 ###############################################################################
 # Aliases
@@ -193,9 +197,11 @@ alias cp='cp -i'
 alias rm='rm -i'
 
 # A few more useful aliases
-alias bitch,=sudo # original idea by rtomayko :D
+alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias vpn='cd /etc/openvpn && sudo openvpn '
+alias se='sudoedit'
+alias ss='sudo /etc/init.d/'
 
 alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
@@ -204,9 +210,13 @@ alias gs='git st'
 alias unsvn='find . -name .svn -print0 | xargs -0 rm -rf'
 alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
 
-
 ###############################################################################
 # Additional configuration
+
+# Set the right title on urxvt
+set_urxvt_title() { [ "$1" = "ssh" ] && echo -en "\033]0;$2\007" }
+precmd() { echo -en "\033]0;${HOSTNAME}\007" }
+preexec() { set_urxvt_title $@ }
 
 # Load machine specific configuration if any
 [ -f ./.zshrc.local ] && . ./.zshrc.local

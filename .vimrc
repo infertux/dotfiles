@@ -1,8 +1,9 @@
 " vim configuration file
 
 " pathogen
-call pathogen#runtime_append_all_bundles()
-"call pathogen#helptags()  " useless & dirty my submodules
+if exists('*pathogen')
+    call pathogen#runtime_append_all_bundles()
+endif
 
 " auto reload .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
