@@ -3,4 +3,3 @@ set shiftwidth=2     " indent also with 2 spaces
 
 " right 'completefunc' with rails.vim plugin
 imap <Nul> <C-x><C-u>
-
