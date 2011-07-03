@@ -7,7 +7,7 @@ set matchtime=3
 set showmatch
 
 " Enable folding of class/function blocks
-let php_folding = 1
+"let php_folding = 1
 " Do not use short tags to find PHP blocks
 let php_noShortTags = 1
 " Highlight SQL inside PHP strings

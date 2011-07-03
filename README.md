@@ -29,8 +29,7 @@ As well as checkout out the git repo into the
 `.vim/bundle/Tagbar` directory. You can then commit these changes
 as follows:
 
-    git add .
-    git commit -m "Added the Tagbar bundle"
+    git commit
 
 Most of Vim plugins can be found at https://github.com/vim-scripts.
 
