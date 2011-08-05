@@ -213,10 +213,17 @@ alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
 ###############################################################################
 # Additional configuration
 
-# Set the right title on urxvt
-set_urxvt_title() { [ "$1" = "ssh" ] && echo -en "\033]0;$2\007" }
+setup_ssh() {
+    if [[ "$1" = "ssh" || "$1" = "scp" ]]; then
+        # SSH agent
+        eval `keychain --eval --agents ssh -q id_rsa`
+        # Set the right title on urxvt
+        shift $(($# - 1))
+        echo -en "\033]0;$1\007"
+    fi
+}
 precmd() { echo -en "\033]0;${HOSTNAME}\007" }
-preexec() { set_urxvt_title $@ }
+preexec() { setup_ssh $* }
 
 # Load machine specific configuration if any
 [ -f ./.zshrc.local ] && . ./.zshrc.local

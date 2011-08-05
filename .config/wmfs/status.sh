@@ -12,7 +12,10 @@ UPDATES=/tmp/.updates
 if [ -r $UPDATES ] ; then
     OPT="$(cat $UPDATES)"
     if [ "$OPT" ] ; then
-        OPT="$WHITE[$RED$OPT$WHITE]"
+        NB=$(echo "$OPT" | wc -l)
+        declare -i LINE=$RANDOM%$NB+1
+        OPT=$(cat /tmp/.updates | sed -n $LINE"p")
+        OPT="$WHITE[$RED$OPT ($NB)$WHITE]"
     fi
 else
     OPT="${YELLOW}No info about updates "

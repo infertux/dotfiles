@@ -12,7 +12,7 @@
         # false -- click go to client; including dockapps
         focus_pointer_click = true
         status_timing      = 3     #seconds
-        conf.status_path   = "$HOME/.config/wmfs/status.sh"
+        status_path        = "$HOME/.config/wmfs/status.sh"
 [/misc]
 
 [bar]
@@ -126,9 +126,9 @@
         #[/tag]
 
         # clients option is *DEPRECATED* but works, see [rules] section
-        [tag] name = "console" layout="max" [/tag]
-        [tag] name = "web"  [/tag]
-        [tag] name = "mail" [/tag]
+        [tag] name = "console" layout="right" [/tag]
+        [tag] name = "web" layout="max" [/tag]
+        [tag] name = "mail" layout="max" [/tag]
         [tag] name = "misc"  [/tag]
 [/tags]
 
@@ -247,24 +247,14 @@
                 fg_normal = "#9F9AB3" bg_normal = "#191919"
 
                 [item] name = "Terminal"        func = "spawn" cmd = "urxvt -e tmux" [/item]
-                [item] name = "Applications" submenu = "appmenu"                   [/item]
+                [item] name = "Firefox"         func = "spawn" cmd = "firefox"     [/item]
+                [item] name = "Thunderbird"      func = "spawn" cmd = "thunderbird"       [/item]
                 #[item] name = "Next tag"        func = "tag_next"                  [/item]
                 #[item] name = "Previous tag"    func = "tag_prev"                  [/item]
                 #[item] name = "Next layout"     func = "layout_next"               [/item]
                 #[item] name = "Previous layout" func = "layout_prev"               [/item]
                 [item] name = "Toggle infobar"  func = "toggle_infobar_position"   [/item]
                 [item] name = "Quit WMFS"       func = "quit"                      [/item]
-        [/set_menu]
-
-        [set_menu]
-                name = "appmenu"
-                align = "left"
-
-                fg_focus  = "#191919" bg_focus  = "#7E89A2"
-                fg_normal = "#9F9AB3" bg_normal = "#191919"
-
-                [item] name = "Firefox"         func = "spawn" cmd = "firefox"     [/item]
-                [item] name = "Thunderbird"      func = "spawn" cmd = "thunderbird"       [/item]
         [/set_menu]
 
         [set_menu]
