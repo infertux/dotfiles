@@ -4,7 +4,7 @@ Installation
 This repository contains some git submodules (Vim plugins & my ~/bin), thus you
 have to pass the `--recursive` option to `git clone`.
 
-    git clone -b [desktop|netbook] --recursive git://github.com/infertux/dotfiles.git
+    git clone -b <branch> --recursive git://github.com/infertux/dotfiles.git
 
 
 Submodules
