@@ -13,8 +13,8 @@ set fenc=utf-8
 set termencoding=utf-8
 " syntax highlighting
 syntax on
-set t_Co=256    " 256 colors
-colors ron      " nice scheme
+"set t_Co=256    " 256 colors
+colors desert   " nice scheme
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
 " no backup

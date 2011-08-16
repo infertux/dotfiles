@@ -18,13 +18,13 @@ export SAVEHIST=100000
 export HISTFILE=$HOME/.history
 
 # Man pager
-export PAGER=most
+command -v most >/dev/null && export PAGER=most
 
 export EDITOR=vim
 export BROWSER=elinks
 
 # Export 'ls' colors
-eval $(dircolors -b)
+command -v dircolors >/dev/null && eval $(dircolors -b)
 
 ###############################################################################
 # Options
@@ -138,24 +138,6 @@ zle -N zle-line-init
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
-[ "$DISPLAY" ] && [ "$(setxkbmap -print | grep bepo)" ] && {
-    bindkey -v
-
-    # remap
-    bindkey -a c vi-backward-char
-    bindkey -a r vi-forward-char
-    bindkey -a t vi-down-line-or-history
-    bindkey -a s vi-up-line-or-history
-    bindkey -a $ vi-end-of-line
-    bindkey -a 0 vi-digit-or-beginning-of-line
-    bindkey -a h vi-change
-    bindkey -a H vi-change-eol
-    bindkey -a dd vi-change-whole-line
-    bindkey -a l vi-replace-chars
-    bindkey -a L vi-replace
-    bindkey -a k vi-substitute
-}
-
 ###############################################################################
 # Aliases
 
@@ -177,13 +159,13 @@ alias -s txt=$EDITOR
 alias -s PKGBUILD=$EDITOR
 
 # Normal aliases
-alias ls='ls --color=auto'
+alias ls='ls -G'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
-alias ll='ls --color=auto -lh'
+alias ll='ls -Glh'
 alias l='ll'
-alias lll='ls --color=auto -lh | less'
-alias la='ls --color=auto -A'
+alias lll='ls -Glh | less'
+alias la='ls -GA'
 
 alias grep='grep --color'
 
@@ -201,7 +183,8 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias vpn='cd /etc/openvpn && sudo openvpn '
 alias se='sudoedit'
-alias ss='sudo /etc/init.d/'
+alias ss='sudo service'
+alias kernel='dmesg | tail'
 
 alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
@@ -229,56 +212,8 @@ preexec() { setup_ssh $* }
 [ -f ./.zshrc.local ] && . ./.zshrc.local
 
 ###############################################################################
-# Nice banner
-
-declare -i index=$RANDOM%2
-case $index in
-    0)
-    cat << "EOF"
-o          `O    Oo    `o    O  o.OOoOoo       O       o OooOOo.
-O           o   o  O    o   O    O             o       O O     `O
-o           O  O    o   O  O     o             O       o o      O
-O           O oOooOoOo  oOo      ooOO          o       o O     .o
-o     o     o o      O  o  o     O             o       O oOooOO'
-O     O     O O      o  O   O    o             O       O o
-`o   O o   O' o      O  o    o   O             `o     Oo O
- `OoO' `OoO'  O.     O  O     O ooOooOoO        `OoooO'O o'
-
-
-  .oOOOo.  o      O o.OOoOoo o.OOoOoo OooOOo.   o      o.OOoOoo
-  o     o  O      o  O        O       O     `O O        O
-  O.       o      O  o        o       o      O o        o
-   `OOoo.  OoOooOOo  ooOO     ooOO    O     .o o        ooOO
-        `O o      O  O        O       oOooOO'  O        O
-         o O      o  o        o       o        O        o
-  O.    .O o      o  O        O       O        o     .  O
-   `oooO'  o      O ooOooOoO ooOooOoO o'       OOoOooO ooOooOoO
-
-                  FACEBOOK IS RUN BY THE CIA
-EOF
-    ;;
-    1)
-    cat << "EOF"
-        .-/                                      .-.
-      _.-~ /  _____  ______ __  _    _     _   ___ | ~-._
-      \:/  -~||  __||_  __//  || |  | |  /| | / __/| .\:/
-       /     ||  __|:| |\:/ ' || |__| |_/:| || (:/:|   \
-      / /\/| ||____|:|_|:/_/|_||____|____||_|:\___\| |\ \
-     / /:::|.:\::::\:\:\:|:||:||::::|:::://:/:/:::/:.|:\ \
-    / /:::/ \::\::::\|\:\|:/|:||::::|::://:/\/:::/::/:::\ \
-   /  .::\   \-~~~~~~~ ~~~~  ~~ ~~~~~~~~ ~~  ~~~~~-/\/:..  \
-  /..:::::\                                         /:::::..\
- /::::::::-                                         -::::::::\
- \:::::-~                   RULES!                     ~-:::::/
-  \:-~                                                    ~-:/
-EOF
-    ;;
-    *)
-    echo WTF
-    ;;
-esac
-
 # Display system info
+
 uname -snr
 w
 

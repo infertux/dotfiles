@@ -14,7 +14,7 @@ if [ -r $UPDATES ] ; then
     if [ "$OPT" ] ; then
         NB=$(echo "$OPT" | wc -l)
         declare -i LINE=$RANDOM%$NB+1
-        OPT=$(cat /tmp/.updates | sed -n $LINE"p")
+        OPT=$(echo "$OPT" | sed -n $LINE"p")
         OPT="$WHITE[$RED$OPT ($NB)$WHITE]"
     fi
 else

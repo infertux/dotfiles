@@ -1,0 +1,12 @@
+.Xauthority
+.bash_history
+.history
+.lesshst
+.ssh/
+.viminfo
+.zcompdump
+Desktop/
+Documents/
+Downloads/
+Music/
+Pictures/
