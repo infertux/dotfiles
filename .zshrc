@@ -197,13 +197,15 @@ alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
 # Additional configuration
 
 setup_ssh() {
-    if [[ "$1" = "ssh" || "$1" = "scp" ]]; then
-        # SSH agent
-        eval `keychain --eval --agents ssh -q id_rsa`
-        # Set the right title on urxvt
-        shift $(($# - 1))
-        echo -en "\033]0;$1\007"
-    fi
+    case "$1" in
+        ssh|scp|git)
+            # SSH agent
+            command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
+            # Set the right title on urxvt
+            shift $(($# - 1))
+            echo -en "\033]0;$1\007"
+            ;;
+    esac
 }
 precmd() { echo -en "\033]0;${HOSTNAME}\007" }
 preexec() { setup_ssh $* }
