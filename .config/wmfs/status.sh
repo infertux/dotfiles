@@ -35,14 +35,20 @@ done
 TKBPS=$(echo $TKBPS | awk '{printf "%d", $1 / 1024}')
 RKBPS=$(echo $RKBPS | awk '{printf "%d", $1 / 1024}')
 NETWORK="$YELLOW$RKBPS$WHITE : $YELLOW$TKBPS$WHITE KiB/s"
+WIFI=$(wicd-cli --wireless -d | sort | egrep "^(Quality:|Bit Rates:)" | cut -d: -f2- | tr -d "\n")
+[ "$WIFI" ] && OPT="$OPT WiFi:$WIFI% "
 
 LOAD=$(cat /proc/loadavg | awk '{printf "%d", $1*100/2}') # /2 cause I've 2 cores
 REM=$(awk '/remaining capacity/ { print $3 }' /proc/acpi/battery/BAT0/state)
 LAST=$(awk '/last full/ { print $4 }' /proc/acpi/battery/BAT0/info)
 BATTERY=$(echo $REM $LAST | awk '{printf "%d", ($1/$2)*100}')
+[ $BATTERY -ge 90 ] && BATTERY="${GREEN}${BATTERY}"
+[ $BATTERY -le 5 ] && BATTERY="${RED}${BATTERY}"
 MEM=$(free | grep buffers/cache | awk '{printf "%d", $4/1024}')
 VOLUME=$(amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1%|pg' | head -1)
 DATE=$(date +'%a %d @%l:%M:%S')
 
-wmfs -s 0 "$OPT$WHITE[Net: $NETWORK | Load: $YELLOW$LOAD $WHITE % | Bat: $YELLOW$BATTERY $WHITE % | Mem: $YELLOW$MEM $WHITE MiB free | Vol: $YELLOW$VOLUME$WHITE | $YELLOW$DATE$WHITE]"
+wmfs -s 0 "${OPT}${WHITE}[Net: $NETWORK | Load: ${YELLOW}${LOAD} ${WHITE}% | \
+Bat:$YELLOW $BATTERY ${WHITE}% | Mem: $YELLOW $MEM ${WHITE}MiB free | \
+Vol:$YELLOW ${VOLUME}${WHITE} | ${YELLOW}${DATE}${WHITE}]"
 
