@@ -1,9 +1,15 @@
 .Xauthority
 .bash_history
+.cache/
+.config/
+.gconf/
 .history
 .lesshst
+.pki/
 .ssh/
+.subversion/
 .viminfo
+.wireshark/
 .zcompdump
 Desktop/
 Documents/
