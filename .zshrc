@@ -10,7 +10,7 @@
 # Environment variables
 
 # Append ~/bin to PATH
-[ -d ~/bin ] && export PATH=$PATH:~/bin
+[ -d ~/bin ] && export PATH=~/bin:$PATH
 
 # Terminal history
 export HISTORY=100000

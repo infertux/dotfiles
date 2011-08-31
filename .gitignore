@@ -3,6 +3,7 @@
 .cache/
 .config/
 .gconf/
+.git-achievements*\.log
 .history
 .lesshst
 .pki/

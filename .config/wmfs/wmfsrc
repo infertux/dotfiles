@@ -78,7 +78,7 @@
              nmaster          = 1
              layout           = "free"
              resizehint       = false
-             infobar_position = "top"
+             infobar_position = "bottom"
         [/default_tag]
 
         # whether client_next on the last tag will send you on the first
