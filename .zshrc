@@ -189,8 +189,12 @@ alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 
 alias gs='git st'
+alias gp='git pull'
 alias unsvn='find . -name .svn -print0 | xargs -0 rm -rf'
 alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+
+alias be='bundle exec'
+alias bes='bundle exec spec'
 
 ###############################################################################
 # Additional configuration
@@ -198,7 +202,7 @@ alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
 setup_ssh() {
     if [[ "$1" = "ssh" || "$1" = "scp" ]]; then
         # SSH agent
-        eval `keychain --eval --agents ssh -q id_rsa`
+        command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
         # Set the right title on urxvt
         shift $(($# - 1))
         echo -en "\033]0;$1\007"

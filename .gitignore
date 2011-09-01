@@ -4,6 +4,7 @@
 .lesshst
 .ssh/
 .viminfo
+.wireshark/
 .zcompdump
 Desktop/
 Documents/
