@@ -25,3 +25,5 @@
 [diff]
 	renames = copies
 	mnemonicprefix = true
+[branch]
+	autosetupmerge = true
