@@ -9,8 +9,10 @@
 ###############################################################################
 # Environment variables
 
-# Append ~/bin to PATH
-[ -d ~/bin ] && export PATH=$PATH:~/bin
+# Expand PATH
+for dir in /usr/local/sbin /usr/local/bin ~/bin; do
+    [ -d $dir ] && export PATH=$dir:$PATH
+done
 
 # Terminal history
 export HISTORY=100000
@@ -30,9 +32,12 @@ command -v dircolors >/dev/null && eval $(dircolors -b)
 # Options
 
 # Prompt
-autoload -U promptinit
-promptinit
-prompt adam2
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' enable git cvs svn
 
 # Completion
 autoload -U compinit
@@ -104,12 +109,6 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ###############################################################################
 # Key bindings
 
-# Vi mode
-set -o vi
-autoload edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
 zle-keymap-select () {
     if [ $TERM = "rxvt-unicode" -o $TERM = "rxvt-256color" \
         -o $TERM = "screen" ]; then
@@ -143,20 +142,13 @@ bindkey '^[[B' down-line-or-search
 
 # Set up auto extension stuff
 alias -s html=$BROWSER
-alias -s org=$BROWSER
-alias -s php=$BROWSER
-alias -s com=$BROWSER
-alias -s net=$BROWSER
 alias -s png=feh
 alias -s jpg=feh
 alias -s gif=feh
-alias -s pdf=xpdf
-alias -s sxw=soffice
-alias -s doc=soffice
+alias -s pdf=zathura
 alias -s gz=tar -xzvf
 alias -s bz2=tar -xjvf
 alias -s txt=$EDITOR
-alias -s PKGBUILD=$EDITOR
 
 # Normal aliases
 alias ls='ls -G'
@@ -183,36 +175,66 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias vpn='cd /etc/openvpn && sudo openvpn '
 alias se='sudoedit'
-alias ss='sudo service'
+alias vim='vim -p'
+alias vv='vim -O'
+alias vh='vim -o'
+alias v='vim'
 
-alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
+alias ack='ack -a'
 
+alias g='git'
 alias gs='git st'
-alias gp='git pull'
-alias unsvn='find . -name .svn -print0 | xargs -0 rm -rf'
-alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+alias gl='git log'
+alias gb='git br'
+alias go='git co'
+alias gp='git pull --rebase'
+alias gd='git diff'
 
 alias be='bundle exec'
-alias bes='bundle exec spec'
+alias ber='bundle exec rake'
+alias bers='bundle exec rspec'
+
+alias kcu='knife cookbook upload'
+
 
 ###############################################################################
 # Additional configuration
 
-setup_ssh() {
-    if [[ "$1" = "ssh" || "$1" = "scp" ]]; then
-        # SSH agent
-        command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
-        # Set the right title on urxvt
-        shift $(($# - 1))
-        echo -en "\033]0;$1\007"
-    fi
+precmd() {
+    echo -en "\033]0;${HOSTNAME}\007"
+
+    _vcs_info_wrapper() {
+      vcs_info
+      if [ "$vcs_info_msg_0_" ]; then
+        echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+      fi
+    }
+
+   _ruby_version() {
+       echo "{$(rvm current)}"
+   }
+
+    PROMPT='%~ '
+    RPROMPT=$'$(_ruby_version)-$(_vcs_info_wrapper)'
 }
-precmd() { echo -en "\033]0;${HOSTNAME}\007" }
-preexec() { setup_ssh $* }
+preexec() {
+    _setup_ssh() {
+        if [[ "$1" = "ssh" || "$1" = "scp" ]]; then
+            # SSH agent
+            command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
+            # Set the right title on urxvt
+            shift $(($# - 1))
+            echo -en "\033]0;$1\007"
+        fi
+    }
+
+    _setup_ssh $*
+}
 
 # Load machine specific configuration if any
 [ -f ./.zshrc.local ] && . ./.zshrc.local
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 ###############################################################################
 # Display system info
