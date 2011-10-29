@@ -2,9 +2,11 @@
 !.*
 .Xauthority
 .bash_history
-.history
+.*history
 .lesshst
 .ssh/
 .viminfo
+.vim/.netrwhist
 .wireshark/
 .zcompdump
+.zshrc.local
