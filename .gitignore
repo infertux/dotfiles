@@ -1,3 +1,5 @@
+*
+!.*
 .Xauthority
 .bash_history
 .history
@@ -6,8 +8,3 @@
 .viminfo
 .wireshark/
 .zcompdump
-Desktop/
-Documents/
-Downloads/
-Music/
-Pictures/
