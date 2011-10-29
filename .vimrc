@@ -1,9 +1,10 @@
 " vim configuration file
 
 " pathogen
-if exists('*pathogen')
-    call pathogen#runtime_append_all_bundles()
-endif
+"if exists('*pathogen')
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+"endif
 
 " auto reload .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -36,6 +37,8 @@ set comments=sl:/*,mb:\ *,elx:\ */
 " ensures that each window contains a status line
 " that displays the current cursor position
 set ruler
+" display available entries on Tab
+set wildmenu
 " display partial commands
 set showcmd
 " status bar on last window
@@ -64,7 +67,7 @@ if exists('+colorcolumn')
     set colorcolumn=+1  " textwidth + 1
     highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 " Todo color for trailing whitespace
 "match Todo /\s\+$/
@@ -81,7 +84,7 @@ filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
 set completeopt+=menu,longest
 " change this unreadable pink bg
-highlight Pmenu ctermbg=238
+"highlight Pmenu ctermbg=238
 "set ofu=syntaxcomplete#Complete
 "au filetype html        set omnifunc=htmlcomplete#CompleteTags
 "au filetype css         set omnifunc=csscomplete#CompleteCSS
@@ -127,10 +130,6 @@ vnoremap <Tab> <Esc>
 inoremap <S-Tab> <Tab>
 vnoremap <S-Tab> <Tab>
 
-" folding with Tab
-noremap <Tab> zA
-noremap <S-Tab> zc
-
 " switching / moving / creating tabs
 noremap g<Tab> gt
 noremap g<S-Tab> gT
@@ -143,15 +142,13 @@ noremap <C-n> :exe "silent! tabnew"<CR>:exe "silent! Ex"<CR>
 " moving
 noremap <BS> <PageUp>
 noremap <Space> <PageDown>
-noremap <C-BS> <C-u>
-noremap <C-Space> <C-d>
 noremap <Return> zz
 
-" bad stuff
-"map <C-a> ggVG
-"map <C-c> "+ygtv
-"map <C-x> "+x
-"map <C-p> "+gP
+" Command T
+noremap <Tab> :CommandT<CR>
+noremap <Tab><Tab> :CommandTBuffer<CR>
+
+com! -nargs=+ Ack exe "!ack -a "<q-args>
 
 " web browser into Vim!
 com! -nargs=+ WebBrowser      call OpenWebBrowser(<q-args>)
@@ -180,4 +177,6 @@ vmap ,o :call OpenWebBrowser("<C-R><C-A>")<CR>
 if filereadable('.vimrc.bepo')
     source .vimrc.bepo
 endif
+
+"autocmd VimEnter * NERDTree
 
