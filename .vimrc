@@ -148,8 +148,6 @@ noremap <Return> zz
 noremap <Tab> :CommandT<CR>
 noremap <Tab><Tab> :CommandTBuffer<CR>
 
-com! -nargs=+ Ack exe "!ack -a "<q-args>
-
 " web browser into Vim!
 com! -nargs=+ WebBrowser      call OpenWebBrowser(<q-args>)
 
