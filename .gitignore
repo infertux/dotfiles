@@ -1,5 +1,6 @@
 *
 !.*
+!.*/*
 .Xauthority
 .bash_history
 .*history
