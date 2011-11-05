@@ -124,20 +124,10 @@ command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
 
 " another Esc key
-inoremap <Tab> <Esc>
-vnoremap <Tab> <Esc>
-
-inoremap <S-Tab> <Tab>
-vnoremap <S-Tab> <Tab>
-
-" switching / moving / creating tabs
-noremap g<Tab> gt
-noremap g<S-Tab> gT
-noremap <C-Tab> gt
-noremap <C-S-Tab> gT
-noremap <C-PageUp> :exe "silent! tabmove " . (tabpagenr() - 2)<CR>
-noremap <C-PageDown> :exe "silent! tabmove " . tabpagenr()<CR>
-noremap <C-n> :exe "silent! tabnew"<CR>:exe "silent! Ex"<CR>
+"inoremap <Tab> <Esc>
+"vnoremap <Tab> <Esc>
+"inoremap <S-Tab> <Tab>
+"vnoremap <S-Tab> <Tab>
 
 " moving
 noremap <BS> <PageUp>
@@ -149,9 +139,7 @@ noremap <Tab> :CommandT<CR>
 noremap <Tab><Tab> :CommandTBuffer<CR>
 
 " web browser into Vim!
-com! -nargs=+ WebBrowser      call OpenWebBrowser(<q-args>)
-
-fun! OpenWebBrowser (address)
+fun! OpenWebBrowser(address)
     exe "split"
     exe "enew"
     exe "set buftype=nofile"
@@ -160,16 +148,15 @@ fun! OpenWebBrowser (address)
     syn reset
     "add some syntax rules (thanks to jamesson on #vim)
     syn match Keyword /\[\d*\]\w*/ contains=Ignore
-    syn match Ignore /\[\d*\]/ contained 
+    syn match Ignore /\[\d*\]/ contained
     exe "norm gg"
 endfun
 
-vmap ,d :call OpenWebBrowser("http://www.cnrtl.fr/lexicographie/<C-R><C-W>")<CR>
-vmap ,s :call OpenWebBrowser("http://www.cnrtl.fr/synonymie/<C-R><C-W>")<CR>
+com! -nargs=+ WebBrowser call OpenWebBrowser(<q-args>)
+
 vmap ,g :call OpenWebBrowser("http://www.google.com/search?hl=en&q=<C-R><C-W>")<CR>
-vmap ,c :call OpenWebBrowser("http://www.leconjugueur.com/php5/index.php?v=<C-R><C-W>")<CR>
 vmap ,w :call OpenWebBrowser("http://en.wikipedia.org/wiki/<C-R><C-W>")<CR>
-vmap ,o :call OpenWebBrowser("<C-R><C-A>")<CR>
+vmap ,b :call OpenWebBrowser("<C-R><C-A>")<CR>
 
 " bépo
 if filereadable('.vimrc.bepo')
