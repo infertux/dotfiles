@@ -1,10 +1,7 @@
 " vim configuration file
 
 " pathogen
-"if exists('*pathogen')
-call pathogen#runtime_append_all_bundles()
-" call pathogen#heptags()
-"endif
+call pathogen#infect()
 
 " auto reload .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -98,26 +95,6 @@ set completeopt+=menu,longest
 "if !filereadable('tags')
 "    imap <Nul> <C-n>
 "endif
-
-" turn the cursor red in insertion mode :)
-if !has("gui_running")
-    if &term =~ "rxvt-unicode"
-        " t_SI start insert mode (bar cursor shape)
-        " t_EI end insert mode (block cursor shape)
-        let &t_SI = "\033]12;red\007"
-        let &t_EI = "\033]12;green\007"
-
-        :silent !echo -ne "\033]12;green\007"
-        autocmd VimLeave * :silent :!echo -ne "\033]12;green\007"
-    endif
-    if &term =~ "screen"
-        let &t_SI = "\033P\033]12;red\007\033\\"
-        let &t_EI = "\033P\033]12;green\007\033\\"
-
-        :silent !echo -ne "\033P\033]12;green\007\033\\"
-        autocmd VimLeave * :silent :!echo -ne "\033P\033]12;green\007\033\\"
-    endif
-endif
 
 " laziness
 command! Spell set spell spelllang=en

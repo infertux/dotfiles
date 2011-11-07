@@ -16,6 +16,7 @@
 [submodule ".vim/bundle/commentary"]
 	path = .vim/bundle/commentary
 	url = https://github.com/vim-scripts/commentary.vim.git
+	ignore = dirty
 [submodule ".vim/bundle/command-t"]
 	path = .vim/bundle/command-t
 	url = git://git.wincent.com/command-t.git
@@ -31,3 +32,4 @@
 [submodule ".vim/bundle/ack"]
 	path = .vim/bundle/ack
 	url = https://github.com/vim-scripts/ack.vim.git
+	ignore = dirty
