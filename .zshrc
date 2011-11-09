@@ -30,9 +30,7 @@ command -v dircolors >/dev/null && eval $(dircolors -b)
 # Options
 
 # Prompt
-autoload -U promptinit
-promptinit
-prompt adam2
+
 
 # Completion
 autoload -U compinit
@@ -104,12 +102,6 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ###############################################################################
 # Key bindings
 
-# Vi mode
-set -o vi
-autoload edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
 zle-keymap-select () {
     if [ $TERM = "rxvt-unicode" -o $TERM = "rxvt-256color" \
         -o $TERM = "screen" ]; then
@@ -137,20 +129,17 @@ zle -N zle-line-init
 # just press the beginning of a previous command then press Up/Down
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+bindkey '^U' backward-kill-line
 
 ###############################################################################
 # Aliases
 
 # Set up auto extension stuff
 alias -s html=$BROWSER
-alias -s org=$BROWSER
-alias -s php=$BROWSER
-alias -s com=$BROWSER
-alias -s net=$BROWSER
 alias -s png=feh
 alias -s jpg=feh
 alias -s gif=feh
-alias -s pdf=xpdf
+alias -s pdf=zathura
 alias -s sxw=soffice
 alias -s doc=soffice
 alias -s gz=tar -xzvf
@@ -159,13 +148,13 @@ alias -s txt=$EDITOR
 alias -s PKGBUILD=$EDITOR
 
 # Normal aliases
-alias ls='ls -G'
+alias ls='ls --color'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
-alias ll='ls -Glh'
+alias ll='ls -lh --color'
 alias l='ll'
-alias lll='ls -Glh | less'
-alias la='ls -GA'
+alias lll='ls -lh --color | less'
+alias la='ls -A --color'
 
 alias grep='grep --color'
 
@@ -181,10 +170,10 @@ alias rm='rm -i'
 # A few more useful aliases
 alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
-alias vpn='cd /etc/openvpn && sudo openvpn '
 alias se='sudoedit'
-alias ss='sudo service'
 alias kernel='dmesg | tail'
+alias vim='vim -p'
+alias ssh='ssh -v'
 
 alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
@@ -196,9 +185,45 @@ alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
 ###############################################################################
 # Additional configuration
 
-setup_ssh() {
+setopt prompt_subst
+
+# Colors
+
+autoload colors zsh/terminfo
+[ "$terminfo[colors]" -ge 8 ] && colors
+
+
+_git_prompt_info() {
+    _git_branch() {
+        git branch | awk '{if ($1 = "*"); print $2}'
+    }
+
+    _git_dirty() {
+        git status --porcelain | wc -l
+    }
+
+    echo -n "%{$fg[yellow]%} ($(_git_branch)|"
+    count=$(_git_dirty)
+    [ $count -ne 0 ] && echo -n "%{$fg[red]%}$count%{$reset_color%}" || echo -n "%{$fg[green]%}✔%{$reset_color%}"
+    echo -n "%{$fg[yellow]%})%{$reset_color%}"
+}
+
+_rcs_prompt_info() {
+    git status &>/dev/null && _git_prompt_info
+}
+
+precmd() {
+    local return_code="%(?..%{$fg[red]%}%?!%{$reset_color%})"
+
+    PROMPT="%{$fg[red]%}${PWD/#$HOME/~}$(_rcs_prompt_info) %{$fg[white]%}%(!.#.%%) "
+    RPROMPT="$return_code%{$fg[white]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[blue]%}%l%{$fg[white]%}"
+
+    echo -en "\033]0;${HOSTNAME}\007"
+}
+
+_setup_ssh() {
     case "$1" in
-        ssh|scp|git)
+        ssh|scp|git|sshfs)
             # SSH agent
             command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
             # Set the right title on urxvt
@@ -207,17 +232,20 @@ setup_ssh() {
             ;;
     esac
 }
-precmd() { echo -en "\033]0;${HOSTNAME}\007" }
-preexec() { setup_ssh $* }
+
+preexec() {
+    _setup_ssh $*
+}
 
 # Load machine specific configuration if any
 [ -f ./.zshrc.local ] && . ./.zshrc.local
+[[ -s "/home/infertux/.rvm/scripts/rvm" ]] && source "/home/infertux/.rvm/scripts/rvm"
 
 ###############################################################################
 # Display system info
 
 uname -snr
-w
+w -h
 
 # EOF
 
