@@ -186,9 +186,13 @@ alias ack='ack -a'
 alias g='git'
 alias gs='git st'
 alias gl='git log'
+alias glp='git log -p'
 alias gb='git br'
 alias go='git co'
+alias gc='git ci -av'
+alias gca='git ci -av --amend'
 alias gp='git pull --rebase'
+alias gg='git push' # "Git Give"
 alias gd='git diff'
 
 alias be='bundle exec'
