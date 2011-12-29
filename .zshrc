@@ -195,10 +195,6 @@ alias gp='git pull --rebase'
 alias gg='git push' # "Git Give"
 alias gd='git diff'
 
-alias be='bundle exec'
-alias ber='bundle exec rake'
-alias bers='bundle exec rspec'
-
 alias kcu='knife cookbook upload'
 
 
