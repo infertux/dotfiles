@@ -30,3 +30,6 @@
 	path = .vim/bundle/ack
 	url = https://github.com/vim-scripts/ack.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/auctex"]
+	path = .vim/bundle/auctex
+	url = https://github.com/vim-scripts/auctex.vim.git
