@@ -1,7 +1,12 @@
 " vim configuration file
 
+" disable vi compatibility (emulation of old bugs)
+" this must be first because it changes other options as a side effect
+set nocompatible
+
 " pathogen
 call pathogen#infect()
+call pathogen#helptags()
 
 " auto reload .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -11,10 +16,12 @@ set fenc=utf-8
 set termencoding=utf-8
 " syntax highlighting
 syntax on
-"set t_Co=256    " 256 colors
+set t_Co=256    " 256 colors
 colors desert   " nice scheme
-" disable vi compatibility (emulation of old bugs)
-set nocompatible
+" allow backspace in insert mode
+set backspace=indent,eol,start
+" reload files changed outside Vim
+set autoread
 " no backup
 set nobackup
 " use indentation of previous line
@@ -36,6 +43,8 @@ set comments=sl:/*,mb:\ *,elx:\ */
 set ruler
 " display available entries on Tab
 set wildmenu
+" I don't want to edit binaries
+set wildignore+=.git,*.o,*.pyc,*.png,*.jpg
 " display partial commands
 set showcmd
 " status bar on last window
@@ -45,30 +54,18 @@ set lcs=eol:¶,nbsp:·,tab:»\ ,trail:¤,extends:>,precedes:<
 set list
 " underline current line
 set cursorline
-" hide mouse when unused
-"set mousehide
 " grep -C3 'current line' ;)
 set scrolloff=3
 " save folding
 set foldmethod=marker
-" flash instead of beep on error
-set vb t_vb=
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
 " 80 cols rules!
 set textwidth=80
 " display a foolproof vertical bar
 if exists('+colorcolumn')
     set colorcolumn=+1  " textwidth + 1
-    highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
-else
-    "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    highlight ColorColumn ctermbg=darkgrey
 endif
-" Todo color for trailing whitespace
-"match Todo /\s\+$/
-" persistent undo (v7.3+)
+" persistent undo (7.3+)
 if exists('+undofile')
     set undodir=~/.vim/undodir
     set undofile
@@ -81,20 +78,7 @@ filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
 set completeopt+=menu,longest
 " change this unreadable pink bg
-"highlight Pmenu ctermbg=238
-"set ofu=syntaxcomplete#Complete
-"au filetype html        set omnifunc=htmlcomplete#CompleteTags
-"au filetype css         set omnifunc=csscomplete#CompleteCSS
-"au filetype javascript  set omnifunc=javascriptcomplete#CompleteJS
-"au filetype c           set omnifunc=ccomplete#Complete
-"au filetype php         set omnifunc=phpcomplete#CompletePHP
-"au filetype ruby        set omnifunc=rubycomplete#Complete
-"au filetype sql         set omnifunc=sqlcomplete#Complete
-"au filetype python      set omnifunc=pythoncomplete#Complete
-"au filetype xml         set omnifunc=xmlcomplete#CompleteTags
-"if !filereadable('tags')
-"    imap <Nul> <C-n>
-"endif
+highlight Pmenu ctermbg=238
 
 " laziness
 command! Spell set spell spelllang=en
@@ -114,26 +98,6 @@ noremap <Return> zz
 " Command T
 noremap <Tab> :CommandT<CR>
 noremap <Tab><Tab> :CommandTBuffer<CR>
-
-" web browser into Vim!
-fun! OpenWebBrowser(address)
-    exe "split"
-    exe "enew"
-    exe "set buftype=nofile"
-    echo "reading " . a:address
-    exe "silent r!elinks -dump " . a:address
-    syn reset
-    "add some syntax rules (thanks to jamesson on #vim)
-    syn match Keyword /\[\d*\]\w*/ contains=Ignore
-    syn match Ignore /\[\d*\]/ contained
-    exe "norm gg"
-endfun
-
-com! -nargs=+ WebBrowser call OpenWebBrowser(<q-args>)
-
-vmap ,g :call OpenWebBrowser("http://www.google.com/search?hl=en&q=<C-R><C-W>")<CR>
-vmap ,w :call OpenWebBrowser("http://en.wikipedia.org/wiki/<C-R><C-W>")<CR>
-vmap ,b :call OpenWebBrowser("<C-R><C-A>")<CR>
 
 " bépo
 if filereadable('.vimrc.bepo')
