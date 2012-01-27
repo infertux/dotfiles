@@ -109,30 +109,6 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ###############################################################################
 # Key bindings
 
-zle-keymap-select () {
-    if [ $TERM = "rxvt-unicode" -o $TERM = "rxvt-256color" \
-        -o $TERM = "screen" ]; then
-        if [ $KEYMAP = vicmd ]; then
-            [ $TERM = "screen" ] && echo -ne "\033P\033]12;Green\007\033\\" \
-                                 || echo -ne "\033]12;Green\007"
-        else
-            [ $TERM = "screen" ] && echo -ne "\033P\033]12;Red\007\033\\" \
-                                 || echo -ne "\033]12;Red\007"
-        fi
-    fi
-}
-zle -N zle-keymap-select
-zle-line-init () {
-    # FIXME: SEGFAULT when a b"c<ENTER><CTRL-C>
-    zle -K viins
-    if [ $TERM = "rxvt-unicode" -o $TERM = "rxvt-256color" \
-        -o $TERM = "screen" ]; then
-        [ $TERM = "screen" ] && echo -ne "\033P\033]12;Red\007\033\\" \
-                             || echo -ne "\033]12;Red\007"
-    fi
-}
-zle -N zle-line-init
-
 # just press the beginning of a previous command then press Up/Down
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
@@ -196,7 +172,8 @@ alias gg='git push' # "Git Give"
 alias gd='git diff'
 
 alias kcu='knife cookbook upload'
-
+alias specs='RAILS_ENV=test rake db:migrate && RAILS_ENV=test rspec spec'
+alias rdbm='rake db:migrate'
 
 ###############################################################################
 # Additional configuration
