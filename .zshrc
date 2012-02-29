@@ -172,15 +172,25 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias se='sudoedit'
 alias kernel='dmesg | tail'
+alias v='vim'
 alias vim='vim -p'
 alias ssh='ssh -v'
 
 alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 
+alias g='git'
 alias gs='git st'
-alias unsvn='find . -name .svn -print0 | xargs -0 rm -rf'
-alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+alias gl='git log'
+alias gb='git br'
+alias go='git co'
+alias gp='git pull --rebase'
+alias gd='git diff'
+
+alias be='bundle exec'
+alias ber='bundle exec rake'
+alias bers='bundle exec rspec'
+
 
 ###############################################################################
 # Additional configuration
@@ -195,7 +205,7 @@ autoload colors zsh/terminfo
 
 _git_prompt_info() {
     _git_branch() {
-        git branch | awk '{if ($1 = "*"); print $2}'
+        git branch | awk '{if ($1 = "*"); print $2}' | tr -d "\n"
     }
 
     _git_dirty() {
@@ -238,7 +248,7 @@ preexec() {
 }
 
 # Load machine specific configuration if any
-[ -f ./.zshrc.local ] && . ./.zshrc.local
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local
 [[ -s "/home/infertux/.rvm/scripts/rvm" ]] && source "/home/infertux/.rvm/scripts/rvm"
 
 ###############################################################################
