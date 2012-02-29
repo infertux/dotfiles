@@ -10,6 +10,7 @@
 .ssh/
 .subversion/
 .viminfo
+.vim/.netrwhist
 .wireshark/
 .zcompdump
 Desktop/
