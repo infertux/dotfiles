@@ -9,8 +9,10 @@
 ###############################################################################
 # Environment variables
 
-# Append ~/bin to PATH
-[ -d ~/bin ] && export PATH=~/bin:$PATH
+# Expand PATH
+for dir in /usr/local/sbin /usr/local/bin ~/bin; do
+    [ -d $dir ] && export PATH=$dir:$PATH
+done
 
 # Terminal history
 export HISTORY=100000
@@ -30,7 +32,6 @@ command -v dircolors >/dev/null && eval $(dircolors -b)
 # Options
 
 # Prompt
-
 
 # Completion
 autoload -U compinit
@@ -102,30 +103,6 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ###############################################################################
 # Key bindings
 
-zle-keymap-select () {
-    if [ $TERM = "rxvt-unicode" -o $TERM = "rxvt-256color" \
-        -o $TERM = "screen" ]; then
-        if [ $KEYMAP = vicmd ]; then
-            [ $TERM = "screen" ] && echo -ne "\033P\033]12;Green\007\033\\" \
-                                 || echo -ne "\033]12;Green\007"
-        else
-            [ $TERM = "screen" ] && echo -ne "\033P\033]12;Red\007\033\\" \
-                                 || echo -ne "\033]12;Red\007"
-        fi
-    fi
-}
-zle -N zle-keymap-select
-zle-line-init () {
-    # FIXME: SEGFAULT when a b"c<ENTER><CTRL-C>
-    zle -K viins
-    if [ $TERM = "rxvt-unicode" -o $TERM = "rxvt-256color" \
-        -o $TERM = "screen" ]; then
-        [ $TERM = "screen" ] && echo -ne "\033P\033]12;Red\007\033\\" \
-                             || echo -ne "\033]12;Red\007"
-    fi
-}
-zle -N zle-line-init
-
 # just press the beginning of a previous command then press Up/Down
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
@@ -140,8 +117,6 @@ alias -s png=feh
 alias -s jpg=feh
 alias -s gif=feh
 alias -s pdf=zathura
-alias -s sxw=soffice
-alias -s doc=soffice
 alias -s gz=tar -xzvf
 alias -s bz2=tar -xjvf
 alias -s txt=$EDITOR
@@ -172,12 +147,13 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias se='sudoedit'
 alias kernel='dmesg | tail'
-alias v='vim'
 alias vim='vim -p'
-alias ssh='ssh -v'
+alias vv='vim -O'
+alias vh='vim -o'
+alias v='vim'
 
-alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
+alias ack='ack -a'
 
 alias g='git'
 alias gs='git st'
@@ -186,11 +162,18 @@ alias gb='git br'
 alias go='git co'
 alias gp='git pull --rebase'
 alias gd='git diff'
+alias glp='git log -p'
+alias gc='git ci -av'
+alias gca='git ci -av --amend'
+alias gg='git push' # "Git Give"
 
 alias be='bundle exec'
 alias ber='bundle exec rake'
 alias bers='bundle exec rspec'
 
+alias kcu='knife cookbook upload'
+alias specs='RAILS_ENV=test rake db:migrate && RAILS_ENV=test rspec spec'
+alias rdbm='rake db:migrate'
 
 ###############################################################################
 # Additional configuration
@@ -248,8 +231,8 @@ preexec() {
 }
 
 # Load machine specific configuration if any
-[ -f ~/.zshrc.local ] && . ~/.zshrc.local
-[[ -s "/home/infertux/.rvm/scripts/rvm" ]] && source "/home/infertux/.rvm/scripts/rvm"
+[ -f ./.zshrc.local ] && . ./.zshrc.local
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 ###############################################################################
 # Display system info

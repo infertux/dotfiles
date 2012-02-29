@@ -36,16 +36,7 @@ Most of Vim plugins can be found at https://github.com/vim-scripts.
 Updating Submodules
 -------------------
 
-Here is an example with Tagbar bundle:
-
-    cd dotfiles
-    git submodule update
-    cd .vim/bundle/Tagbar
-    git checkout master
-    git pull
-    cd ..
-    git add .vim/bundle/Tagbar
-    git commit
+    git submodule foreach git pull origin master
 
 Removing Submodules
 -------------------

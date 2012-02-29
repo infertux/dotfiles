@@ -10,3 +10,26 @@
 [submodule ".vim/bundle/rails"]
 	path = .vim/bundle/rails
 	url = https://github.com/vim-scripts/rails.vim.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/bundle/commentary"]
+	path = .vim/bundle/commentary
+	url = https://github.com/vim-scripts/commentary.vim.git
+	ignore = dirty
+[submodule ".vim/bundle/command-t"]
+	path = .vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
+[submodule ".vim/bundle/vim-coffee-script"]
+	path = .vim/bundle/vim-coffee-script
+	url = https://github.com/vim-scripts/vim-coffee-script.git
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/ack"]
+	path = .vim/bundle/ack
+	url = https://github.com/vim-scripts/ack.vim.git
+	ignore = dirty
+[submodule ".vim/bundle/auctex"]
+	path = .vim/bundle/auctex
+	url = https://github.com/vim-scripts/auctex.vim.git

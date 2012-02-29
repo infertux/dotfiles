@@ -1,3 +1,5 @@
+*
+!.*
 .Xauthority
 .bash_history
 .cache/
@@ -6,15 +8,11 @@
 .git-achievements*\.log
 .history
 .lesshst
-.pki/
+.rvm/
 .ssh/
 .subversion/
 .viminfo
 .vim/.netrwhist
 .wireshark/
 .zcompdump
-Desktop/
-Documents/
-Downloads/
-Music/
-Pictures/
+.zshrc.local
