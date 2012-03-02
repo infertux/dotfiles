@@ -16,3 +16,10 @@
 .wireshark/
 .zcompdump
 .zshrc.local
+.irb-history
+.pulse-cookie
+.recently-used
+.rnd
+.sqlite_history
+.xinitrc
+.xscreensaver
