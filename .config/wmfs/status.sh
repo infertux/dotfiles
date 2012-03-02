@@ -53,7 +53,7 @@ MEM=$(free | grep buffers/cache | awk '{printf "%d", $4/1024}')
 VOLUME=$(amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1%|pg' | head -1)
 DATE=$(date +'%a %d %l:%M:%S')
 
-wmfs -s 0 "${OPT}${WHITE} $NETWORK | Ld: ${YELLOW}${LOAD} ${WHITE}% | \
+wmfs -s 0 "${OPT}${WHITE} | $NETWORK | Ld: ${YELLOW}${LOAD} ${WHITE}% | \
  $BATTERY | $YELLOW $MEM ${WHITE}MiB | \
 Vol:$YELLOW ${VOLUME}${WHITE} | ${YELLOW}${DATE}${WHITE} "
 

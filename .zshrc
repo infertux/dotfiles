@@ -231,7 +231,7 @@ preexec() {
 }
 
 # Load machine specific configuration if any
-[ -f ./.zshrc.local ] && . ./.zshrc.local
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 ###############################################################################
