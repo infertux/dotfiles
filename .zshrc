@@ -189,11 +189,11 @@ precmd() {
     }
 
    _ruby_version() {
-       echo "{$(rvm current)}"
+       command -v rvm >/dev/null && echo "{$(rvm current)-}"
    }
 
     PROMPT='%~ '
-    RPROMPT=$'$(_ruby_version)-$(_vcs_info_wrapper)'
+    RPROMPT=$'$(_ruby_version)$(_vcs_info_wrapper)'
 }
 preexec() {
     _setup_ssh() {
