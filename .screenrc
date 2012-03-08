@@ -1,0 +1,13 @@
+startup_message off     # bypass GPL notice (we're aware)
+defscrollback 15000     # big scrollback
+defmonitor on           # turn on monitoring
+activity "<%n>"         # let you know when stuff happens!
+silencewait 15          # notify when window goes silent
+bell_msg "DING! (%n)"
+vbell_msg "DING! (%n)"
+vbell on
+nethack off             # makes error messages cryptic :)
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
+defutf8 on
+hardstatus alwayslastline "%{=b}%{G} : %{b}%w %=%{G}%C%A"  # status line
+

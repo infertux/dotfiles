@@ -4,7 +4,7 @@ Installation
 This repository contains some git submodules (Vim plugins & my ~/bin), thus you
 have to pass the `--recursive` option to `git clone`.
 
-    git clone --recursive git://github.com/infertux/dotfiles.git
+    git clone -b <branch> --recursive git://github.com/infertux/dotfiles.git
 
 
 Submodules
@@ -36,16 +36,7 @@ Most of Vim plugins can be found at https://github.com/vim-scripts.
 Updating Submodules
 -------------------
 
-Here is an example with Tagbar bundle:
-
-    cd dotfiles
-    git submodule update
-    cd .vim/bundle/Tagbar
-    git checkout master
-    git pull
-    cd ..
-    git add .vim/bundle/Tagbar
-    git commit
+    git submodule foreach git pull origin master
 
 Removing Submodules
 -------------------

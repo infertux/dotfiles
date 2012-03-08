@@ -35,4 +35,6 @@ imap ,o <ESC>o
 imap ,O <ESC>O
 
 set nocursorline
+set textwidth=0
+set wrapmargin=0
 

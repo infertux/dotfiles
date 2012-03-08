@@ -9,8 +9,10 @@
 ###############################################################################
 # Environment variables
 
-# Append ~/bin to PATH
-[ -d ~/bin ] && export PATH=$PATH:~/bin
+# Expand PATH
+for dir in /usr/local/sbin /usr/local/bin ~/bin; do
+    [ -d $dir ] && export PATH=$dir:$PATH
+done
 
 # Terminal history
 export HISTORY=100000
@@ -18,21 +20,24 @@ export SAVEHIST=100000
 export HISTFILE=$HOME/.history
 
 # Man pager
-export PAGER=most
+command -v most >/dev/null && export PAGER=most
 
 export EDITOR=vim
 export BROWSER=elinks
 
 # Export 'ls' colors
-eval $(dircolors -b)
+command -v dircolors >/dev/null && eval $(dircolors -b)
 
 ###############################################################################
 # Options
 
 # Prompt
-autoload -U promptinit
-promptinit
-prompt adam2
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' enable git cvs svn
 
 # Completion
 autoload -U compinit
@@ -104,86 +109,31 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ###############################################################################
 # Key bindings
 
-# Vi mode
-set -o vi
-autoload edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
-zle-keymap-select () {
-    if [ $TERM = "rxvt-unicode" -o $TERM = "rxvt-256color" \
-        -o $TERM = "screen" ]; then
-        if [ $KEYMAP = vicmd ]; then
-            [ $TERM = "screen" ] && echo -ne "\033P\033]12;Green\007\033\\" \
-                                 || echo -ne "\033]12;Green\007"
-        else
-            [ $TERM = "screen" ] && echo -ne "\033P\033]12;Red\007\033\\" \
-                                 || echo -ne "\033]12;Red\007"
-        fi
-    fi
-}
-zle -N zle-keymap-select
-zle-line-init () {
-    # FIXME: SEGFAULT when a b"c<ENTER><CTRL-C>
-    zle -K viins
-    if [ $TERM = "rxvt-unicode" -o $TERM = "rxvt-256color" \
-        -o $TERM = "screen" ]; then
-        [ $TERM = "screen" ] && echo -ne "\033P\033]12;Red\007\033\\" \
-                             || echo -ne "\033]12;Red\007"
-    fi
-}
-zle -N zle-line-init
-
 # just press the beginning of a previous command then press Up/Down
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
-
-[ "$DISPLAY" ] && [ "$(setxkbmap -print | grep bepo)" ] && {
-    bindkey -v
-
-    # remap
-    bindkey -a c vi-backward-char
-    bindkey -a r vi-forward-char
-    bindkey -a t vi-down-line-or-history
-    bindkey -a s vi-up-line-or-history
-    bindkey -a $ vi-end-of-line
-    bindkey -a 0 vi-digit-or-beginning-of-line
-    bindkey -a h vi-change
-    bindkey -a H vi-change-eol
-    bindkey -a dd vi-change-whole-line
-    bindkey -a l vi-replace-chars
-    bindkey -a L vi-replace
-    bindkey -a k vi-substitute
-}
 
 ###############################################################################
 # Aliases
 
 # Set up auto extension stuff
 alias -s html=$BROWSER
-alias -s org=$BROWSER
-alias -s php=$BROWSER
-alias -s com=$BROWSER
-alias -s net=$BROWSER
 alias -s png=feh
 alias -s jpg=feh
 alias -s gif=feh
-alias -s pdf=xpdf
-alias -s sxw=soffice
-alias -s doc=soffice
+alias -s pdf=zathura
 alias -s gz=tar -xzvf
 alias -s bz2=tar -xjvf
 alias -s txt=$EDITOR
-alias -s PKGBUILD=$EDITOR
 
 # Normal aliases
-alias ls='ls --color=auto'
+alias ls='ls -G'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
-alias ll='ls --color=auto -lh'
+alias ll='ls -Glh'
 alias l='ll'
-alias lll='ls --color=auto -lh | less'
-alias la='ls --color=auto -A'
+alias lll='ls -Glh | less'
+alias la='ls -GA'
 
 alias grep='grep --color'
 
@@ -201,77 +151,71 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias vpn='cd /etc/openvpn && sudo openvpn '
 alias se='sudoedit'
-alias ss='sudo /etc/init.d/'
+alias vim='vim -p'
+alias vv='vim -O'
+alias vh='vim -o'
+alias v='vim'
 
-alias dev='cd /data/Dev/'
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
+alias ack='ack -a'
 
+alias g='git'
 alias gs='git st'
-alias unsvn='find . -name .svn -print0 | xargs -0 rm -rf'
-alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
+alias gl='git log'
+alias glp='git log -p'
+alias gb='git br'
+alias go='git co'
+alias gc='git ci -av'
+alias gca='git ci -av --amend'
+alias gp='git pull --rebase'
+alias gg='git push' # "Git Give"
+alias gd='git diff'
+
+alias kcu='knife cookbook upload'
+alias specs='RAILS_ENV=test rake db:migrate && RAILS_ENV=test rspec spec'
+alias rdbm='rake db:migrate'
 
 ###############################################################################
 # Additional configuration
 
-# Set the right title on urxvt
-set_urxvt_title() { [ "$1" = "ssh" ] && echo -en "\033]0;$2\007" }
-precmd() { echo -en "\033]0;${HOSTNAME}\007" }
-preexec() { set_urxvt_title $@ }
+precmd() {
+    echo -en "\033]0;${HOSTNAME}\007"
+
+    _vcs_info_wrapper() {
+      vcs_info
+      if [ "$vcs_info_msg_0_" ]; then
+        echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+      fi
+    }
+
+   _ruby_version() {
+       command -v rvm >/dev/null && echo "{$(rvm current)-}"
+   }
+
+    PROMPT='%~ '
+    RPROMPT=$'$(_ruby_version)$(_vcs_info_wrapper)'
+}
+preexec() {
+    _setup_ssh() {
+        if [[ "$1" = "ssh" || "$1" = "scp" ]]; then
+            # SSH agent
+            command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
+            # Set the right title on urxvt
+            shift $(($# - 1))
+            echo -en "\033]0;$1\007"
+        fi
+    }
+
+    _setup_ssh $*
+}
 
 # Load machine specific configuration if any
 [ -f ./.zshrc.local ] && . ./.zshrc.local
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 ###############################################################################
-# Nice banner
-
-declare -i index=$RANDOM%2
-case $index in
-    0)
-    cat << "EOF"
-o          `O    Oo    `o    O  o.OOoOoo       O       o OooOOo.
-O           o   o  O    o   O    O             o       O O     `O
-o           O  O    o   O  O     o             O       o o      O
-O           O oOooOoOo  oOo      ooOO          o       o O     .o
-o     o     o o      O  o  o     O             o       O oOooOO'
-O     O     O O      o  O   O    o             O       O o
-`o   O o   O' o      O  o    o   O             `o     Oo O
- `OoO' `OoO'  O.     O  O     O ooOooOoO        `OoooO'O o'
-
-
-  .oOOOo.  o      O o.OOoOoo o.OOoOoo OooOOo.   o      o.OOoOoo
-  o     o  O      o  O        O       O     `O O        O
-  O.       o      O  o        o       o      O o        o
-   `OOoo.  OoOooOOo  ooOO     ooOO    O     .o o        ooOO
-        `O o      O  O        O       oOooOO'  O        O
-         o O      o  o        o       o        O        o
-  O.    .O o      o  O        O       O        o     .  O
-   `oooO'  o      O ooOooOoO ooOooOoO o'       OOoOooO ooOooOoO
-
-                  FACEBOOK IS RUN BY THE CIA
-EOF
-    ;;
-    1)
-    cat << "EOF"
-        .-/                                      .-.
-      _.-~ /  _____  ______ __  _    _     _   ___ | ~-._
-      \:/  -~||  __||_  __//  || |  | |  /| | / __/| .\:/
-       /     ||  __|:| |\:/ ' || |__| |_/:| || (:/:|   \
-      / /\/| ||____|:|_|:/_/|_||____|____||_|:\___\| |\ \
-     / /:::|.:\::::\:\:\:|:||:||::::|:::://:/:/:::/:.|:\ \
-    / /:::/ \::\::::\|\:\|:/|:||::::|::://:/\/:::/::/:::\ \
-   /  .::\   \-~~~~~~~ ~~~~  ~~ ~~~~~~~~ ~~  ~~~~~-/\/:..  \
-  /..:::::\                                         /:::::..\
- /::::::::-                                         -::::::::\
- \:::::-~                   RULES!                     ~-:::::/
-  \:-~                                                    ~-:/
-EOF
-    ;;
-    *)
-    echo WTF
-    ;;
-esac
-
 # Display system info
+
 uname -snr
 w
 

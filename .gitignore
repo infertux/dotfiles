@@ -1,0 +1,15 @@
+*
+!.*
+!.*/*
+!.*/**/*
+.Xauthority
+.bash_history
+.*history
+.lesshst
+.rvm/
+.ssh/
+.viminfo
+.vim/.netrwhist
+.wireshark/
+.zcompdump
+.zshrc.local
