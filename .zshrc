@@ -37,7 +37,7 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git cvs svn
+zstyle ':vcs_info:*' enable git
 
 # Completion
 autoload -U compinit
@@ -112,6 +112,7 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 # just press the beginning of a previous command then press Up/Down
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+bindkey '^U' backward-kill-line
 
 ###############################################################################
 # Aliases
@@ -127,13 +128,13 @@ alias -s bz2=tar -xjvf
 alias -s txt=$EDITOR
 
 # Normal aliases
-alias ls='ls -G'
+alias ls='ls --color'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
-alias ll='ls -Glh'
+alias ll='ls -lh --color'
 alias l='ll'
-alias lll='ls -Glh | less'
-alias la='ls -GA'
+alias lll='ls -lh --color | less'
+alias la='ls -A --color'
 
 alias grep='grep --color'
 
@@ -151,6 +152,7 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias vpn='cd /etc/openvpn && sudo openvpn '
 alias se='sudoedit'
+alias kernel='dmesg | tail'
 alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
@@ -165,11 +167,16 @@ alias gl='git log'
 alias glp='git log -p'
 alias gb='git br'
 alias go='git co'
+alias gp='git pull --rebase'
+alias gd='git diff'
+alias glp='git log -p'
 alias gc='git ci -av'
 alias gca='git ci -av --amend'
-alias gp='git pull --rebase'
 alias gg='git push' # "Git Give"
-alias gd='git diff'
+
+alias be='bundle exec'
+alias ber='bundle exec rake'
+alias bers='bundle exec rspec'
 
 alias kcu='knife cookbook upload'
 alias specs='RAILS_ENV=test rake db:migrate && RAILS_ENV=test rspec spec'
@@ -178,35 +185,29 @@ alias rdbm='rake db:migrate'
 ###############################################################################
 # Additional configuration
 
+setopt prompt_subst
+
+# Colors
+
+autoload colors zsh/terminfo
+[ "$terminfo[colors]" -ge 8 ] && colors
+
 precmd() {
     echo -en "\033]0;${HOSTNAME}\007"
 
     _vcs_info_wrapper() {
-      vcs_info
-      if [ "$vcs_info_msg_0_" ]; then
-        echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
-      fi
-    }
-
-   _ruby_version() {
-       command -v rvm >/dev/null && echo "{$(rvm current)-}"
-   }
-
-    PROMPT='%~ '
-    RPROMPT=$'$(_ruby_version)$(_vcs_info_wrapper)'
-}
-preexec() {
-    _setup_ssh() {
-        if [[ "$1" = "ssh" || "$1" = "scp" ]]; then
-            # SSH agent
-            command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
-            # Set the right title on urxvt
-            shift $(($# - 1))
-            echo -en "\033]0;$1\007"
+        vcs_info
+        if [ "$vcs_info_msg_0_" ]; then
+            echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
         fi
     }
 
-    _setup_ssh $*
+    _ruby_version() {
+        command -v rvm >/dev/null && echo "{$(rvm current)-}"
+    }
+
+    PROMPT='%~ '
+    RPROMPT=$'$(_ruby_version)$(_vcs_info_wrapper)'
 }
 
 # Load machine specific configuration if any
@@ -217,7 +218,7 @@ preexec() {
 # Display system info
 
 uname -snr
-w
+w -h
 
 # EOF
 
