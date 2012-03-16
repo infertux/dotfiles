@@ -42,7 +42,7 @@ WIFI=$(wicd-cli --wireless -d | egrep "^(Essid:|Quality:)" | cut -d: -f2- | tr -
 
 LOAD=$(cat /proc/loadavg | awk '{printf "%d", $1*100/2}') # /2 cause I've 2 cores
 REM=$(cat /sys/class/power_supply/BAT0/charge_now)
-LAST=$(cat /sys/class/power_supply/BAT0/charge_full_design)
+LAST=$(cat /sys/class/power_supply/BAT0/charge_full)
 case $((RANDOM%2)) in
   0) BATTERY="Bat:$YELLOW $(echo $REM $LAST | awk '{printf "%d", ($1/$2)*100}')$WHITE %";;
   1) BATTERY="${YELLOW}$(cat /sys/class/power_supply/BAT0/charge_now | awk '{printf "%d", $1/1000}')$WHITE mAh";;
