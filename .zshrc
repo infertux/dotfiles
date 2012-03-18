@@ -217,7 +217,8 @@ precmd() {
 }
 
 _setup_ssh() {
-    case "$1" in
+    cmd=$(command -v "$1" | cut -d= -f2-)
+    case "$cmd" in
         ssh|scp|git|sshfs)
             # SSH agent
             command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
