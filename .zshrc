@@ -224,7 +224,7 @@ _setup_ssh() {
             command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
             # Set the right title on urxvt
             shift $(($# - 1))
-            echo -en "\033]0;$1\007"
+            echo -en "\033]0;${cmd}\007"
             ;;
     esac
 }
