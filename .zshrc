@@ -217,7 +217,7 @@ precmd() {
 }
 
 _setup_ssh() {
-    cmd=$(command -v "$1" | cut -d= -f2-)
+    cmd=$(command -v "$1" | cut -d= -f2- | awk -F/ '{print $NF}')
     case "$cmd" in
         ssh|scp|git|sshfs)
             # SSH agent
