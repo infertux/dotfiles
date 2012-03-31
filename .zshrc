@@ -183,7 +183,6 @@ alias rdbm='rake db:migrate'
 setopt prompt_subst
 
 # Colors
-
 autoload colors zsh/terminfo
 [ "$terminfo[colors]" -ge 8 ] && colors
 
@@ -212,8 +211,6 @@ precmd() {
 
     PROMPT="%{$fg[red]%}${PWD/#$HOME/~}$(_rcs_prompt_info) %{$fg[white]%}%(!.#.%%) "
     RPROMPT="$return_code%{$fg[white]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[blue]%}%l%{$fg[white]%}"
-
-    echo -en "\033]0;${HOSTNAME}\007"
 }
 
 _setup_ssh() {
@@ -222,9 +219,6 @@ _setup_ssh() {
         ssh|scp|git|sshfs)
             # SSH agent
             command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
-            # Set the right title on urxvt
-            shift $(($# - 1))
-            echo -en "\033]0;${cmd}\007"
             ;;
     esac
 }
