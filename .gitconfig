@@ -17,8 +17,7 @@
 	info = remote -v
 	up = !git stash && git pull && git stash pop
 	ll = log --pretty=oneline --abbrev-commit --max-count=15
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	lp = log -p
 	thanks = shortlog -sne
 [color]

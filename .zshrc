@@ -153,6 +153,7 @@ alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias vpn='cd /etc/openvpn && sudo openvpn '
 alias se='sudoedit'
 alias kernel='dmesg | tail'
+alias open='xdg-open'
 alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
@@ -171,7 +172,8 @@ alias gp='git pull --rebase'
 alias gd='git diff'
 alias glp='git log -p'
 alias gc='git ci -av'
-alias gca='git ci -av --amend'
+alias gca='git ci -v --amend'
+alias gcaa='git ci -av --amend'
 alias gg='git push' # "Git Give"
 
 alias be='bundle exec'
@@ -203,7 +205,7 @@ precmd() {
     }
 
     _ruby_version() {
-        command -v rvm >/dev/null && echo "{$(rvm current)-}"
+        command -v rvm >/dev/null && echo "{$(rvm current)}-"
     }
 
     PROMPT='%~ '
@@ -211,7 +213,7 @@ precmd() {
 }
 
 # Load machine specific configuration if any
-[ -f ./.zshrc.local ] && . ./.zshrc.local
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 ###############################################################################
