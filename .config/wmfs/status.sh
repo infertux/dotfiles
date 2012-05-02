@@ -20,7 +20,7 @@ if [ -r $UPDATES ] ; then
         OPT="$RED$OPT ($NB)"
     fi
 else
-    OPT="${YELLOW}No info about updates "
+    OPT="${YELLOW}No info about updates"
 fi
 
 TKBPS=0
@@ -38,24 +38,21 @@ TKBPS=$(echo $TKBPS | awk '{printf "%d", $1 / 1024}')
 RKBPS=$(echo $RKBPS | awk '{printf "%d", $1 / 1024}')
 NETWORK="$YELLOW$RKBPS$WHITE : $YELLOW$TKBPS$WHITE KiB/s"
 WIFI=$(wicd-cli --wireless -d | egrep "^(Essid:|Quality:)" | cut -d: -f2- | tr -d "\n")
-[ "$WIFI" ] && OPT="$OPT$WHITE | $WIFI% | "
+[ "$WIFI" ] && OPT="${OPT}${WHITE} |${YELLOW}${WIFI} ${WHITE}% |"
 
 LOAD=$(cat /proc/loadavg | awk '{printf "%d", $1*100/2}') # /2 cause I've 2 cores
 REM=$(cat /sys/class/power_supply/BAT0/charge_now)
 LAST=$(cat /sys/class/power_supply/BAT0/charge_full)
-case $((RANDOM%2)) in
-  0) BATTERY="Bat:$YELLOW $(echo $REM $LAST | awk '{printf "%d", ($1/$2)*100}')$WHITE %";;
-  1) BATTERY="${YELLOW}$(cat /sys/class/power_supply/BAT0/charge_now | awk '{printf "%d", $1/1000}')$WHITE mAh";;
-esac
+BATTERY="$(echo $REM $LAST | awk '{printf "%d", ($1/$2)*100}')"
 [ $BATTERY -ge 90 ] && BATTERY="${GREEN}${BATTERY}"
 [ $BATTERY -le 5 ] && BATTERY="${RED}${BATTERY}"
 MEM=$(free | grep buffers/cache | awk '{printf "%d", $4/1024}')
-VOLUME=$(amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1%|pg' | head -1)
+VOLUME=$(amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1|pg' | head -1)
 DATE=$(date +'%a %d %l:%M:%S')
 
-wmfs -s 0 "${OPT}${WHITE} | $NETWORK | Ld: ${YELLOW}${LOAD} ${WHITE}% | \
- $BATTERY | $YELLOW $MEM ${WHITE}MiB | \
-Vol:$YELLOW ${VOLUME}${WHITE} | ${YELLOW}${DATE}${WHITE} "
+wmfs -s 0 "${OPT}${WHITE} $NETWORK | Ld: ${YELLOW}${LOAD} ${WHITE}% | \
+ Bat: ${YELLOW}${BATTERY} ${WHITE}% | $YELLOW $MEM ${WHITE}MiB | \
+Vol:$YELLOW ${VOLUME} ${WHITE}% | ${YELLOW}${DATE}${WHITE} "
 
 sleep 3
 done
