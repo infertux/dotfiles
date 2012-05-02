@@ -1,9 +1,10 @@
-!.*
 *
+!.*
 .apvlvinfo
 .bash_history
 .cache/
 .config/
+!.config/wmfs/
 .gconf/
 .history
 .irb-history
@@ -17,6 +18,7 @@
 .subversion/
 .viminfo
 .vim/.netrwhist
+!.vim/bundle/
 .wireshark/
 .Xauthority
 .xinitrc

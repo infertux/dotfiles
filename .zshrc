@@ -153,6 +153,7 @@ alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
 alias v='vim'
+alias wifi='wicd-curses'
 
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 alias ack='ack -a'
