@@ -44,14 +44,20 @@ LOAD=$(cat /proc/loadavg | awk '{printf "%d", $1*100/2}') # /2 cause I've 2 core
 REM=$(cat /sys/class/power_supply/BAT0/charge_now)
 LAST=$(cat /sys/class/power_supply/BAT0/charge_full)
 BATTERY="$(echo $REM $LAST | awk '{printf "%d", ($1/$2)*100}')"
-[ $BATTERY -ge 90 ] && BATTERY="${GREEN}${BATTERY}"
-[ $BATTERY -le 5 ] && BATTERY="${RED}${BATTERY}"
+if [ $BATTERY -ge 90 ]; then
+    COLOR=$GREEN
+elif [ $BATTERY -le 5 ]; then
+    COLOR=$RED
+else
+    COLOR=$YELLOW
+fi
+BATTERY="${COLOR}${BATTERY}"
 MEM=$(free | grep buffers/cache | awk '{printf "%d", $4/1024}')
 VOLUME=$(amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1|pg' | head -1)
 DATE=$(date +'%a %d %l:%M:%S')
 
 wmfs -s 0 "${OPT}${WHITE} $NETWORK | Ld: ${YELLOW}${LOAD} ${WHITE}% | \
- Bat: ${YELLOW}${BATTERY} ${WHITE}% | $YELLOW $MEM ${WHITE}MiB | \
+ Bat: ${BATTERY} ${WHITE}% | $YELLOW $MEM ${WHITE}MiB | \
 Vol:$YELLOW ${VOLUME} ${WHITE}% | ${YELLOW}${DATE}${WHITE} "
 
 sleep 3
