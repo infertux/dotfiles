@@ -246,7 +246,7 @@
                 fg_focus  = "#191919" bg_focus  = "#7E89A2"
                 fg_normal = "#9F9AB3" bg_normal = "#191919"
 
-                [item] name = "Terminal"        func = "spawn" cmd = "urxvt -e tmux" [/item]
+                [item] name = "Terminal"        func = "spawn" cmd = "urxvt" [/item]
                 [item] name = "Firefox"         func = "spawn" cmd = "firefox"     [/item]
                 [item] name = "Thunderbird"      func = "spawn" cmd = "thunderbird"       [/item]
                 #[item] name = "Next tag"        func = "tag_next"                  [/item]
