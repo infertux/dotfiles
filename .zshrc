@@ -31,8 +31,6 @@ command -v dircolors >/dev/null && eval $(dircolors -b)
 ###############################################################################
 # Options
 
-# Prompt
-
 # Completion
 autoload -U compinit
 compinit
@@ -149,6 +147,7 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias se='sudoedit'
 alias kernel='dmesg | tail'
+alias open='xdg-open'
 alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
