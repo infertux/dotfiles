@@ -1,0 +1,45 @@
+background no
+out_to_x no
+out_to_console yes
+update_interval 1.0
+total_run_times 0
+if_up_strictness address
+
+TEXT
+${if_existing /tmp/.updates}\
+${if_match ${lines /tmp/.updates} > 0}\
+  ^s[right;\#CC6633; ${lines /tmp/.updates}]\
+  ^s[right;\#777777; | ]\
+${endif}\
+${endif}\
+${if_up wlan0}\
+  ^s[right;\#DDDDDD; ${texeci 60 mtr -nlc1 8.8.8.8 | tail -1 | sed "s/p \(.*\) \(.*\)$/\1 hops \2/;s/...$/ms/"}]\
+  ^s[right;\#777777; | ]\
+  ^s[right;\#777777;RX:] ^s[right;\#DDDDDD; ${upspeedf wlan0}]\
+  ^s[right;\#777777; | ]\
+  ^s[right;\#777777;TX:] ^s[right;\#DDDDDD; ${downspeedf wlan0}]\
+  ^s[right;\#777777; | ]\
+  ^s[right;\#777777;WIFI:] ^s[right;\#DDDDDD; ${wireless_essid wlan0} ${wireless_link_qual_perc wlan0}%]\
+${endif}\
+${if_mpd_playing}^s[right;\#777777; ${mpd_artist} :](1;spawn;urxvt -e ncmpcpp) ^s[right;\#537814; ${mpd_title}] ^s[right;\#DDDDDD; *]${endif}\
+^s[right;\#777777; | ]\
+^s[right;\#777777;CPU:](1;spawn;urxvt -e htop) ^s[right;\#DDDDDD; ${cpu}% ]\
+${if_match ${cpu} < 80 }\
+  ^g[right;40;8;${cpu};100;\#222222;\#537814;ckycpu]\
+${else}\
+  ^g[right;40;8;${cpu};100;\#222222;\#CC0000;ckycpu]\
+${endif}\
+^s[right;\#777777; | ]\
+^s[right;\#777777;RAM:]^s[right;\#DDDDDD; $memfree]\
+^s[right;\#777777; | ]\
+^s[right;\#777777;HDD:](1;spawn;urxvt -e ncdu) ^s[right;\#DDDDDD; ${fs_used_perc /}%]\
+^s[right;\#777777; | ]\
+^s[right;\#777777;VOL:]^s[right;\#DDDDDD; \
+${texeci 10 amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1|pg' | head -1}%]\
+^s[right;\#777777; | BAT:]\
+${if_match ${battery_percent} > 10}^s[right;\#DDDDDD; ${battery_time}]\
+${else}^s[right;\#CC0000; ${battery_time}]${endif}\
+^s[right;\#777777; | ]\
+^s[right;\#DDDDDD;${time %H:%M:%S} ]
+
+# vim: tw=0
