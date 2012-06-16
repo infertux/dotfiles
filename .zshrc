@@ -166,7 +166,8 @@ alias gp='git pull --rebase'
 alias gd='git diff'
 alias glp='git log -p'
 alias gc='git ci -av'
-alias gca='git ci -av --amend'
+alias gca='git ci -v --amend'
+alias gcaa='git ci -av --amend'
 alias gg='git push' # "Git Give"
 
 alias be='bundle exec'
