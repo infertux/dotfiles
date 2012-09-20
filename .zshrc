@@ -231,6 +231,8 @@ preexec() {
 # Load machine specific configuration if any
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+export RBXOPT=-X19
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ###############################################################################
 # Display system info
