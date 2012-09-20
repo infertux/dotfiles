@@ -21,7 +21,6 @@ ${if_up wlan0}\
   ^s[right;\#777777; | ]\
   ^s[right;\#777777;WIFI:] ^s[right;\#DDDDDD; ${wireless_essid wlan0} ${wireless_link_qual_perc wlan0}%]\
 ${endif}\
-${if_mpd_playing}^s[right;\#777777; ${mpd_artist} :](1;spawn;urxvt -e ncmpcpp) ^s[right;\#537814; ${mpd_title}] ^s[right;\#DDDDDD; *]${endif}\
 ^s[right;\#777777; | ]\
 ^s[right;\#777777;CPU:](1;spawn;urxvt -e htop) ^s[right;\#DDDDDD; ${cpu}% ]\
 ${if_match ${cpu} < 80 }\
@@ -30,12 +29,14 @@ ${else}\
   ^g[right;40;8;${cpu};100;\#222222;\#CC0000;ckycpu]\
 ${endif}\
 ^s[right;\#777777; | ]\
-^s[right;\#777777;RAM:]^s[right;\#DDDDDD; $memfree]\
+^s[right;\#777777;RAM:]\
+${if_match ${memperc} < 90}^s[right;\#DDDDDD; ${memfree}]\
+${else}^s[right;\#CC0000; ${memfree}]${endif}\
 ^s[right;\#777777; | ]\
 ^s[right;\#777777;HDD:](1;spawn;urxvt -e ncdu) ^s[right;\#DDDDDD; ${fs_used_perc /}%]\
 ^s[right;\#777777; | ]\
 ^s[right;\#777777;VOL:]^s[right;\#DDDDDD; \
-${texeci 10 amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1|pg' | head -1}%]\
+${texeci 8 amixer get Master | grep -q '\[off\]' && echo MUTE || amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1%|pg' | head -1}]\
 ^s[right;\#777777; | BAT:]\
 ${if_match ${battery_percent} > 10}^s[right;\#DDDDDD; ${battery_time}]\
 ${else}^s[right;\#CC0000; ${battery_time}]${endif}\
