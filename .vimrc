@@ -83,6 +83,7 @@ highlight Pmenu ctermbg=238
 " laziness
 command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
+command C let @/ = ""
 
 " another Esc key
 "inoremap <Tab> <Esc>
