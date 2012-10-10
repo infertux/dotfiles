@@ -149,6 +149,7 @@ alias vv='vim -O'
 alias vh='vim -o'
 alias v='vim'
 alias wifi='wicd-curses'
+alias ssh='ssh -v'
 
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 alias ack='ack -a'
@@ -211,7 +212,7 @@ precmd() {
 }
 
 _setup_ssh() {
-    cmd=$(command -v "$1" | cut -d= -f2- | awk -F/ '{print $NF}')
+    cmd=$(command -v "$1" | sed -r "s/^.*='(.*) .*$/\1/")
     case "$cmd" in
         ssh|scp|git|sshfs|rsync)
             # SSH agent
@@ -233,8 +234,7 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 ###############################################################################
 # Display system info
 
-uname -snr
-w -h
+(uname -snr; w | head -1) | cowsay -f daemon
 
 # EOF
 
