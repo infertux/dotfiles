@@ -43,10 +43,6 @@ setopt print_exit_value
 # Ask confirmation for 'rm *'
 unsetopt rm_star_silent
 
-# When using wildcards in the list of arguments,
-# removes the jokers that do not match anything instead of giving an error
-setopt nullglob
-
 # Symlinks handing
 setopt chase_links
 
