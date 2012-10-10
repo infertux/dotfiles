@@ -8,7 +8,7 @@
 !/.config/wmfs/
 /.gconf/
 /.history
-/.irb_history
+/.irb[-_]history
 /.lesshst
 /.pulse-cookie
 /.recently-used
