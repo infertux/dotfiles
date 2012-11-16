@@ -36,7 +36,7 @@ ${else}^s[right;\#CC0000; ${memfree}]${endif}\
 ^s[right;\#777777;HDD:](1;spawn;urxvt -e ncdu) ^s[right;\#DDDDDD; ${fs_used_perc /}%]\
 ^s[right;\#777777; | ]\
 ^s[right;\#777777;VOL:]^s[right;\#DDDDDD; \
-${texeci 8 amixer get Master | grep -q '\[off\]' && echo MUTE || amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1%|pg' | head -1}]\
+${texeci 5 amixer get Master | grep -q '\[off\]' && echo MUTE || amixer get Master | sed -n 's|.*\[\([0-9]*\)\%.*|\1%|pg' | head -1}]\
 ^s[right;\#777777; | BAT:]\
 ${if_match ${battery_percent} > 10}^s[right;\#DDDDDD; ${battery_time}]\
 ${else}^s[right;\#CC0000; ${battery_time}]${endif}\
