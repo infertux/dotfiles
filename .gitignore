@@ -1,5 +1,5 @@
 *
-!.*
+!/.*
 /.apvlvinfo
 /.bash_history
 /.csshrc
@@ -19,6 +19,7 @@
 /.ssh/
 /.subversion/
 /.viminfo
+/.viminfo.tmp
 /.vim/.netrwhist
 !/.vim/bundle/
 /.wireshark/
