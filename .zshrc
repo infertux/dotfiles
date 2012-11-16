@@ -153,6 +153,7 @@ alias ssh='ssh -v'
 
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 alias ack='ack -a'
+alias rsynca='rsync -avz --progress'
 
 alias g='git'
 alias gs='git st'
