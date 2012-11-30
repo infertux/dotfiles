@@ -205,11 +205,15 @@ _rcs_prompt_info() {
     git status &>/dev/null && _git_prompt_info
 }
 
+_ruby_version() {
+    [ "$RUBY_VERSION" ] && echo "{$RUBY_VERSION} "
+}
+
 precmd() {
     local return_code="%(?..%{$fg[red]%}%?!%{$reset_color%})"
 
     PROMPT="%{$fg[red]%}${PWD/#$HOME/~}$(_rcs_prompt_info) %{$fg[white]%}%(!.#.%%) "
-    RPROMPT="$return_code%{$fg[white]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[blue]%}%l%{$fg[white]%}"
+    RPROMPT="$return_code %{$fg[yellow]%}$(_ruby_version)%{$fg[white]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[blue]%}%l%{$fg[white]%}"
 }
 
 _setup_ssh() {
