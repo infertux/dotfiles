@@ -1,5 +1,6 @@
 *
 !/.*
+*.swp
 /.apvlvinfo
 /.bash_history
 /.csshrc
