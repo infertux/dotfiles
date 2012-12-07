@@ -17,7 +17,13 @@ set termencoding=utf-8
 " syntax highlighting
 syntax on
 set t_Co=256    " 256 colors
-colors desert   " nice scheme
+
+" solarized settings
+let g:solarized_termcolors=256 " force to use 256 colors
+let g:solarized_termtrans=1 " fix bg color with urxvt
+set background=dark
+colorscheme solarized
+
 " allow backspace in insert mode
 set backspace=indent,eol,start
 " reload files changed outside Vim
@@ -86,25 +92,19 @@ highlight Pmenu ctermbg=238
 command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
 
-" another Esc key
-"inoremap <Tab> <Esc>
-"vnoremap <Tab> <Esc>
-"inoremap <S-Tab> <Tab>
-"vnoremap <S-Tab> <Tab>
-
 " moving
 noremap <BS> <PageUp>
 noremap <Space> <PageDown>
 noremap <Return> zz
 
-" Command T
+" plugins settings
+let g:tagbar_compact = 1
+
 noremap <Tab> :CommandT<CR>
 noremap <Tab><Tab> :CommandTBuffer<CR>
 
-" bépo
-if filereadable('.vimrc.bepo')
-    source .vimrc.bepo
-endif
-
-"autocmd VimEnter * NERDTree
+" autocmd
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd l
+autocmd FileType * nested :call tagbar#autoopen(0)
 
