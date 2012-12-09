@@ -139,6 +139,7 @@ alias cp='cp -i'
 alias rm='rm -i'
 
 # A few more useful aliases
+alias s='sudo'
 alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias se='sudoedit'
@@ -150,6 +151,7 @@ alias vh='vim -o'
 alias v='vim'
 alias wifi='wicd-curses'
 alias ssh='ssh -v'
+alias tmux='tmux -2' # 256 colors
 
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 alias ack='ack -a'
