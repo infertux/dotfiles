@@ -36,6 +36,8 @@ set expandtab        " expand tabs to spaces
 set nonumber
 " highlight matching braces
 set showmatch
+" raw paste
+set paste
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 " ensures that each window contains a status line
