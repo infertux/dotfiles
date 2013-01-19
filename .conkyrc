@@ -31,7 +31,7 @@ ${endif}\
 ^s[right;\#777777; | ]\
 ^s[right;\#777777;RAM:]\
 ${if_match ${memperc} < 90}^s[right;\#DDDDDD; ${memfree}]\
-${else}^s[right;\#CC0000; ${memfree}]${endif}\
+${else}^s[right;\#CC0000; ${memeasyfree}]${endif}\
 ^s[right;\#777777; | ]\
 ^s[right;\#777777;HDD:](1;spawn;urxvt -e ncdu) ^s[right;\#DDDDDD; ${fs_used_perc /}%]\
 ^s[right;\#777777; | ]\
