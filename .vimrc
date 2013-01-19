@@ -107,5 +107,5 @@ noremap <Tab><Tab> :CommandTBuffer<CR>
 " autocmd
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd l
-autocmd FileType * nested :call tagbar#autoopen(0)
+" autocmd FileType * nested :call tagbar#autoopen(0)
 
