@@ -35,3 +35,5 @@
 	whitespace = yellow reverse
 [push]
 	default = tracking
+[core]
+	excludesfile = /home/infertux/gitignore
