@@ -42,6 +42,12 @@ set expandtab        " expand tabs to spaces
 set nonumber
 " highlight matching braces
 set showmatch
+" smart Emacs-style search
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+nmap \c :nohlsearch<CR>
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 " ensures that each window contains a status line
@@ -96,23 +102,25 @@ nnoremap Y y$
 " laziness
 command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
-command C let @/ = ""
+
+" custom shortcuts
+nmap \l :setlocal number!<CR>
+nmap \p :set paste!<CR>
+nmap \n :NERDTreeToggle<CR>
+nmap \t :TagbarToggle<CR>
 
 " moving
 noremap <BS> <PageUp>
 noremap <Space> <PageDown>
 noremap <Return> zz
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
 
 " plugins settings
 let g:tagbar_compact = 1
 
-noremap <Tab> :CommandT<CR>
-noremap <Tab><Tab> :CommandTBuffer<CR>
-
-" autocmd
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd l
-" autocmd FileType * nested :call tagbar#autoopen(0)
+nmap <Tab> :CtrlP<CR>
+nmap ; :CtrlPBuffer<CR>
 
 
 " vim:set ft=vim et sw=2:
