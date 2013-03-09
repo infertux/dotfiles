@@ -42,8 +42,6 @@ set expandtab        " expand tabs to spaces
 set nonumber
 " highlight matching braces
 set showmatch
-" raw paste
-set paste
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 " ensures that each window contains a status line
@@ -64,6 +62,8 @@ set list
 set cursorline
 " grep -C3 'current line' ;)
 set scrolloff=3
+" keep 5 columns next to the cursor when scrolling horizontally
+set sidescrolloff=5
 " save folding
 set foldmethod=marker
 " 80 cols rules!
@@ -85,8 +85,13 @@ imap <Nul> <C-x><C-o>
 filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
 set completeopt+=menu,longest
+" don't scan included files - tags file is more performant
+set complete-=i
 " change this unreadable pink bg
 highlight Pmenu ctermbg=238
+
+" Y yanks from the cursor to the end of line as expected
+nnoremap Y y$
 
 " laziness
 command! Spell set spell spelllang=en
@@ -107,4 +112,7 @@ noremap <Tab><Tab> :CommandTBuffer<CR>
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd l
 autocmd FileType * nested :call tagbar#autoopen(0)
+
+
+" vim:set ft=vim et sw=2:
 
