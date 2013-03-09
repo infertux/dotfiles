@@ -31,14 +31,6 @@ command -v dircolors >/dev/null && eval $(dircolors -b)
 ###############################################################################
 # Options
 
-# Prompt
-setopt prompt_subst
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git
-
 # Completion
 autoload -U compinit
 compinit
@@ -119,9 +111,12 @@ alias -s png=feh
 alias -s jpg=feh
 alias -s gif=feh
 alias -s pdf=zathura
+alias -s sxw=soffice
+alias -s doc=soffice
 alias -s gz=tar -xzvf
 alias -s bz2=tar -xjvf
 alias -s txt=$EDITOR
+alias -s PKGBUILD=$EDITOR
 
 # Normal aliases
 alias ls='ls --color'
@@ -147,7 +142,6 @@ alias rm='rm -i'
 alias s='sudo'
 alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
-alias vpn='cd /etc/openvpn && sudo openvpn '
 alias se='sudoedit'
 alias kernel='dmesg | tail'
 alias open='xdg-open'
@@ -155,15 +149,17 @@ alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
 alias v='vim'
+alias wifi='wicd-curses'
+alias ssh='ssh -v'
 alias tmux='tmux -2' # 256 colors
 
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 alias ack='ack -a'
+alias rsynca='rsync -avz --progress'
 
 alias g='git'
 alias gs='git st'
 alias gl='git log'
-alias glp='git log -p'
 alias gb='git br'
 alias go='git co'
 alias gp='git pull --rebase'
@@ -188,37 +184,64 @@ alias rdbm='rake db:migrate'
 setopt prompt_subst
 
 # Colors
-
 autoload colors zsh/terminfo
 [ "$terminfo[colors]" -ge 8 ] && colors
 
+
+_git_prompt_info() {
+    _git_branch() {
+        git branch | awk '{if ($1 = "*"); print $2}' | tr -d "\n"
+    }
+
+    _git_dirty() {
+        git status --porcelain | wc -l
+    }
+
+    echo -n "%{$fg[yellow]%} ($(_git_branch)|"
+    count=$(_git_dirty)
+    [ $count -ne 0 ] && echo -n "%{$fg[red]%}$count%{$reset_color%}" || echo -n "%{$fg[green]%}✔%{$reset_color%}"
+    echo -n "%{$fg[yellow]%})%{$reset_color%}"
+}
+
+_rcs_prompt_info() {
+    git status &>/dev/null && _git_prompt_info
+}
+
+_ruby_version() {
+    [ "$RUBY_VERSION" ] && echo "{$RUBY_VERSION} "
+}
+
 precmd() {
-    echo -en "\033]0;${HOSTNAME}\007"
+    local return_code="%(?..%{$fg[red]%}%?!%{$reset_color%})"
 
-    _vcs_info_wrapper() {
-        vcs_info
-        if [ "$vcs_info_msg_0_" ]; then
-            echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
-        fi
-    }
+    PROMPT="%{$fg[red]%}${PWD/#$HOME/~}$(_rcs_prompt_info) %{$fg[white]%}%(!.#.%%) "
+    RPROMPT="$return_code %{$fg[yellow]%}$(_ruby_version)%{$fg[white]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[blue]%}%l%{$fg[white]%}"
+}
 
-    _ruby_version() {
-        command -v rvm >/dev/null && echo "{$(rvm current)}-"
-    }
+_setup_ssh() {
+    cmd=$(command -v "$1" | sed -r "s/^.*='(.*) .*$/\1/")
+    case "$cmd" in
+        ssh|scp|git|sshfs|rsync)
+            # SSH agent
+            command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
+            ;;
+    esac
+}
 
-    PROMPT='%~ '
-    RPROMPT=$'$(_ruby_version)$(_vcs_info_wrapper)'
+preexec() {
+    _setup_ssh $*
 }
 
 # Load machine specific configuration if any
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+export RBXOPT=-X19
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ###############################################################################
 # Display system info
 
-uname -snr
-w -h
+(uname -snr; w | head -1) | cowsay -f daemon
 
 # EOF
 

@@ -1,21 +1,15 @@
 urxvt*borderLess: false
 urxvt*loginShell: true
-urxvt*transparent: true
-urxvt*shading: 5
-urxvt*inheritPixmap: true
+urxvt*transparent: false
 urxvt*foreground: #00dd00
 urxvt*background: #000000
 urxvt*scrollBar: true
 urxvt*scrollBar_right: true
-urxvt*scrollColor: #427AC0
-urxvt*scrollBar_floating: true
-urxvt*scrollstyle: plain
 urxvt*saveLines: 100000
-urxvt*geometry: 90x56
+#urxvt*geometry: 144x39
 urxvt*cursorBlink: true
 urxvt*urgentOnBell: true
-urxvt*font: xft:Bitstream Vera Sans Mono:style=Regular:pixelsize=14:antialias=true
+urxvt*font: xft:Bitstream Vera Sans Mono:style=Regular:pixelsize=12:antialias=true
 urxvt*perl-ext-common: default,matcher
 urxvt*urlLauncher: firefox
 urxvt*matcher.button: 1
-

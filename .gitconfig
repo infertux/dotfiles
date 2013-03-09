@@ -26,7 +26,7 @@
 [color]
 	ui = auto
 [merge]
-	tool = meld
+	tool = vimdiff
 [diff]
 	renames = copies
 	mnemonicprefix = true
@@ -36,3 +36,5 @@
 	whitespace = yellow reverse
 [push]
 	default = tracking
+[core]
+	excludesfile = /home/infertux/gitignore

@@ -96,6 +96,7 @@ nnoremap Y y$
 " laziness
 command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
+command C let @/ = ""
 
 " moving
 noremap <BS> <PageUp>
@@ -111,7 +112,7 @@ noremap <Tab><Tab> :CommandTBuffer<CR>
 " autocmd
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd l
-autocmd FileType * nested :call tagbar#autoopen(0)
+" autocmd FileType * nested :call tagbar#autoopen(0)
 
 
 " vim:set ft=vim et sw=2:
