@@ -214,7 +214,7 @@ precmd() {
     local return_code="%(?..%{$fg[red]%}%?!%{$reset_color%})"
 
     PROMPT="%{$fg[red]%}${PWD/#$HOME/~}$(_rcs_prompt_info) %{$fg[white]%}%(!.#.%%) "
-    RPROMPT="$return_code %{$fg[yellow]%}$(_ruby_version)%{$fg[white]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[blue]%}%l%{$fg[white]%}"
+    RPROMPT="$return_code %{$fg[yellow]%}$(_ruby_version)%{$fg[white]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[blue]%}%l%{$reset_color%}"
 }
 
 _setup_ssh() {
