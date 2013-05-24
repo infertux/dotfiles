@@ -24,6 +24,7 @@ command -v most >/dev/null && export PAGER=most
 
 export EDITOR=vim
 export BROWSER=elinks
+# export LC_TIME=en_DK.utf8 # http://www.explainxkcd.com/wiki/index.php?title=1179
 
 # Export 'ls' colors
 command -v dircolors >/dev/null && eval $(dircolors -b)
@@ -152,22 +153,20 @@ alias v='vim'
 alias wifi='wicd-curses'
 alias ssh='ssh -v'
 alias tmux='tmux -2' # 256 colors
+alias irb='pry' # never think about pry otherwise
 
-alias todo="ack 'TODO|FIXME|XXX|HACK'"
-alias ack='ack -a'
+alias todo="ag 'TODO|FIXME|XXX|HACK'"
 alias rsynca='rsync -avz --progress'
 
 alias g='git'
-alias gs='git st'
+alias gs='git status -s'
 alias gl='git log'
-alias gb='git br'
-alias go='git co'
+alias gb='git branch'
+alias go='git checkout'
 alias gp='git pull --rebase'
 alias gd='git diff'
 alias glp='git log -p'
-alias gc='git ci -av'
-alias gca='git ci -v --amend'
-alias gcaa='git ci -av --amend'
+alias gc='git commit -v'
 alias gg='git push' # "Git Give"
 
 alias be='bundle exec'
