@@ -3,10 +3,6 @@
 	email = infertux@infertux.com
 [alias]
 	addrm = add -u
-	br = branch
-	ci = commit
-	co = checkout
-	st = status -s
 	staged = diff --cached
 	unstage = reset HEAD --
 	ignored = ls-files --others
@@ -22,7 +18,7 @@
 	thanks = shortlog -sne
 	diff-empty = diff 4b825dc642cb6eb9a060e54bf8d69288fbee4904
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	delete-merged = !git branch --merged master | grep -v 'master$' | xargs git branch -d
+	delete-merged = !git branch --merged master | grep -Ev '(master|production)$' | xargs git branch -d
 [color]
 	ui = auto
 [merge]
@@ -38,3 +34,7 @@
 	default = tracking
 [core]
 	excludesfile = /home/infertux/gitignore
+[log]
+	date = iso
+[mergetool]
+	keepBackup = false
