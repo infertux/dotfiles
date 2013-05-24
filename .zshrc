@@ -237,10 +237,5 @@ preexec() {
 export RBXOPT=-X19
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-###############################################################################
-# Display system info
-
-(uname -snr; w | head -1) | cowsay -f daemon
-
 # EOF
 
