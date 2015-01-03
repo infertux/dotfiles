@@ -5,6 +5,7 @@
 set nocompatible
 
 " pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 " auto reload .vimrc
