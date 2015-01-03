@@ -1,3 +1,2 @@
-update_sources: false
 verbose: true
-gem: --no-rdoc
+gem: --no-document

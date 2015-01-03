@@ -1,7 +1,9 @@
 *
 !/.*
-*.swp
 *.orig
+*.swp
+/.ICEauthority
+/.Xauthority
 /.apvlvinfo
 /.bash_history
 /.bashrc
@@ -17,7 +19,6 @@
 /.gtk-bookmarks
 /.guard_history
 /.history
-/.ICEauthority
 /.imsettings.log
 /.irb-history
 /.irb[-_]history
@@ -25,9 +26,12 @@
 /.lesshst
 /.mysql_history
 /.netrc
+/.npmrc
 /.nvidia-settings-rc
-/.psql_history
+/.pgadmin3
+/.pgpass
 /.pry_history
+/.psql_history
 /.pulse-cookie
 /.pythonhist
 /.recently-used
@@ -39,11 +43,11 @@
 /.ssh/
 /.subversion/
 !/.vim/bundle/
+/.vim/.netrwhist
 /.viminfo
 /.viminfo.tmp
-/.vim/.netrwhist
+/.wavemonrc
 /.wireshark/
-/.Xauthority
 /.xinitrc
 /.xscreensaver
 /.xsession-errors
