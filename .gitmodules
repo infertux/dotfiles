@@ -69,3 +69,6 @@
 [submodule ".vim/bundle/vim-i18n"]
 	path = .vim/bundle/vim-i18n
 	url = https://github.com/stefanoverna/vim-i18n.git
+[submodule ".zsh/git-prompt"]
+	path = .zsh/git-prompt
+	url = git://github.com/olivierverdier/zsh-git-prompt.git

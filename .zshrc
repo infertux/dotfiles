@@ -10,9 +10,11 @@
 # Environment variables
 
 # Expand PATH
-for dir in /usr/local/sbin /usr/local/bin ~/bin; do
+for dir in /usr/local/heroku/bin ~/node_modules/grunt-cli/bin /usr/local/sbin /usr/local/bin ~/bin; do
     [ -d $dir ] && export PATH=$dir:$PATH
 done
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Terminal history
 export HISTORY=100000
@@ -24,9 +26,6 @@ command -v most >/dev/null && export PAGER=most
 
 export EDITOR=vim
 export BROWSER=elinks
-
-# Export 'ls' colors
-command -v dircolors >/dev/null && eval $(dircolors -b)
 
 ###############################################################################
 # Options
@@ -87,7 +86,7 @@ setopt nohup
 # Option configurations
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+zstyle ':completion:*:warnings' format '%BNo matches for: %d%b'
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
@@ -158,66 +157,72 @@ alias v='vim'
 
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 alias ack='ack -a'
+alias rsynca='rsync -avzPh'
 
 alias g='git'
 alias gs='git st'
 alias gl='git log'
+alias gb='git branch'
+alias go='git checkout'
+alias gp='git pull --rebase'
+alias gd='git diff'
 alias glp='git log -p'
 alias gb='git br'
 alias go='git co'
 alias gc='git ci -av'
 alias gca='git ci -av --amend'
 alias gp='git pull --rebase'
-alias gg='git push' # "Git Give"
 alias gd='git diff'
 
+alias be='bundle exec'
+alias ber='bundle exec rake'
+alias bers='bundle exec rspec'
+alias berps='bundle exec rake parallel:spec'
+alias berpps='bundle exec rake parallel:prepare parallel:spec'
+
 alias kcu='knife cookbook upload'
+alias kcsi='knife cookbook site install'
 alias specs='RAILS_ENV=test rake db:migrate && RAILS_ENV=test rspec spec'
 alias rdbm='rake db:migrate'
+
+alias syu='sudo yum update'
+alias syi='sudo yum install'
+alias sys='sudo yum search -C'
+alias syp='sudo yum provides -C'
+
+alias loc_report='find app/ -name "*.rb" | xargs wc -l | sort'
+alias git_report='git log --name-only --no-merges | grep \.rb$ | sort | uniq -c | sort -nr'
+
+alias skype='xhost +local: && sudo -u skype /home/skype/skype/skype'
 
 ###############################################################################
 # Additional configuration
 
-precmd() {
-    echo -en "\033]0;${HOSTNAME}\007"
+set -o vi
+setopt prompt_subst
 
-    _vcs_info_wrapper() {
-      vcs_info
-      if [ "$vcs_info_msg_0_" ]; then
-        echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
-      fi
-    }
+# Colors
+autoload colors zsh/terminfo
+[ "$terminfo[colors]" -ge 8 ] && colors
 
-   _ruby_version() {
-       command -v rvm >/dev/null && echo "{$(rvm current)-}"
-   }
+source ~/.zsh/git-prompt/zshrc.sh
+PROMPT='%B%~%b$(git_super_status) %# '
 
-    PROMPT='%~ '
-    RPROMPT=$'$(_ruby_version)$(_vcs_info_wrapper)'
+_set_title() {
+    print -Pn "\e]2;%m: %~\a"
 }
-preexec() {
-    _setup_ssh() {
-        if [[ "$1" = "ssh" || "$1" = "scp" ]]; then
-            # SSH agent
-            command -v keychain >/dev/null && eval `keychain --eval --agents ssh -q id_rsa`
-            # Set the right title on urxvt
-            shift $(($# - 1))
-            echo -en "\033]0;$1\007"
-        fi
-    }
 
-    _setup_ssh $*
+_set_title
+
+chpwd() {
+    _set_title
 }
+
+# Ruby
+export RBXOPT=-X19
+ulimit -s 65536 # to avoid "Stack level too deep" errors with Rails
 
 # Load machine specific configuration if any
-[ -f ./.zshrc.local ] && . ./.zshrc.local
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-###############################################################################
-# Display system info
-
-uname -snr
-w
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local
 
 # EOF
-
