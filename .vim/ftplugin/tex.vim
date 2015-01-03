@@ -1,6 +1,6 @@
 
 " spell check
-setlocal spell spelllang=fr
+setlocal spell spelllang=en
 
 " LaTeX coloration
 let g:tex_flavor = "latex"
