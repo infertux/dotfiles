@@ -17,7 +17,14 @@ set termencoding=utf-8
 " syntax highlighting
 syntax on
 set t_Co=256    " 256 colors
-colors desert   " nice scheme
+
+" solarized settings
+let g:solarized_termcolors=256 " force to use 256 colors
+" let g:solarized_termtrans=1 " fix bg color with urxvt
+" set background=dark
+set background=light
+colorscheme solarized
+
 " allow backspace in insert mode
 set backspace=indent,eol,start
 " reload files changed outside Vim
@@ -99,10 +106,27 @@ noremap <Return> zz
 noremap <Tab> :CommandT<CR>
 noremap <Tab><Tab> :CommandTBuffer<CR>
 
-" bépo
-if filereadable('.vimrc.bepo')
-    source .vimrc.bepo
+" Tabularize
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a{ :Tabularize /{<CR>
+  vmap <Leader>a{ :Tabularize /{<CR>
+  nmap <Leader>aif :Tabularize /if<CR>
+  vmap <Leader>aif :Tabularize /if<CR>
+  nmap <Leader>aun :Tabularize /un<CR>
+  vmap <Leader>aun :Tabularize /un<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>a, :Tabularize /,\zs<CR>
+  vmap <Leader>a, :Tabularize /,\zs<CR>
+  nmap <leader>a\| :Tabularize /\|<CR>
+  vmap <leader>a\| :Tabularize /\|<CR>
 endif
+
+au BufRead,BufNewFile *.scss set filetype=css
+
+au BufEnter *.rb syn match error contained "\<binding.pry\>"
 
 "autocmd VimEnter * NERDTree
 
