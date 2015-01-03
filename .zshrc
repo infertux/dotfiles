@@ -26,6 +26,7 @@ command -v most >/dev/null && export PAGER=most
 
 export EDITOR=vim
 export BROWSER=elinks
+# export LC_TIME=en_DK.utf8 # http://www.explainxkcd.com/wiki/index.php?title=1179
 
 ###############################################################################
 # Options
@@ -149,6 +150,7 @@ alias v='vim'
 alias wifi='wicd-curses'
 alias ssh='ssh -v'
 alias tmux='tmux -2' # 256 colors
+alias irb='pry' # never think about pry otherwise
 
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 alias ack='ack -a'
@@ -220,5 +222,6 @@ ulimit -s 65536 # to avoid "Stack level too deep" errors with Rails
 
 # Load machine specific configuration if any
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
+export RBXOPT=-X19
 
 # EOF
