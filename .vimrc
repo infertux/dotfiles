@@ -5,8 +5,7 @@
 set nocompatible
 
 " pathogen
-call pathogen#infect()
-"call pathogen#helptags()
+execute pathogen#infect()
 
 " auto reload .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
