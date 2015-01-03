@@ -1,6 +1,7 @@
 [submodule "bin"]
 	path = bin
 	url = https://github.com/infertux/bin-scripts.git
+	ignore = dirty
 [submodule ".vim/bundle/Tagbar"]
 	path = .vim/bundle/Tagbar
 	url = https://github.com/vim-scripts/Tagbar.git
