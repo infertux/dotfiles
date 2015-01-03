@@ -1,6 +1,6 @@
 [user]
-	name = Infertux
-	email = infertux@infertux.com
+	name = Cédric Félizard
+	email = cedric@felizard.fr
 [alias]
 	addrm = add -u
 	br = branch
@@ -24,7 +24,7 @@
 [color]
 	ui = auto
 [merge]
-	tool = meld
+	tool = vimdiff
 [diff]
 	renames = copies
 	mnemonicprefix = true
