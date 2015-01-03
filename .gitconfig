@@ -17,10 +17,12 @@
 	info = remote -v
 	up = !git stash && git pull && git stash pop
 	ll = log --pretty=oneline --abbrev-commit --max-count=15
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	lp = log -p
 	thanks = shortlog -sne
+	diff-empty = diff 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	delete-merged = !git branch --merged master | grep -v 'master$' | xargs git branch -d
 [color]
 	ui = auto
 [merge]
@@ -32,3 +34,7 @@
 	autosetuprebase = always
 [color "diff"]
 	whitespace = yellow reverse
+[push]
+	default = tracking
+[core]
+	excludesfile = /home/infertux/gitignore

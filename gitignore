@@ -1,0 +1,9 @@
+# Global .gitignore rules
+# git config --global core.excludesfile ~/gitignore
+
+# Mac OS X hidden files
+.DS_Store
+
+# Vim swap files
+.*.sw?
+

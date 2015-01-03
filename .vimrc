@@ -43,6 +43,12 @@ set expandtab        " expand tabs to spaces
 set nonumber
 " highlight matching braces
 set showmatch
+" smart Emacs-style search
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+nmap \c :nohlsearch<CR>
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 " ensures that each window contains a status line
@@ -63,6 +69,8 @@ set list
 set cursorline
 " grep -C3 'current line' ;)
 set scrolloff=3
+" keep 5 columns next to the cursor when scrolling horizontally
+set sidescrolloff=5
 " save folding
 set foldmethod=marker
 " 80 cols rules!
@@ -84,27 +92,36 @@ imap <Nul> <C-x><C-o>
 filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
 set completeopt+=menu,longest
+" don't scan included files - tags file is more performant
+set complete-=i
 " change this unreadable pink bg
 highlight Pmenu ctermbg=238
+
+" Y yanks from the cursor to the end of line as expected
+nnoremap Y y$
 
 " laziness
 command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
 
-" another Esc key
-"inoremap <Tab> <Esc>
-"vnoremap <Tab> <Esc>
-"inoremap <S-Tab> <Tab>
-"vnoremap <S-Tab> <Tab>
+" custom shortcuts
+nmap \l :setlocal number!<CR>
+nmap \p :set paste!<CR>
+nmap \n :NERDTreeToggle<CR>
+nmap \t :TagbarToggle<CR>
 
 " moving
 noremap <BS> <PageUp>
 noremap <Space> <PageDown>
 noremap <Return> zz
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
 
-" Command T
-noremap <Tab> :CommandT<CR>
-noremap <Tab><Tab> :CommandTBuffer<CR>
+" plugins settings
+let g:tagbar_compact = 1
+
+nmap <Tab> :CtrlP<CR>
+nmap ; :CtrlPBuffer<CR>
 
 " Tabularize
 if exists(":Tabularize")
@@ -129,4 +146,6 @@ au BufRead,BufNewFile *.scss set filetype=css
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
 
 "autocmd VimEnter * NERDTree
+
+" vim:set ft=vim et sw=2:
 

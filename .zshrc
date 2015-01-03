@@ -30,14 +30,6 @@ export BROWSER=elinks
 ###############################################################################
 # Options
 
-# Prompt
-setopt prompt_subst
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git cvs svn
-
 # Completion
 autoload -U compinit
 compinit
@@ -49,10 +41,6 @@ setopt print_exit_value
 
 # Ask confirmation for 'rm *'
 unsetopt rm_star_silent
-
-# When using wildcards in the list of arguments,
-# removes the jokers that do not match anything instead of giving an error
-setopt nullglob
 
 # Symlinks handing
 setopt chase_links
@@ -111,6 +99,7 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 # just press the beginning of a previous command then press Up/Down
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+bindkey '^U' backward-kill-line
 
 ###############################################################################
 # Aliases
@@ -124,15 +113,16 @@ alias -s pdf=zathura
 alias -s gz=tar -xzvf
 alias -s bz2=tar -xjvf
 alias -s txt=$EDITOR
+alias -s PKGBUILD=$EDITOR
 
 # Normal aliases
-alias ls='ls -G'
+alias ls='ls --color'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
-alias ll='ls -Glh'
+alias ll='ls -lh --color'
 alias l='ll'
-alias lll='ls -Glh | less'
-alias la='ls -GA'
+alias lll='ls -lh --color | less'
+alias la='ls -A --color'
 
 alias grep='grep --color'
 
@@ -146,33 +136,39 @@ alias cp='cp -i'
 alias rm='rm -i'
 
 # A few more useful aliases
+alias s='sudo'
 alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
-alias vpn='cd /etc/openvpn && sudo openvpn '
 alias se='sudoedit'
+alias kernel='dmesg | tail'
+alias open='xdg-open'
 alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
 alias v='vim'
+alias wifi='wicd-curses'
+alias ssh='ssh -v'
+alias tmux='tmux -2' # 256 colors
 
 alias todo="ack 'TODO|FIXME|XXX|HACK'"
 alias ack='ack -a'
 alias rsynca='rsync -avzPh'
 
 alias g='git'
-alias gs='git st'
+alias gs='git status -s'
 alias gl='git log'
 alias gb='git branch'
 alias go='git checkout'
 alias gp='git pull --rebase'
 alias gd='git diff'
 alias glp='git log -p'
-alias gb='git br'
-alias go='git co'
-alias gc='git ci -av'
-alias gca='git ci -av --amend'
-alias gp='git pull --rebase'
-alias gd='git diff'
+alias gc='git commit -av'
+alias gca='git commit -v --amend'
+alias gcaa='git commit -av --amend'
+
+alias be='bundle exec'
+alias ber='bundle exec rake'
+alias bers='bundle exec rspec'
 
 alias be='bundle exec'
 alias ber='bundle exec rake'
