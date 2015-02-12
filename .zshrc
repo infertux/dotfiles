@@ -10,7 +10,7 @@
 # Environment variables
 
 # Expand PATH
-for dir in /usr/local/heroku/bin ~/node_modules/grunt-cli/bin /usr/local/sbin /usr/local/bin ~/bin; do
+for dir in /usr/local/heroku/bin ~/node_modules/bin /usr/local/sbin /usr/local/bin ~/bin; do
     [ -d $dir ] && export PATH=$dir:$PATH
 done
 
