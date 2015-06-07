@@ -26,6 +26,7 @@
 [diff]
 	renames = copies
 	mnemonicprefix = true
+	submodule = log
 [branch]
 	autosetuprebase = always
 [color "diff"]
