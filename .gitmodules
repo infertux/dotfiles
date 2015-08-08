@@ -67,7 +67,7 @@
 [submodule ".vim/bundle/vim-i18n"]
 	path = .vim/bundle/vim-i18n
 	url = https://github.com/stefanoverna/vim-i18n.git
-	branch = ee1851b
+#	revision = ee1851b
 [submodule ".vim/bundle/vim-pathogen"]
 	path = .vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git

@@ -20,11 +20,15 @@ set t_Co=256    " 256 colors
 
 " solarized settings
 let g:solarized_termcolors=256 " force to use 256 colors
-" let g:solarized_termtrans=1 " fix bg color with urxvt
-" set background=dark
-set background=light
+let g:solarized_termtrans=1 " fix bg color with urxvt
+set background=dark
+"set background=light
 colorscheme solarized
 
+" don't redraw while executing macros (good performance config)
+set lazyredraw 
+" for regular expressions turn magic on
+set magic
 " allow backspace in insert mode
 set backspace=indent,eol,start
 " reload files changed outside Vim
@@ -109,6 +113,8 @@ nmap \l :setlocal number!<CR>
 nmap \p :set paste!<CR>
 nmap \n :NERDTreeToggle<CR>
 nmap \t :TagbarToggle<CR>
+nmap \w :w<cr>
+nmap \a :wa<cr>
 
 " moving
 noremap <BS> <PageUp>
