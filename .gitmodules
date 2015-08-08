@@ -79,3 +79,9 @@
 [submodule ".vim/bundle/file-line"]
 	path = .vim/bundle/file-line
 	url = https://github.com/bogado/file-line.git
+[submodule ".vim/bundle/vim-hardtime"]
+	path = .vim/bundle/vim-hardtime
+	url = https://github.com/takac/vim-hardtime.git
+[submodule ".zsh/zsh-syntax-highlighting"]
+	path = .zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
