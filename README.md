@@ -21,8 +21,7 @@ Most Vim plugins can be found at https://github.com/vim-scripts.
 Updating Submodules
 -------------------
 
-    git submodule foreach git checkout master
-    git submodule foreach git pull --no-rebase origin master
+    git submodule update --remote
 
 Removing Submodules
 -------------------

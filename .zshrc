@@ -202,6 +202,8 @@ setopt prompt_subst
 autoload colors zsh/terminfo
 [ "$terminfo[colors]" -ge 8 ] && colors
 
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 source ~/.zsh/git-prompt/zshrc.sh
 PROMPT='%B%~%b$(git_super_status) %# '
 
