@@ -52,9 +52,6 @@ setopt append_history
 # No dups in history with zsh finder
 setopt hist_find_no_dups
 
-# Correct mistyped commands
-setopt correctall
-
 # Enable the extended globing features
 setopt extendedglob
 
