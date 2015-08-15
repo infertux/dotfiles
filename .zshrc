@@ -167,10 +167,7 @@ alias glp='git log -p'
 alias gc='git commit -v'
 alias gca='git commit -av'
 
-alias be='bundle exec'
-alias ber='bundle exec rake'
-alias bers='bundle exec rspec'
-
+alias b='bundle'
 alias be='bundle exec'
 alias ber='bundle exec rake'
 alias bers='bundle exec rspec'
