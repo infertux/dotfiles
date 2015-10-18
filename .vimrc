@@ -108,13 +108,16 @@ nnoremap Y y$
 command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
 
-" custom shortcuts
+" custom shortcuts (who needs a Leader key...)
 nmap \l :setlocal number!<CR>
 nmap \p :set paste!<CR>
 nmap \n :NERDTreeToggle<CR>
+nmap \m :NERDTreeMirror<CR>
 nmap \t :TagbarToggle<CR>
 nmap \w :w<cr>
 nmap \a :wa<cr>
+nmap \q :q<cr>
+nmap \x :x<cr>
 
 " moving
 noremap <BS> <PageUp>
@@ -124,34 +127,37 @@ nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
 " plugins settings
+"" Tagbar
 let g:tagbar_compact = 1
 
+"" CtrlP
 nmap <Tab> :CtrlP<CR>
 nmap ; :CtrlPBuffer<CR>
+let g:ctrlp_show_hidden = 1
 
-" Tabularize
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a{ :Tabularize /{<CR>
-  vmap <Leader>a{ :Tabularize /{<CR>
-  nmap <Leader>aif :Tabularize /if<CR>
-  vmap <Leader>aif :Tabularize /if<CR>
-  nmap <Leader>aun :Tabularize /un<CR>
-  vmap <Leader>aun :Tabularize /un<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-  nmap <Leader>a, :Tabularize /,\zs<CR>
-  vmap <Leader>a, :Tabularize /,\zs<CR>
-  nmap <leader>a\| :Tabularize /\|<CR>
-  vmap <leader>a\| :Tabularize /\|<CR>
-endif
+"" NERDTree
+let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.git[[dir]]']
 
+"" Tabularize
+" nmap <Leader>a= :Tabularize /=<CR>
+" vmap <Leader>a= :Tabularize /=<CR>
+" nmap <Leader>a{ :Tabularize /{<CR>
+" vmap <Leader>a{ :Tabularize /{<CR>
+" nmap <Leader>aif :Tabularize /if<CR>
+" vmap <Leader>aif :Tabularize /if<CR>
+" nmap <Leader>aun :Tabularize /un<CR>
+" vmap <Leader>aun :Tabularize /un<CR>
+" nmap <Leader>a: :Tabularize /:\zs<CR>
+" vmap <Leader>a: :Tabularize /:\zs<CR>
+" nmap <Leader>a, :Tabularize /,\zs<CR>
+" vmap <Leader>a, :Tabularize /,\zs<CR>
+" nmap <leader>a\| :Tabularize /\|<CR>
+" vmap <leader>a\| :Tabularize /\|<CR>
+
+" misc
 au BufRead,BufNewFile *.scss set filetype=css
-
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
-
 "autocmd VimEnter * NERDTree
 
 " vim:set ft=vim et sw=2:
-
