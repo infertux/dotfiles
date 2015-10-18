@@ -49,9 +49,6 @@
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule ".vim/bundle/vim-powerline"]
-	path = .vim/bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
 [submodule ".vim/bundle/vim-dispatch"]
 	path = .vim/bundle/vim-dispatch
 	url = git://github.com/tpope/vim-dispatch.git
@@ -77,9 +74,6 @@
 [submodule ".vim/bundle/file-line"]
 	path = .vim/bundle/file-line
 	url = https://github.com/bogado/file-line.git
-[submodule ".vim/bundle/vim-hardtime"]
-	path = .vim/bundle/vim-hardtime
-	url = https://github.com/takac/vim-hardtime.git
 [submodule ".zsh/git-prompt"]
 	path = .zsh/git-prompt
 	url = git://github.com/olivierverdier/zsh-git-prompt.git
