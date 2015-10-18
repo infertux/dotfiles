@@ -1,4 +1,3 @@
-
 " spell check
 setlocal spell spelllang=en
 
@@ -37,4 +36,3 @@ imap ,O <ESC>O
 set nocursorline
 set textwidth=0
 set wrapmargin=0
-

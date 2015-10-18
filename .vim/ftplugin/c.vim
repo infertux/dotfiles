@@ -1,3 +1,1 @@
-
 "set path+=/usr/include/**
-
