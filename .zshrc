@@ -134,7 +134,6 @@ alias cp='cp -i'
 alias rm='rm -i'
 
 # A few more useful aliases
-alias s='sudo'
 alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias se='sudoedit'
@@ -144,14 +143,13 @@ alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
 alias v='vim'
-alias wifi='wicd-curses'
 alias ssh='ssh -v'
 alias tmux='tmux -2' # 256 colors
 alias irb='pry' # never think about pry otherwise
 
-alias todo="ack 'TODO|FIXME|XXX|HACK'"
-alias ack='ack -a'
+alias todo="ag 'TODO|FIXME|XXX|HACK'"
 alias rsynca='rsync -avzPh'
+alias netstat='echo ss -ltnp'
 
 alias g='git'
 alias gs='git status -s'
@@ -181,6 +179,13 @@ alias sdu='sudo dnf update'
 alias sdi='sudo dnf install'
 alias sds='sudo dnf search -C'
 alias sdp='sudo dnf provides -C'
+
+alias sc='sudo systemctl'
+alias pacman='yaourt'
+alias y='yaourt'
+alias yud='yaourt -Syu --aur --devel'
+
+alias arm='sudo -u tor arm'
 
 alias loc_report='find app/ -name "*.rb" | xargs wc -l | sort'
 alias git_report='git log --name-only --no-merges | grep \.rb$ | sort | uniq -c | sort -nr'
