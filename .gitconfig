@@ -2,7 +2,6 @@
 	name = Cédric Félizard
 	email = cedric@felizard.fr
 [alias]
-	addrm = add -u
 	staged = diff --cached
 	unstage = reset HEAD --
 	ignored = ls-files --others
@@ -19,6 +18,7 @@
 	diff-empty = diff 4b825dc642cb6eb9a060e54bf8d69288fbee4904
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	delete-merged = !git branch --merged master | grep -Ev '(master|production)$' | xargs git branch -d
+	unfuck = reset --soft HEAD@{1}
 [color]
 	ui = auto
 [merge]
