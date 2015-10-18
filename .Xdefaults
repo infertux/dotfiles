@@ -1,15 +1,24 @@
+#urxvt*geometry: 144x39
 urxvt*borderLess: false
 urxvt*loginShell: true
 urxvt*transparent: false
-urxvt*foreground: #00dd00
+urxvt*foreground: #CCCCCC
 urxvt*background: #000000
+urxvt*cursorBlink: true
+urxvt*urgentOnBell: true
 urxvt*scrollBar: true
 urxvt*scrollBar_right: true
 urxvt*saveLines: 100000
-#urxvt*geometry: 144x39
-urxvt*cursorBlink: true
-urxvt*urgentOnBell: true
-urxvt*font: xft:Bitstream Vera Sans Mono:style=Regular:pixelsize=12:antialias=true
+
+! do not scroll with output
+urxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+urxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+urxvt*scrollTtyKeypress: true
+
+#urxvt*font: xft:Bitstream Vera Sans Mono:style=Regular:pixelsize=12:antialias=true
+urxvt*font: xft:DejaVu Sans Mono:style=Regular:pixelsize=14:antialias=true
 urxvt*urlLauncher: firefox
 urxvt*matcher.button: 1
 urxvt*perl-ext-common:      default,matcher,clipboard,url-select,keyboard-select
