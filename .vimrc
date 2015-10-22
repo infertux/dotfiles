@@ -111,7 +111,7 @@ command! Ortho set spell spelllang=fr
 " custom shortcuts (who needs a Leader key...)
 nmap \l :setlocal number!<CR>
 nmap \p :set paste!<CR>
-nmap \n :NERDTreeToggle<CR>
+nmap \n :NERDTreeFocus<CR>
 nmap \m :NERDTreeMirror<CR>
 nmap \t :TagbarToggle<CR>
 nmap \w :w<cr>
@@ -137,7 +137,7 @@ let g:ctrlp_show_hidden = 1
 
 "" NERDTree
 let g:NERDTreeShowHidden=1
-let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.git[[dir]]']
+let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.bundle[[dir]]', '.git[[dir]]', '.sass-cache[[dir]]', '.yardoc[[dir]]']
 
 "" Tabularize
 " nmap <Leader>a= :Tabularize /=<CR>
