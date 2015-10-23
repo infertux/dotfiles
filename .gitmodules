@@ -24,10 +24,6 @@
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/ack"]
-	path = .vim/bundle/ack
-	url = https://github.com/vim-scripts/ack.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/auctex"]
 	path = .vim/bundle/auctex
 	url = https://github.com/vim-scripts/auctex.vim.git
@@ -74,12 +70,15 @@
 [submodule ".vim/bundle/file-line"]
 	path = .vim/bundle/file-line
 	url = https://github.com/bogado/file-line.git
+[submodule ".vim/bundle/elm"]
+	path = .vim/bundle/elm
+	url = https://github.com/lambdatoast/elm.vim.git
+[submodule ".vim/bundle/ag"]
+	path = .vim/bundle/ag
+	url = https://github.com/vim-scripts/ag.vim.git
 [submodule ".zsh/git-prompt"]
 	path = .zsh/git-prompt
 	url = git://github.com/olivierverdier/zsh-git-prompt.git
 [submodule ".zsh/zsh-syntax-highlighting"]
 	path = .zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule ".vim/bundle/elm"]
-	path = .vim/bundle/elm
-	url = https://github.com/lambdatoast/elm.vim.git
