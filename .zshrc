@@ -10,11 +10,9 @@
 # Environment variables
 
 # Expand PATH
-for dir in /usr/local/heroku/bin ~/node_modules/bin /usr/local/sbin /usr/local/bin ~/bin; do
+for dir in ~/.rvm/bin /usr/local/heroku/bin ~/node_modules/.bin ~/.npm-packages/bin ~/dev/elm-platform/installers/Elm-Platform/0.16/.cabal-sandbox/bin /usr/local/sbin /usr/local/bin ~/bin; do
     [ -d $dir ] && export PATH=$dir:$PATH
 done
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Terminal history
 export HISTORY=100000
