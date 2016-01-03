@@ -127,6 +127,9 @@ nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
 " plugins settings
+"" Hardmode
+let g:HardMode_level = 'wannabe'
+
 "" Tagbar
 let g:tagbar_compact = 1
 
@@ -159,5 +162,6 @@ let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.bundle[[dir]]', '.git[[dir]]', '.sas
 au BufRead,BufNewFile *.scss set filetype=css
 au BufEnter *.rb syn match error contained "\<binding.pry\>"
 "autocmd VimEnter * NERDTree
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " vim:set ft=vim et sw=2:
