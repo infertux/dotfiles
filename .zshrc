@@ -183,6 +183,7 @@ alias pacman='yaourt'
 alias y='yaourt'
 alias yud='yaourt -Syu --aur --devel'
 
+alias wifi='sudo wifi-menu'
 alias arm='sudo -u tor arm'
 
 alias loc_report='find app/ -name "*.rb" | xargs wc -l | sort'
