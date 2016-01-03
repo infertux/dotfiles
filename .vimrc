@@ -26,7 +26,7 @@ set background=dark
 colorscheme solarized
 
 " don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 " for regular expressions turn magic on
 set magic
 " allow backspace in insert mode
@@ -44,7 +44,8 @@ set tabstop=4        " tab width is 4 spaces
 set shiftwidth=4     " indent also with 4 spaces
 set expandtab        " expand tabs to spaces
 " turn line numbers off
-set nonumber
+set number
+set relativenumber
 " highlight matching braces
 set showmatch
 " smart Emacs-style search
@@ -52,7 +53,6 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
-nmap \c :nohlsearch<CR>
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 " ensures that each window contains a status line
@@ -80,15 +80,11 @@ set foldmethod=marker
 " 80 cols rules!
 set textwidth=80
 " display a foolproof vertical bar
-if exists('+colorcolumn')
-    set colorcolumn=+1  " textwidth + 1
-    highlight ColorColumn ctermbg=darkgrey
-endif
-" persistent undo (7.3+)
-if exists('+undofile')
-    set undodir=~/.vim/undodir
-    set undofile
-endif
+set colorcolumn=+1  " textwidth + 1
+highlight ColorColumn ctermbg=darkgrey
+" persistent undo
+set undodir=~/.vim/undodir
+set undofile
 
 " Completion
 " ctrl-space mapping
@@ -108,16 +104,19 @@ nnoremap Y y$
 command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
 
-" custom shortcuts (who needs a Leader key...)
-nmap \l :setlocal number!<CR>
-nmap \p :set paste!<CR>
-nmap \n :NERDTreeFocus<CR>
-nmap \m :NERDTreeMirror<CR>
-nmap \t :TagbarToggle<CR>
-nmap \w :w<cr>
-nmap \a :wa<cr>
-nmap \q :q<cr>
-nmap \x :x<cr>
+" custom shortcuts
+let mapleader = "\\"
+nmap <Leader>a :wa<CR>
+nmap <Leader>c :nohlsearch<CR>
+nmap <Leader>h :call ToggleHardMode()<CR>
+nmap <Leader>l :setlocal number!<CR>
+nmap <Leader>m :NERDTreeMirror<CR>
+nmap <Leader>n :NERDTreeFocus<CR>
+nmap <Leader>p :set paste!<CR>
+nmap <Leader>q :q<CR>
+nmap <Leader>t :TagbarToggle<CR>
+nmap <Leader>w :w<CR>
+nmap <Leader>x :x<CR>
 
 " moving
 noremap <BS> <PageUp>
@@ -159,8 +158,7 @@ let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.bundle[[dir]]', '.git[[dir]]', '.sas
 " vmap <leader>a\| :Tabularize /\|<CR>
 
 " misc
-au BufRead,BufNewFile *.scss set filetype=css
-au BufEnter *.rb syn match error contained "\<binding.pry\>"
+"au BufRead,BufNewFile *.scss set filetype=css
 "autocmd VimEnter * NERDTree
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
