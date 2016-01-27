@@ -141,6 +141,16 @@ let g:ctrlp_show_hidden = 1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.bundle[[dir]]', '.git[[dir]]', '.sass-cache[[dir]]', '.yardoc[[dir]]']
 
+"" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+
 "" Tabularize
 " nmap <Leader>a= :Tabularize /=<CR>
 " vmap <Leader>a= :Tabularize /=<CR>
