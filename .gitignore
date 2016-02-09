@@ -3,6 +3,7 @@
 *.orig
 *.swp
 /.ICEauthority
+/.NERDTreeBookmarks
 /.Xauthority
 /.apvlvinfo
 /.bash_history
@@ -10,6 +11,7 @@
 /.bashrc
 /.cache/
 /.csshrc
+/.eaglerc
 /.esd_auth
 /.gconf/
 /.grl-bookmarks
@@ -34,16 +36,17 @@
 /.pry_history
 /.psql_history
 /.pulse-cookie
-/.pythonhist
 /.python_history
+/.pythonhist
 /.recently-used
 /.rediscli_history
+/.repo_.gitconfig.json
 /.rnd
 /.rubinius_last_error
 /.rvm/
 /.sqlite_history
-/.ssh/
 /.ssh*
+/.ssh/
 /.subversion/
 /.transifexrc
 /.vim/.netrwhist
