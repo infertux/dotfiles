@@ -101,13 +101,11 @@ bindkey '^U' backward-kill-line
 # Aliases
 
 # Set up auto extension stuff
-alias -s html=$BROWSER
+alias -s html=firefox
+alias -s pdf=firefox
 alias -s png=feh
 alias -s jpg=feh
 alias -s gif=feh
-alias -s pdf=zathura
-alias -s gz=tar -xzvf
-alias -s bz2=tar -xjvf
 alias -s txt=$EDITOR
 alias -s PKGBUILD=$EDITOR
 
@@ -136,7 +134,7 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
 alias se='sudoedit'
 alias kernel='dmesg -dH | tail -20'
-alias kernel-follow='dmesg -dHw'
+alias kernel-follow='dmesg -dw'
 alias open='xdg-open'
 alias vim='vim -p'
 alias vv='vim -O'
@@ -144,7 +142,7 @@ alias vh='vim -o'
 alias v='vim'
 alias ssh='ssh -v'
 alias tmux='tmux -2' # 256 colors
-alias irb='pry' # never think about pry otherwise
+alias irb='pry' # I never think about pry otherwise
 
 alias todo="ag 'TODO|FIXME|XXX|HACK'"
 alias rsynca='rsync -avzPh'
@@ -174,11 +172,6 @@ alias specs='RAILS_ENV=test rake db:migrate && RAILS_ENV=test rspec spec'
 alias rdbm='rake db:migrate'
 alias fs='foreman start'
 
-alias sdu='sudo dnf update'
-alias sdi='sudo dnf install'
-alias sds='sudo dnf search -C'
-alias sdp='sudo dnf provides -C'
-
 alias sc='sudo systemctl'
 alias pacman='yaourt'
 alias y='yaourt'
@@ -186,6 +179,7 @@ alias yud='yaourt -Syu --aur --devel'
 
 alias wifi='sudo wifi-menu'
 alias ethernet='sudo netctl restart enp0s25 && ip addr'
+alias usb_tehering='sudo netctl restart enp0s20u1 && ip addr'
 alias arm='sudo -u tor arm'
 alias xz-compress-extreme='xz --compress --verbose --keep --check sha256 -9 --extreme'
 alias xz-decompress='xz --decompress --verbose --keep'
