@@ -85,6 +85,8 @@ highlight ColorColumn ctermbg=darkgrey
 " persistent undo
 set undodir=~/.vim/undodir
 set undofile
+autocmd! BufNewFile /var/tmp/* setlocal undolevels=-1
+autocmd! BufNewFile /tmp/* setlocal undolevels=-1
 
 " Completion
 " ctrl-space mapping
