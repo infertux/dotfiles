@@ -60,8 +60,8 @@ set comments=sl:/*,mb:\ *,elx:\ */
 set ruler
 " display available entries on Tab
 set wildmenu
-" I don't want to edit binaries
-set wildignore+=.git,*.o,*.pyc,*.png,*.jpg
+" don't want to edit binaries and temp files
+set wildignore+=*.o,*.pyc,*.png,*.jpg,.git,doc,log,tmp
 " display partial commands
 set showcmd
 " status bar on last window
