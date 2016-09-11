@@ -142,7 +142,7 @@ alias vh='vim -o'
 alias v='vim'
 alias ssh='ssh -v'
 alias tmux='tmux -2' # 256 colors
-alias irb='pry' # I never think about pry otherwise
+alias venv='read venv && source ~/.virtualenvs/$venv/bin/activate'
 
 alias todo="ag 'TODO|FIXME|XXX|HACK'"
 alias rsynca='rsync -avzPh'
