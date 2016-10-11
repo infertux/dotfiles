@@ -155,6 +155,7 @@ alias gb='git branch'
 alias go='git checkout'
 alias gp='git pull --rebase'
 alias gd='git diff'
+alias gdd='git diff --compaction-heuristic --ignore-all-space'
 alias glp='git log -p'
 alias gc='git commit -v'
 alias gca='git commit -av'
@@ -194,7 +195,7 @@ alias weather='curl http://wttr.in/'
 alias loc_report='find app/ -name "*.rb" | xargs wc -l | sort'
 alias git_report='git log --name-only --no-merges | grep \.rb$ | sort | uniq -c | sort -nr'
 
-alias skype='xhost +local: && sudo -u skype /home/skype/skype/skype'
+alias minicom-screen='sudo screen /dev/ttyUSB0 115200'
 
 ###############################################################################
 # Additional configuration
