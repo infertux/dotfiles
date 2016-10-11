@@ -1,6 +1,7 @@
 [user]
 	name = Cédric Félizard
 	email = cedric@felizard.fr
+	signingkey = 0xEEC73D5809A98A9B
 [alias]
 	staged = diff --cached
 	unstage = reset HEAD --
