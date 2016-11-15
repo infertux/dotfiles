@@ -152,6 +152,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_scss_checkers = [] " broken with https://github.com/scrooloose/syntastic/issues/1790
+
+"" elm-vim
+let g:elm_format_autosave = 1
+let g:elm_setup_keybindings = 0
 
 "" Tabularize
 " nmap <Leader>a= :Tabularize /=<CR>

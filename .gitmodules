@@ -69,9 +69,6 @@
 [submodule ".vim/bundle/file-line"]
 	path = .vim/bundle/file-line
 	url = https://github.com/bogado/file-line.git
-[submodule ".vim/bundle/elm"]
-	path = .vim/bundle/elm
-	url = https://github.com/lambdatoast/elm.vim.git
 [submodule ".vim/bundle/ag"]
 	path = .vim/bundle/ag
 	url = https://github.com/vim-scripts/ag.vim.git
@@ -90,3 +87,6 @@
 [submodule ".vim/bundle/apiblueprint"]
 	path = .vim/bundle/apiblueprint
 	url = https://github.com/kylef/apiblueprint.vim.git
+[submodule ".vim/bundle/elm-vim"]
+	path = .vim/bundle/elm-vim
+	url = https://github.com/ElmCast/elm-vim.git
