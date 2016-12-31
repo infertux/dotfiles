@@ -38,7 +38,7 @@
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
-	url = git://github.com/airblade/vim-gitgutter.git
+	url = https://github.com/airblade/vim-gitgutter.git
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
@@ -47,13 +47,13 @@
 	url = https://github.com/kien/ctrlp.vim.git
 [submodule ".vim/bundle/vim-dispatch"]
 	path = .vim/bundle/vim-dispatch
-	url = git://github.com/tpope/vim-dispatch.git
+	url = https://github.com/tpope/vim-dispatch.git
 [submodule ".vim/bundle/vim-css-color"]
 	path = .vim/bundle/vim-css-color
 	url = https://github.com/skammer/vim-css-color.git
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
-	url = git://github.com/godlygeek/tabular.git
+	url = https://github.com/godlygeek/tabular.git
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
@@ -74,7 +74,7 @@
 	url = https://github.com/vim-scripts/ag.vim.git
 [submodule ".zsh/git-prompt"]
 	path = .zsh/git-prompt
-	url = git://github.com/olivierverdier/zsh-git-prompt.git
+	url = https://github.com/olivierverdier/zsh-git-prompt.git
 [submodule ".zsh/zsh-syntax-highlighting"]
 	path = .zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
