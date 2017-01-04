@@ -50,10 +50,12 @@
 /.ssh/
 /.subversion/
 /.transifexrc
+/.v8flags.*.json
 /.vim/.netrwhist
 /.viminfo
 /.viminfo.tmp
 /.wavemonrc
+/.wget-hsts
 /.wireshark/
 /.xinitrc
 /.xprofile
