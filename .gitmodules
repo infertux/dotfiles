@@ -57,9 +57,6 @@
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule ".vim/bundle/vim-i18n"]
-	path = .vim/bundle/vim-i18n
-	url = https://github.com/stefanoverna/vim-i18n.git
 [submodule ".vim/bundle/vim-pathogen"]
 	path = .vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
