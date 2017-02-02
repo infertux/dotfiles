@@ -21,9 +21,8 @@ urxvt*scrollTtyKeypress: true
 urxvt*font: xft:DejaVu Sans Mono:style=Regular:pixelsize=14:antialias=true
 urxvt*urlLauncher: firefox
 urxvt*matcher.button: 1
-urxvt*perl-ext-common:      default,matcher,clipboard,url-select,keyboard-select
+urxvt*perl-ext-common: default,matcher,clipboard,url-select,keyboard-select
 urxvt*url-select.underline: true
-urxvt*keysym.M-u:           perl:url-select:select_next
-urxvt*keysym.M-Escape:      perl:keyboard-select:activate
-urxvt*keysym.M-s:           perl:keyboard-select:search
-
+urxvt*keysym.M-u: perl:url-select:select_next
+urxvt*keysym.M-Escape: perl:keyboard-select:activate
+urxvt*keysym.M-s: perl:keyboard-select:search
