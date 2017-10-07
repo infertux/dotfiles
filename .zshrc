@@ -190,10 +190,12 @@ alias xz-compress-extreme='xz --compress --verbose --keep --check sha256 -9 --ex
 alias xz-decompress='xz --decompress --verbose --keep'
 alias ssh-no-pubkey='\ssh -v -o PubkeyAuthentication=no -o PasswordAuthentication=yes'
 alias docker-cleanup='docker rm $(docker ps -q -f status=exited)'
-alias redshift-bg='nohup redshift -l geoclue2 -r &> /dev/null &'
 alias color-invert='xcalib -invert -alter'
 alias weather='curl http://wttr.in/'
 alias nectarine='nvlc http://necta-relay.mnus.de:8000/necta192.mp3'
+alias zik='vlc -I rc --random --loop ~/Music'
+alias bc_sum='paste -s -d+ | bc'
+alias firefox-profile='firefox --ProfileManager --new-instance'
 
 alias loc_report='find app/ -name "*.rb" | xargs wc -l | sort'
 alias git_report='git log --name-only --no-merges | grep \.rb$ | sort | uniq -c | sort -nr'
