@@ -10,9 +10,11 @@
 # Environment variables
 
 # Expand PATH
-for dir in ~/.rvm/bin /usr/local/heroku/bin ~/node_modules/.bin ~/.npm-packages/bin ~/dev/elm-platform/installers/Elm-Platform/0.16/.cabal-sandbox/bin /usr/local/sbin /usr/local/bin ~/bin; do
+for dir in ~/.rvm/bin /usr/local/heroku/bin ~/go/bin ~/node_modules/.bin ~/.npm-packages/bin ~/dev/elm-platform/installers/Elm-Platform/0.16/.cabal-sandbox/bin /usr/local/sbin /usr/local/bin ~/bin; do
     [ -d $dir ] && export PATH=$dir:$PATH
 done
+
+export GOPATH=~/go
 
 # Terminal history
 export HISTORY=100000
@@ -152,7 +154,7 @@ alias g='git'
 alias gs='git status -s'
 alias gl='git log'
 alias gb='git branch'
-alias go='git checkout'
+alias gk='git checkout'
 alias gp='git pull --rebase'
 alias gd='git diff'
 alias gdd='git diff --compaction-heuristic --ignore-all-space'
