@@ -7,8 +7,7 @@
 /.Xauthority
 /.apvlvinfo
 /.babel.json
-/.bash_history
-/.bash_profile
+/.bash_*
 /.bashrc
 /.cache/
 /.csshrc
@@ -49,6 +48,7 @@
 /.ssh*
 /.ssh/
 /.subversion/
+/.sudo_as_admin_successful
 /.transifexrc
 /.v8flags.*.json
 /.vim/.netrwhist
