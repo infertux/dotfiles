@@ -9,15 +9,6 @@
 ###############################################################################
 # Environment variables
 
-# NPM packages in homedir
-NPM_PACKAGES="$HOME/.npm-packages"
-
-# Tell Node about these packages
-NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-
-# NVM
-[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
-
 # Expand PATH
 while read dir; do
     [ -d $dir ] && export PATH=$dir:$PATH || echo "Cannot append $dir to \$PATH"
@@ -25,14 +16,9 @@ done <<EOH
 $HOME/.rvm/bin
 $HOME/bin
 $HOME/go/bin
-$HOME/node_modules/.bin
-$NPM_PACKAGES/bin
 /usr/local/bin
 /usr/local/sbin
 EOH
-
-# Golang
-export GOPATH=~/go
 
 # Terminal history
 export HISTORY=100000
@@ -214,10 +200,6 @@ alias nectarine='nvlc http://nectarine.from-de.com/necta192'
 alias zik='vlc -I rc --random --loop ~/Music'
 alias bc_sum='paste -s -d+ | bc'
 alias firefox-profile='firefox --ProfileManager --new-instance'
-
-alias loc_report='find app/ -name "*.rb" | xargs wc -l | sort'
-alias git_report='git log --name-only --no-merges | grep \.rb$ | sort | uniq -c | sort -nr'
-
 alias minicom-screen='sudo screen /dev/ttyUSB0 115200'
 
 ###############################################################################
@@ -256,6 +238,12 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
 fi
 
 ssh-add -l >/dev/null || alias ssh="ssh-add -l >/dev/null || ssh-add && alias ssh='ssh -v'; ssh -v"
+
+# Golang
+export GOPATH=~/go
+
+# NVM
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
 # Load machine specific configuration if any
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
