@@ -1,7 +1,7 @@
 # Install
 
-    PKG=apt-get # apt-get|yum|pacman
-    sudo $PKG install git
+    PKG="sudo apt-get install" # or "sudo yum install", "sudo pacman -S", etc.
+    $PKG git
     git clone https://github.com/infertux/dotfiles.git
     mv -v dotfiles/* dotfiles/.* ~
     rmdir dotfiles
@@ -10,7 +10,7 @@
 
 ## Shell
 
-    sudo $PKG install zsh tmux vim
+    $PKG zsh tmux vim
     chsh -s /bin/zsh
     SHELL=/bin/zsh tmux
 
@@ -32,7 +32,8 @@ If the "Internet" isn't really the Internet, a local copy of the Tor Browser can
 
 ## Music
 
-    sudo $PKG install vlc
+    $PKG vlc
+    nectarine
 
 
 # Update

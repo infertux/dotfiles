@@ -210,7 +210,7 @@ alias ssh-no-pubkey='\ssh -v -o PubkeyAuthentication=no -o PasswordAuthenticatio
 alias docker-cleanup='docker rm $(docker ps -q -f status=exited)'
 alias color-invert='xcalib -invert -alter'
 alias weather='curl http://wttr.in/'
-alias nectarine='nvlc http://necta-relay.mnus.de:8000/necta192.mp3'
+alias nectarine='nvlc http://nectarine.from-de.com/necta192'
 alias zik='vlc -I rc --random --loop ~/Music'
 alias bc_sum='paste -s -d+ | bc'
 alias firefox-profile='firefox --ProfileManager --new-instance'
