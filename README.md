@@ -6,6 +6,7 @@
     mv -v dotfiles/* dotfiles/.* ~
     rmdir dotfiles
     git submodule update --init --recursive
+    git remote set-url origin git@github.com:infertux/dotfiles.git # to push (optional)
 
 ## Shell
 
@@ -18,9 +19,16 @@
     install -m 0755 -d ~/.ssh/
     install -v -m 0400 /mnt/somewhere/infertux/.ssh/id_* ~/.ssh/
 
-## Browser
+## Tor
 
-    sudo $PKG install torbrowser-launcher
+If the "Internet" isn't really the Internet, a local copy of the Tor Browser can be found in the Downloads/ directory.
+
+    cd Downloads/
+    gpg --keyserver pool.sks-keyservers.net --recv-keys 0x4E2C6E8793298290
+    gpg --verify tor-browser-linux64-*_en-US.tar.xz.asc
+    xz --decompress --verbose --keep tor-browser-linux64-*_en-US.tar.xz
+    tar xvf tor-browser-linux64-*_en-US.tar
+    ./tor-browser_en-US/Browser/start-tor-browser
 
 ## Music
 
@@ -31,13 +39,8 @@
 
 ## Adding submodules
 
-Vim plugins that are versioned with Git can be installed as submodules.
-For example, to install the [Tagbar bundle](https://github.com/vim-scripts/Tagbar), follow these steps:
-
     git submodule add https://github.com/vim-scripts/Tagbar.git .vim/bundle/Tagbar
     git commit
-
-Most Vim plugins can be found at https://github.com/vim-scripts.
 
 ## Updating submodules
 
