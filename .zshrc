@@ -9,11 +9,29 @@
 ###############################################################################
 # Environment variables
 
-# Expand PATH
-for dir in ~/.rvm/bin /usr/local/heroku/bin ~/go/bin ~/node_modules/.bin ~/.npm-packages/bin ~/dev/elm-platform/installers/Elm-Platform/0.16/.cabal-sandbox/bin /usr/local/sbin /usr/local/bin ~/bin; do
-    [ -d $dir ] && export PATH=$dir:$PATH
-done
+# NPM packages in homedir
+NPM_PACKAGES="$HOME/.npm-packages"
 
+# Tell Node about these packages
+NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+
+# NVM
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
+
+# Expand PATH
+while read dir; do
+    [ -d $dir ] && export PATH=$dir:$PATH || echo "Cannot append $dir to \$PATH"
+done <<EOH
+$HOME/.rvm/bin
+$HOME/bin
+$HOME/go/bin
+$HOME/node_modules/.bin
+$NPM_PACKAGES/bin
+/usr/local/bin
+/usr/local/sbin
+EOH
+
+# Golang
 export GOPATH=~/go
 
 # Terminal history
@@ -227,9 +245,17 @@ chpwd() {
     _set_title
 }
 
-# Ruby
-# export RBXOPT=-X19
-# ulimit -s 65536 # to avoid "Stack level too deep" errors with Rails
+# SSH agent
+if ! pgrep ssh-agent > /dev/null; then
+    rm -f ~/.ssh-agent-string
+    ssh-agent > ~/.ssh-agent-string
+fi
+
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval $(<~/.ssh-agent-string) >/dev/null
+fi
+
+ssh-add -l >/dev/null || alias ssh="ssh-add -l >/dev/null || ssh-add && alias ssh='ssh -v'; ssh -v"
 
 # Load machine specific configuration if any
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
