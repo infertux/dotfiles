@@ -142,7 +142,7 @@ alias rm='rm -i'
 
 # A few more useful aliases
 alias bitch,='sudo' # original idea by rtomayko :D
-alias hey='while true; do espeak -z -a 200 -p 70 Hey!; done'
+alias hey='while true; do espeak -z -a 200 -p 70 --stdout Hey | paplay; sleep 1; done'
 alias se='sudoedit'
 alias kernel='dmesg -dH | tail -20'
 alias kernel-follow='dmesg -dw'
@@ -187,9 +187,7 @@ alias kcsi='knife cookbook site install'
 alias fs='foreman start'
 
 alias sc='sudo systemctl'
-alias pacman='yaourt'
-alias y='yaourt'
-alias yud='yaourt -Syu --aur --devel'
+alias p='pacaur'
 
 alias wifi='sudo wifi-menu'
 alias ethernet='sudo netctl restart enp0s25 && ip addr'
@@ -202,7 +200,7 @@ alias docker-cleanup='docker rm $(docker ps -q -f status=exited)'
 alias color-invert='xcalib -invert -alter'
 alias weather='curl http://wttr.in/'
 alias nectarine='nvlc http://nectarine.from-de.com/necta192'
-alias zik='vlc -I rc --random --loop ~/Music'
+alias zik='nvlc --random --loop ~/Music'
 alias bc_sum='paste -s -d+ | bc'
 alias firefox-profile='firefox --ProfileManager --new-instance'
 alias minicom-screen='sudo screen /dev/ttyUSB0 115200'
@@ -232,6 +230,17 @@ chpwd() {
     _set_title
 }
 
+# A nicer man
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
+
 # SSH agent
 if ! pgrep ssh-agent > /dev/null; then
     rm -f ~/.ssh-agent-string
@@ -248,9 +257,12 @@ ssh-add -l >/dev/null || alias ssh="ssh-add -l >/dev/null || ssh-add && alias ss
 export GOPATH=~/go
 
 # NVM
-[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
+[ ! -f /usr/share/nvm/init-nvm.sh ] || source /usr/share/nvm/init-nvm.sh
+
+# RVM
+[ ! -f /etc/profile.d/rvm.sh ] || source /etc/profile.d/rvm.sh
 
 # Load machine specific configuration if any
-[ -f ~/.zshrc.local ] && . ~/.zshrc.local
+[ ! -f ~/.zshrc.local ] || source ~/.zshrc.local
 
 # EOF
