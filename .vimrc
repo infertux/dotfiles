@@ -61,11 +61,9 @@ set ruler
 " display available entries on Tab
 set wildmenu
 " don't want to edit binaries and temp files
-set wildignore+=*.o,*.pyc,*.png,*.jpg,.git,doc,log,tmp
+set wildignore+=*.o,*.pyc,*.png,*.jpg,.git,doc,log,tmp,elm-stuff
 " display partial commands
 set showcmd
-" status bar on last window
-set laststatus=2
 " special chars
 set lcs=eol:¶,nbsp:·,tab:»\ ,trail:¤,extends:>,precedes:<
 set list
@@ -112,7 +110,7 @@ nmap <Leader>a :wa<CR>
 nmap <Leader>c :nohlsearch<CR>
 nmap <Leader>h :call ToggleHardMode()<CR>
 nmap <Leader>l :setlocal number!<CR>
-nmap <Leader>m :NERDTreeMirror<CR>
+nmap <Leader>m :make!<CR>
 nmap <Leader>n :NERDTreeFocus<CR>
 nmap <Leader>p :set paste!<CR>
 nmap <Leader>q :q<CR>

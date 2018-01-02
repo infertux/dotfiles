@@ -2,9 +2,6 @@
 	path = bin
 	url = https://github.com/infertux/bin-scripts.git
 	ignore = dirty
-[submodule ".vim/bundle/Tagbar"]
-	path = .vim/bundle/Tagbar
-	url = https://github.com/vim-scripts/Tagbar.git
 [submodule ".vim/bundle/colorizer"]
 	path = .vim/bundle/colorizer
 	url = https://github.com/vim-scripts/colorizer.git
@@ -75,3 +72,9 @@
 [submodule ".vim/bundle/elm-vim"]
 	path = .vim/bundle/elm-vim
 	url = https://github.com/ElmCast/elm-vim.git
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule ".vim/bundle/vim-airline"]
+	path = .vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline
