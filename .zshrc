@@ -6,8 +6,13 @@
 #(_)____|____/|_| |_|_| \_\\____|
 #
 
+
 ###############################################################################
 # Environment variables
+
+if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  exec startx
+fi
 
 # Expand PATH
 while read dir; do
