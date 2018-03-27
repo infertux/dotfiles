@@ -103,6 +103,7 @@ nnoremap Y y$
 " laziness
 command! Spell set spell spelllang=en
 command! Ortho set spell spelllang=fr
+highlight SpellBad cterm=underline
 
 " custom shortcuts
 let mapleader = "\\"
@@ -142,9 +143,6 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.bundle[[dir]]', '.git[[dir]]', '.sass-cache[[dir]]', '.yardoc[[dir]]']
 
 "" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0

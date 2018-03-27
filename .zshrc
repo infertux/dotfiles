@@ -260,7 +260,7 @@ export GOPATH=~/go
 [ ! -f /usr/share/nvm/init-nvm.sh ] || source /usr/share/nvm/init-nvm.sh
 
 # RVM
-[ ! -f /etc/profile.d/rvm.sh ] || source /etc/profile.d/rvm.sh
+[ ! -f /usr/share/rvm/scripts/rvm ] || source /usr/share/rvm/scripts/rvm
 
 # Load machine specific configuration if any
 [ ! -f ~/.zshrc.local ] || source ~/.zshrc.local
