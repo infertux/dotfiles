@@ -38,7 +38,6 @@
 	excludesfile = /home/infertux/gitignore
 [log]
 	date = iso
-	showSignature = true
 [mergetool]
 	keepBackup = false
 [pager]
