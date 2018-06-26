@@ -22,7 +22,7 @@ set t_Co=256    " 256 colors
 let g:solarized_termcolors=256 " force to use 256 colors
 let g:solarized_termtrans=1 " fix bg color with urxvt
 set background=dark
-"set background=light
+" set background=light
 colorscheme solarized
 
 " don't redraw while executing macros (good performance config)
@@ -139,6 +139,7 @@ nmap ; :CtrlPBuffer<CR>
 let g:ctrlp_show_hidden = 1
 
 "" NERDTree
+let g:NERDTreeWinSize=20
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.bundle[[dir]]', '.git[[dir]]', '.sass-cache[[dir]]', '.yardoc[[dir]]']
 
