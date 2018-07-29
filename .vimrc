@@ -4,10 +4,6 @@
 " this must be first because it changes other options as a side effect
 set nocompatible
 
-" pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-
 " auto reload .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
 " set UTF-8 encoding
@@ -107,11 +103,10 @@ highlight SpellBad cterm=underline
 
 " custom shortcuts
 let mapleader = "\\"
+nmap <Leader>\ :call NERDComment('n', 'Toggle')<CR>
 nmap <Leader>a :wa<CR>
 nmap <Leader>c :nohlsearch<CR>
-nmap <Leader>h :call ToggleHardMode()<CR>
-nmap <Leader>l :setlocal number!<CR>
-nmap <Leader>m :make!<CR>
+nmap <Leader>m :Dispatch<CR>
 nmap <Leader>n :NERDTreeFocus<CR>
 nmap <Leader>p :set paste!<CR>
 nmap <Leader>q :q<CR>
@@ -127,55 +122,30 @@ nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
 " plugins settings
-"" Hardmode
-let g:HardMode_level = 'wannabe'
-
 "" Tagbar
 let g:tagbar_compact = 1
 
-"" CtrlP
-nmap <Tab> :CtrlP<CR>
-nmap ; :CtrlPBuffer<CR>
-let g:ctrlp_show_hidden = 1
+"" completor
+let g:completor_gocode_binary = '/home/infertux/go/bin/gocode'
+
+"" fzf
+nmap <Tab> :FZF<CR>
 
 "" NERDTree
 let g:NERDTreeWinSize=20
 let g:NERDTreeShowHidden=1
-let g:NERDTreeIgnore=['\~$', '\.*\.sw.$', '.bundle[[dir]]', '.git[[dir]]', '.sass-cache[[dir]]', '.yardoc[[dir]]']
+let g:NERDTreeIgnore=[
+\ '\~$', '\.*\.sw.$',
+\ '.bundle[[dir]]', '.git[[dir]]', '.sass-cache[[dir]]', '.yardoc[[dir]]',
+\ 'node_modules[[dir]]'
+\]
 
-"" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_html_checkers = ['tidy']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_scss_checkers = [] " broken with https://github.com/scrooloose/syntastic/issues/1790
-
-"" elm-vim
+"" elm
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
-
-"" Tabularize
-" nmap <Leader>a= :Tabularize /=<CR>
-" vmap <Leader>a= :Tabularize /=<CR>
-" nmap <Leader>a{ :Tabularize /{<CR>
-" vmap <Leader>a{ :Tabularize /{<CR>
-" nmap <Leader>aif :Tabularize /if<CR>
-" vmap <Leader>aif :Tabularize /if<CR>
-" nmap <Leader>aun :Tabularize /un<CR>
-" vmap <Leader>aun :Tabularize /un<CR>
-" nmap <Leader>a: :Tabularize /:\zs<CR>
-" vmap <Leader>a: :Tabularize /:\zs<CR>
-" nmap <Leader>a, :Tabularize /,\zs<CR>
-" vmap <Leader>a, :Tabularize /,\zs<CR>
-" nmap <leader>a\| :Tabularize /\|<CR>
-" vmap <leader>a\| :Tabularize /\|<CR>
 
 " misc
 "au BufRead,BufNewFile *.scss set filetype=css
 "autocmd VimEnter * NERDTree
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " vim:set ft=vim et sw=2:

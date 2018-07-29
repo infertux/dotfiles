@@ -40,7 +40,7 @@ If the "Internet" isn't really the Internet, a local copy of the Tor Browser can
 
 ## Adding submodules
 
-    git submodule add https://github.com/vim-scripts/Tagbar.git .vim/bundle/Tagbar
+    git submodule add -f --name vim-plugin-solarized https://github.com/altercation/vim-colors-solarized.git .vim/pack/plugins/start/solarized
     git commit
 
 ## Updating submodules
@@ -49,6 +49,6 @@ If the "Internet" isn't really the Internet, a local copy of the Tor Browser can
 
 ## Removing submodules
 
-    git submodule deinit .vim/bundle/Tagbar
-    git rm .vim/bundle/Tagbar
+    git submodule deinit .vim/pack/plugins/start/solarized
+    git rm .vim/pack/plugins/start/solarized
     git commit
