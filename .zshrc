@@ -18,6 +18,7 @@ fi
 while read dir; do
     [ -d $dir ] && export PATH=$dir:$PATH || echo "Cannot append $dir to \$PATH"
 done <<EOH
+$HOME/.local/bin
 $HOME/.rvm/bin
 $HOME/bin
 $HOME/go/bin
@@ -204,6 +205,7 @@ alias zik='nvlc --random --loop ~/Music'
 alias bc_sum='paste -s -d+ | bc'
 alias firefox-profile='firefox --ProfileManager --new-instance'
 alias minicom-screen='sudo screen /dev/ttyUSB0 115200'
+alias packer='packer-io'
 
 ###############################################################################
 # Additional configuration
