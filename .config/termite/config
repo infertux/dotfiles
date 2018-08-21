@@ -1,0 +1,29 @@
+[options]
+font = Monospace 11
+scrollback_lines = 100000
+scrollbar = right
+hyperlinks = true
+
+# $BROWSER is used by default if set, with xdg-open as a fallback
+#browser = xdg-open
+
+[colors]
+cursor = #00ff00
+foreground = #dcdccc
+#foreground_bold = #ffffff
+#background = #3f3f3f
+# 20% background transparency (requires a compositor)
+background = rgba(0, 0, 0, 0.8)
+
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s

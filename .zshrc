@@ -10,8 +10,20 @@
 ###############################################################################
 # Environment variables
 
+# Set variables for sway first
+# https://github.com/swaywm/sway/wiki/Running-programs-natively-under-Wayland
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+
+# Keyboard layout and variant
+export XKB_DEFAULT_LAYOUT=us
+export XKB_DEFAULT_VARIANT=altgr-intl
+
+# https://wiki.archlinux.org/index.php/Android#Android_Studio
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-  exec startx
+  exec sway 2>&1 > ~/sway.log
 fi
 
 # Expand PATH
@@ -152,7 +164,7 @@ alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
 alias v='vim'
-alias ssh='ssh -v'
+alias ssh='TERM=xterm-color ssh -v'
 alias tmux='tmux -2' # 256 colors
 alias venv='read venv && source ~/.virtualenvs/$venv/bin/activate'
 
@@ -188,7 +200,8 @@ alias kcsi='knife cookbook site install'
 alias fs='foreman start'
 
 alias sc='sudo systemctl'
-alias p='pacaur'
+#alias p='sudo pacman'
+alias y='yay'
 
 alias wifi='sudo wifi-menu'
 alias ethernet='sudo netctl restart enp0s25 && ip addr'
@@ -263,6 +276,7 @@ export GOPATH=~/go
 
 # RVM
 [ ! -f /usr/share/rvm/scripts/rvm ] || source /usr/share/rvm/scripts/rvm
+[ ! -f ~/.rvm/scripts/rvm ] || source ~/.rvm/scripts/rvm
 
 # Load machine specific configuration if any
 [ ! -f ~/.zshrc.local ] || source ~/.zshrc.local
