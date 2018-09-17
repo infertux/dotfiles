@@ -130,9 +130,6 @@ bar {
         position top
 }
 
-# Layouts
-bindsym $mod+Shift+g exec ~/.sway/load_layout.sh
-
 # Lock screen
 bindsym $mod+Delete exec swaylock -c 000000
 
