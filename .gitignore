@@ -36,6 +36,7 @@
 /.i3status.conf
 /.icedove/
 /.imsettings.log
+/.ipython/
 /.java/
 /.lesshst
 /.local/share/
@@ -46,6 +47,8 @@
 /.nvidia-settings-rc
 /.nvm/
 /.octave_hist
+/.pEp*
+/.packer.d/
 /.pgadmin3
 /.pgpass
 /.pulse-cookie

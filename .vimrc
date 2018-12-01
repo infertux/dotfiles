@@ -16,9 +16,9 @@ set t_Co=256    " 256 colors
 
 " solarized settings
 let g:solarized_termcolors=256 " force to use 256 colors
-let g:solarized_termtrans=1 " fix bg color with urxvt
+let g:solarized_termtrans=1 " transparent bg in tmux
 set background=dark
-" set background=light
+"set background=light
 colorscheme solarized
 
 " don't redraw while executing macros (good performance config)

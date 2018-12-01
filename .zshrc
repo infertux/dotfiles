@@ -31,9 +31,9 @@ while read dir; do
     [ -d $dir ] && export PATH=$dir:$PATH || echo "Cannot append $dir to \$PATH"
 done <<EOH
 $HOME/.local/bin
+$HOME/.pyenv/shims
 $HOME/.rvm/bin
 $HOME/bin
-$HOME/go/bin
 /usr/local/bin
 /usr/local/sbin
 EOH
@@ -215,10 +215,12 @@ alias color-invert='xcalib -invert -alter'
 alias weather='curl http://wttr.in/'
 alias nectarine='nvlc http://nectarine.from-de.com/necta192'
 alias zik='nvlc --random --loop ~/Music'
+alias ratm='nvlc --random --loop "$HOME/Music/Rage Against the Machine"'
 alias bc_sum='paste -s -d+ | bc'
 alias firefox-profile='firefox --ProfileManager --new-instance'
 alias minicom-screen='sudo screen /dev/ttyUSB0 115200'
 alias packer='packer-io'
+alias gogo='source gogo'
 
 ###############################################################################
 # Additional configuration
@@ -270,6 +272,7 @@ ssh-add -l >/dev/null || alias ssh="ssh-add -l >/dev/null || ssh-add && alias ss
 
 # Golang
 export GOPATH=~/go
+export GO111MODULE=on
 
 # NVM
 [ ! -f /usr/share/nvm/init-nvm.sh ] || source /usr/share/nvm/init-nvm.sh

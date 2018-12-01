@@ -2,7 +2,7 @@
 
 set $mod Mod1
 font pango:DejaVuSansMono 12
-default_border none
+default_border 1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -143,9 +143,8 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Screen brightness
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+bindsym XF86MonBrightnessUp exec xbacklight -inc 9
+bindsym XF86MonBrightnessDown exec xbacklight -dec 9
 
 # Music controls
-#bindsym XF86Explorer exec rhythmbox-client --play-pause
-#bindsym XF86LaunchA exec rhythmbox-client --next
+bindsym XF86AudioMicMute exec pkill -f 'vlc -I ncurses'

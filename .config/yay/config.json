@@ -1,4 +1,5 @@
 {
+	"aururl": "https://aur.archlinux.org",
 	"buildDir": "/home/infertux/.cache/yay",
 	"editor": "",
 	"editorflags": "",
@@ -9,8 +10,8 @@
 	"tarbin": "bsdtar",
 	"redownload": "no",
 	"rebuild": "no",
-	"answerclean": "",
-	"answerdiff": "",
+	"answerclean": "None",
+	"answerdiff": "All",
 	"answeredit": "",
 	"answerupgrade": "",
 	"gitbin": "git",
