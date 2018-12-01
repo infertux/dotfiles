@@ -22,12 +22,14 @@
 /.config/weboob/
 /.config/wireshark/recent*
 /.csshrc
+/.dia/
 /.docker/
 /.eaglerc
 /.elm/
 /.esd_auth
 /.gem/
 /.gnupg/
+/.gradle/
 /.grl-bookmarks
 /.grl-metadata-store
 /.grl-podcasts
@@ -52,6 +54,7 @@
 /.pgadmin3
 /.pgpass
 /.pulse-cookie
+/.pyenv/
 /.pythonhist
 /.recently-used
 /.repo_.gitconfig.json
@@ -68,6 +71,7 @@
 /.transifexrc
 /.v8flags.*.json
 /.vagrant.d/
+/.vagrant/
 /.vim/.netrwhist
 /.vim/undodir/
 /.vim/view/
