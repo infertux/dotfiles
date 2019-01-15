@@ -31,7 +31,6 @@ while read dir; do
     [ -d $dir ] && export PATH=$dir:$PATH || echo "Cannot append $dir to \$PATH"
 done <<EOH
 $HOME/.local/bin
-$HOME/.pyenv/shims
 $HOME/.rvm/bin
 $HOME/bin
 /usr/local/bin
