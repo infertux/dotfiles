@@ -1,0 +1,1 @@
+/home/infertux/go/src/github.com/mdempsky/gocode/vim/ftplugin/go/gocomplete.vim
