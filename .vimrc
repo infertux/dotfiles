@@ -125,9 +125,6 @@ nmap <C-p> :bprev<CR>
 "" Tagbar
 let g:tagbar_compact = 1
 
-"" completor
-let g:completor_gocode_binary = '/home/infertux/go/bin/gocode'
-
 "" fzf
 nmap <Tab> :FZF<CR>
 

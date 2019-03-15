@@ -271,7 +271,6 @@ ssh-add -l >/dev/null || alias ssh="ssh-add -l >/dev/null || ssh-add && alias ss
 
 # Golang
 export GOPATH=~/go
-export GO111MODULE=on
 
 # NVM
 [ ! -f /usr/share/nvm/init-nvm.sh ] || source /usr/share/nvm/init-nvm.sh

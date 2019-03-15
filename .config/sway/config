@@ -2,7 +2,7 @@
 
 set $mod Mod1
 font pango:DejaVuSansMono 12
-default_border 1
+default_border normal
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
