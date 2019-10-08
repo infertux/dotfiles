@@ -24,6 +24,7 @@
 	ui = auto
 [merge]
 	tool = vimdiff
+	conflictstyle = diff3
 [diff]
 	renames = copies
 	mnemonicprefix = true
@@ -44,3 +45,5 @@
 	log = diff-highlight | less
 	show = diff-highlight | less
 	diff = diff-highlight | less
+[rerere]
+	enabled = 1
