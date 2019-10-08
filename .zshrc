@@ -33,6 +33,7 @@ done <<EOH
 $HOME/.local/bin
 $HOME/.rvm/bin
 $HOME/bin
+$HOME/go/bin
 /usr/local/bin
 /usr/local/sbin
 EOH
@@ -220,6 +221,8 @@ alias firefox-profile='firefox --ProfileManager --new-instance'
 alias minicom-screen='sudo screen /dev/ttyUSB0 115200'
 alias packer='packer-io'
 alias gogo='source gogo'
+alias geth='geth --syncmode light'
+alias tv='vlc --playlist-tree https://raw.githubusercontent.com/iptv-org/iptv/master/index.m3u'
 
 ###############################################################################
 # Additional configuration
