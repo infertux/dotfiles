@@ -12,6 +12,7 @@
 /.berkshelf/
 /.bundle/cache/
 /.cache/
+/.cargo/
 /.cargo/registry/
 /.chef/
 /.chefdk/cache/
@@ -25,6 +26,7 @@
 /.esd_auth
 /.gem/
 /.gnupg/
+/.gnutls/
 /.gradle/
 /.grl-bookmarks
 /.grl-metadata-store
@@ -58,12 +60,14 @@
 /.pythonhist
 /.recently-used
 /.repo_.gitconfig.json
+/.repoconfig/
 /.rnd
 /.rubinius_last_error
 /.rustup/
 /.rvm/
 /.ssh*
 /.ssh/
+/.stack/
 /.subversion/
 /.sudo_as_admin_successful
 /.thunderbird/
@@ -84,6 +88,7 @@
 /.wget-hsts
 /.wireshark/
 /.xinitrc
+/.xournalap/
 /.xprofile
 /.xscreensaver
 /.xsession-errors
@@ -93,6 +98,7 @@
 /.zlogin
 /.zsh_cache/
 /.zshrc.local
+/Android/
 /Downloads/
 /Music/
 /dev/
