@@ -9,6 +9,9 @@
 [submodule "vim-plugin-completor"]
 	path = .vim/pack/plugins/start/completor
 	url = https://github.com/maralla/completor.vim.git
+[submodule "vim-plugin-css-color"]
+	path = .vim/pack/plugins/start/css-color
+	url = https://github.com/ap/vim-css-color.git
 [submodule "vim-plugin-dispatch"]
 	path = .vim/pack/plugins/start/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
