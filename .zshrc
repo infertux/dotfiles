@@ -158,7 +158,7 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 --stdout Hey | paplay; sleep 1; done'
 alias se='sudoedit'
 alias kernel='dmesg -dH | tail -20'
-alias kernel-follow='dmesg -dw'
+alias kernel-follow='sudo dmesg -dw'
 alias open='xdg-open'
 alias vim='vim -p'
 alias vv='vim -O'
@@ -204,14 +204,13 @@ alias sc='sudo systemctl'
 alias y='yay'
 
 alias wifi='sudo wifi-menu'
-alias ethernet='sudo netctl restart enp0s25 && ip addr'
+alias ethernet='enp0s31f6-ethernet-dhcp'
 alias usb_tehering='sudo netctl restart enp0s20u1 && ip addr'
 alias arm='sudo -u tor arm'
 alias xz-compress-extreme='xz --compress --verbose --keep --check sha256 -9 --extreme'
 alias xz-decompress='xz --decompress --verbose --keep'
 alias ssh-no-pubkey='\ssh -v -o PubkeyAuthentication=no -o PasswordAuthentication=yes'
 alias docker-cleanup='docker rm $(docker ps -q -f "status=exited") && docker rmi $(docker images -q -f "dangling=true")'
-alias color-invert='xcalib -invert -alter'
 alias weather='curl http://wttr.in/'
 alias nectarine='nvlc http://nectarine.from-de.com/necta192'
 alias zik='nvlc --random --loop ~/Music'
@@ -223,6 +222,8 @@ alias packer='packer-io'
 alias gogo='source gogo'
 alias geth='geth --syncmode light'
 alias tv='vlc --playlist-tree https://raw.githubusercontent.com/iptv-org/iptv/master/index.m3u'
+alias speedtest='speedtest-cli --json | jq'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 ###############################################################################
 # Additional configuration
@@ -274,9 +275,6 @@ ssh-add -l >/dev/null || alias ssh="ssh-add -l >/dev/null || ssh-add && alias ss
 
 # Golang
 export GOPATH=~/go
-
-# NVM
-[ ! -f /usr/share/nvm/init-nvm.sh ] || source /usr/share/nvm/init-nvm.sh
 
 # RVM
 [ ! -f /usr/share/rvm/scripts/rvm ] || source /usr/share/rvm/scripts/rvm
