@@ -23,7 +23,7 @@ export XKB_DEFAULT_VARIANT=altgr-intl
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-  exec sway 2>&1 > ~/sway.log
+    exec systemd-cat -t sway sway
 fi
 
 # Expand PATH
@@ -32,11 +32,13 @@ while read dir; do
 done <<EOH
 $HOME/.local/bin
 $HOME/.rvm/bin
+$HOME/Android/flutter/bin
 $HOME/bin
-$HOME/go/bin
 /usr/local/bin
 /usr/local/sbin
 EOH
+
+#eval "$(direnv hook bash)"
 
 # Terminal history
 export HISTORY=100000
@@ -137,9 +139,8 @@ alias -s PKGBUILD=$EDITOR
 alias ls='ls --color'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
-alias ll='ls -lh --color'
+alias ll='exa --icons'
 alias l='ll'
-alias lll='ls -lh --color | less'
 alias la='ls -A --color'
 
 alias grep='grep --color'
@@ -164,7 +165,7 @@ alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
 alias v='vim'
-alias ssh='TERM=xterm-color ssh -v'
+alias ssh='ssh -v'
 alias tmux='tmux -2' # 256 colors
 alias venv='read venv && source ~/.virtualenvs/$venv/bin/activate'
 
@@ -271,8 +272,6 @@ fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval $(<~/.ssh-agent-string) >/dev/null
 fi
-
-ssh-add -l >/dev/null || alias ssh="ssh-add -l >/dev/null || ssh-add && alias ssh='ssh -v'; ssh -v"
 
 # Golang
 export GOPATH=~/go

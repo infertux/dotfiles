@@ -92,8 +92,8 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # move to external monitor
-bindsym $mod+Shift+x move workspace to output up
-bindsym $mod+Shift+z move workspace to output down
+bindsym $mod+Shift+x move workspace to output right
+bindsym $mod+Shift+z move workspace to output left
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
