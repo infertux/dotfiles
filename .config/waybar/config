@@ -1,12 +1,9 @@
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
     "spacing": 1, // Gaps between modules
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["sway/window"],
-    "modules-right": ["user", "idle_inhibitor", "pulseaudio", "network", "network#vpn", "disk", "temperature#nvme", "cpu", "temperature#cpu", "temperature#gpu", "memory", "clock#local", "clock"],
+    "modules-right": ["idle_inhibitor", "user", "pulseaudio", "bluetooth", "network", "network#vpn", "battery", "disk", "temperature#nvme", "cpu", "temperature#cpu", "temperature#gpu", "memory", "clock#local", "clock"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -23,96 +20,121 @@
             "10": "",
             "urgent": "",
             "focused": "",
-            "default": ""
-        }
+            "default": "",
+        },
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": "<span style=\"italic\">{}</span>",
     },
     "sway/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
         "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "user": {
-        "format": "up {work_d} days"
+        "tooltip-format": "{app}: {title}",
     },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "",
-            "deactivated": ""
-        }
+            "deactivated": "",
+        },
+    },
+    "user": {
+        "format": "{work_d} days",
     },
     "clock#local": {
         "interval": 60,
         "timezone": "Asia/Bangkok",
         "format": " {:%H:%M}",
-        "tooltip-format": "{:%a %Y-%m-%d}"
+        "tooltip-format": "{:%a %Y-%m-%d}",
     },
     "clock": {
         "interval": 5,
         "format": " {:%a %Y-%m-%d %H:%M:%S}",
         "tooltip-format": "<tt>{calendar}</tt>",
     },
+    "battery": {
+        "interval": 5,
+        "states": {
+            "warning": 50,
+            "critical":25,
+        },
+        "format": "{icon}  {capacity}% {time} {power:0.0f}W",
+        "format-charging": " {capacity}% {power:0.0f}W",
+        "format-plugged": " {capacity}% {power:0.0f}W",
+        "format-icons": ["", "", "", "", ""],
+        "format-time": "{H}:{m}",
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    },
     "disk": {
+        "states": {
+            "warning": 50,
+            "critical":10,
+        },
         "path": "/",
-        "format": " {free} free"
+        "format": " {free}",
     },
     "cpu": {
-        "format": " {usage}%"
+        "format": " {usage}%",
     },
     "memory": {
-        "format": " {used:0.1f}/{total:0.0f}G",
-        "tooltip-format": "RAM {percentage}% used"
+        "format": " {avail:0.0f}G",
+        "tooltip-format": "RAM {used:0.1f}/{total:0.0f}G ({percentage}%) used",
     },
     "temperature#nvme": {
         "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
         "critical-threshold": 45,
         "format": " {temperatureC}°C",
-        "tooltip-format": "NVME"
+        "tooltip-format": "NVME",
     },
     "temperature#cpu": {
         "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
         "critical-threshold": 50,
         "format": " {temperatureC}°C",
-        "tooltip-format": "CPU"
+        "tooltip-format": "CPU",
     },
     "temperature#gpu": {
         "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
         "critical-threshold": 60,
         "format": " {temperatureC}°C",
-        "tooltip-format": "GPU"
+        "tooltip-format": "GPU",
     },
     "network": {
         "interval": 5,
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "  {essid} {signalStrength}%  {bandwidthUpBytes}  {bandwidthDownBytes}",
         "format-ethernet": " {ipaddr}/{cidr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠"
+        "tooltip-format": "{ipaddr}/{cidr} via {gwaddr} dev {ifname}",
+        "tooltip-format-wifi": "{ipaddr}/{cidr} via {gwaddr} dev {ifname} ({frequency} GHz)",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
     },
     "network#vpn": {
         "interface": "wg-mullvad",
-        "format": " VPN ON",
-        "format-disconnected": " VPN OFF ⚠",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+        "format": "",
+        "format-disconnected": " VPN OFF",
+        "tooltip-format": "VPN {ipaddr}/{cidr} dev {ifname}",
+        "tooltip-format-disconnected": "⚠ VPN OFF",
     },
     "pulseaudio": {
-        "scroll-step": 10, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "scroll-step": 10, // %
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "{icon} ",
+        "format-muted": "",
         "format-icons": {
             "headphone": "",
             "headset": "",
-            "default": ["", "", ""]
-        }
-    }
+            "default": ["", "", ""],
+        },
+    },
 }
-

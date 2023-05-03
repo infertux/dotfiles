@@ -2,8 +2,23 @@
     /* `otf-font-awesome` is required to be installed for icons */
     /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
     font-family: monospace;
-    font-weight: bold;
     font-size: 16px;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+.critical {
+    background-color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 label:focus {
@@ -62,6 +77,7 @@ button:hover {
 
 #clock,
 #battery,
+#bluetooth,
 #cpu,
 #memory,
 #disk,
@@ -100,34 +116,19 @@ button:hover {
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #228822;
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    background-color: #22cc44;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+#bluetooth {
+    background-color: #0066ff;
 }
 
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#cpu {
+#cpu, #temperature.cpu {
     background-color: #2ecc71;
-    color: #000000;
 }
 
 #memory {
@@ -172,15 +173,6 @@ button:hover {
 
 #temperature {
     background-color: #f0932b;
-}
-
-#temperature.critical {
-    background-color: #ff0000;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
 #user {
