@@ -1,4 +1,4 @@
-# sway config file
+xwayland disable
 
 # Run a "pure" Wayland session
 xwayland disable
@@ -7,8 +7,8 @@ xwayland disable
 input type:pointer left_handed enabled
 
 set $mod Mod1
-font pango:HackRegularNerdFontCompleteMono 12
-default_border normal
+font pango:DejaVuSansMono 12
+default_border pixel 1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -130,15 +130,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-        position top
-}
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+bar swaybar_command waybar
 
 # Lock screen
-bindsym $mod+Delete exec swaylock -c 000000
+bindsym $mod+Delete exec swaylock -i ~/.wallpaper.jpg
+
+# Power management
+bindsym $mod+Escape exec systemctl suspend
+bindsym $mod+Shift+Escape exec systemctl poweroff
 
 # Screenshot with Scrot
 bindsym Print exec --no-startup-id grim $HOME/Screenshots/$(date -Iseconds).png
@@ -158,3 +163,17 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 9
 
 # Music controls
 bindsym XF86AudioMicMute exec pkill -f 'vlc -I ncurses'
+
+# Background
+output "*" bg ~/.wallpaper.jpg fill
+for_window [app_id="kitty"] opacity 0.9
+#for_window [class=".*"] opacity 0.8
+
+# lock the screen after 5 minutes and turn it off five seconds later
+exec swayidle -w \
+  timeout 300 'swaylock -f' \
+  timeout 305 'swaymsg "output * power off"' \
+  resume 'swaymsg "output * power on"'
+
+# must be last
+exec_always systemctl --user start sway-session.target

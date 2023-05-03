@@ -14,9 +14,6 @@
 export XKB_DEFAULT_LAYOUT=us
 export XKB_DEFAULT_VARIANT=altgr-intl
 
-# https://wiki.archlinux.org/index.php/Android#Android_Studio
-export _JAVA_AWT_WM_NONREPARENTING=1
-
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
     exec systemd-cat -t sway sway
 fi
@@ -25,7 +22,6 @@ fi
 while read dir; do
     [ -d $dir ] && export PATH=$dir:$PATH || echo "Cannot append $dir to \$PATH"
 done <<EOH
-$HOME/.local/bin
 $HOME/bin
 /usr/local/bin
 /usr/local/sbin
@@ -49,8 +45,9 @@ export EDITOR=vim
 # Options
 
 # Completion
-autoload -U compinit
+autoload -Uz compinit
 compinit
+
 unsetopt list_ambiguous
 setopt auto_remove_slash # remove last completed '/' on [Space] or [Enter]
 
@@ -73,17 +70,19 @@ setopt hist_find_no_dups
 setopt extendedglob
 
 # Miscellaneous
-setopt autopushd pushdminus pushdsilent pushdtohome
 setopt autocd
+setopt autopushd pushdminus pushdsilent pushdtohome
 setopt cdablevars
 setopt ignoreeof
 setopt interactivecomments
 setopt nobanghist
 setopt noclobber
-setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_SPACE
-setopt SH_WORD_SPLIT
 setopt nohup
+setopt notify
+setopt prompt_subst
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt SH_WORD_SPLIT
 
 ###############################################################################
 # Option configurations
@@ -111,6 +110,8 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ###############################################################################
 # Key bindings
 
+bindkey -v # vim bindings
+
 # just press the beginning of a previous command then press Up/Down
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
@@ -122,9 +123,9 @@ bindkey '^U' backward-kill-line
 # Set up auto extension stuff
 alias -s html=firefox
 alias -s pdf=firefox
-alias -s png=feh
-alias -s jpg=feh
-alias -s gif=feh
+alias -s png=swayimg
+alias -s jpg=swayimg
+alias -s gif=swayimg
 alias -s txt=$EDITOR
 alias -s PKGBUILD=$EDITOR
 
@@ -132,7 +133,7 @@ alias -s PKGBUILD=$EDITOR
 alias ls='ls --color'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
-alias ll='exa --icons'
+alias ll='ls -lh --color'
 alias l='ll'
 alias la='ls -A --color'
 
@@ -152,7 +153,7 @@ alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 --stdout Hey | paplay; sleep 1; done'
 alias se='sudoedit'
 alias kernel='dmesg -dH | tail -20'
-alias kernel-follow='sudo dmesg -dw'
+alias kernel-follow='sudo dmesg -dwT'
 alias open='xdg-open'
 alias vim='vim -p'
 alias vv='vim -O'
@@ -206,24 +207,22 @@ alias xz-decompress='xz --decompress --verbose --keep'
 alias ssh-no-pubkey='\ssh -v -o PubkeyAuthentication=no -o PasswordAuthentication=yes'
 alias docker-cleanup='docker rm $(docker ps -q -f "status=exited") && docker rmi $(docker images -q -f "dangling=true") && docker volume ls && docker volume prune'
 alias weather='curl http://wttr.in/'
-alias nectarine='nvlc http://nectarine.from-de.com/necta192'
-alias zik='nvlc --random --loop ~/Music'
-alias ratm='nvlc --random --loop "$HOME/Music/Rage Against the Machine"'
+alias nectarine='mpv http://nectarine.from-de.com/necta192'
+alias zik='mpv --shuffle --loop ~/Music'
+alias ratm='mpv --shuffle --loop "$HOME/Music/Rage Against the Machine"'
 alias bc_sum='paste -s -d+ | bc'
 alias firefox-profile='firefox --ProfileManager --new-instance'
 alias minicom-screen='sudo screen /dev/ttyUSB0 115200'
 alias packer='packer-io'
 alias gogo='source gogo'
 alias geth='geth --syncmode light'
-alias tv='vlc --playlist-tree https://raw.githubusercontent.com/iptv-org/iptv/master/index.m3u'
+alias tv='mpv --playlist-tree https://raw.githubusercontent.com/iptv-org/iptv/master/index.m3u'
 alias speedtest='speedtest-cli --json | jq'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+alias kitty-icat='kitty +kitten icat'
 
 ###############################################################################
 # Additional configuration
-
-set -o vi
-setopt prompt_subst
 
 # Colors
 autoload colors zsh/terminfo
@@ -233,27 +232,6 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/.zsh/git-prompt/zshrc.sh
 PROMPT='%B%~%b$(git_super_status) %# '
-
-_set_title() {
-    print -Pn "\e]2;%m: %~\a"
-}
-
-_set_title
-
-chpwd() {
-    _set_title
-}
-
-# A nicer man
-man() {
-    LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    command man "$@"
-}
 
 # SSH agent
 if ! pgrep ssh-agent > /dev/null; then
@@ -268,9 +246,10 @@ fi
 # Golang
 export GOPATH=~/go
 
-# RVM
-[ ! -f /usr/share/rvm/scripts/rvm ] || source /usr/share/rvm/scripts/rvm
-[ ! -f ~/.rvm/scripts/rvm ] || source ~/.rvm/scripts/rvm
+# Ruby
+# https://wiki.archlinux.org/title/ruby#RubyGems
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
 
 # Load machine specific configuration if any
 [ ! -f ~/.zshrc.local ] || source ~/.zshrc.local

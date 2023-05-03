@@ -1,0 +1,118 @@
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
+    "spacing": 1, // Gaps between modules
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["user", "idle_inhibitor", "pulseaudio", "network", "network#vpn", "disk", "temperature#nvme", "cpu", "temperature#cpu", "temperature#gpu", "memory", "clock#local", "clock"],
+    // Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "user": {
+        "format": "up {work_d} days"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "clock#local": {
+        "interval": 60,
+        "timezone": "Asia/Bangkok",
+        "format": " {:%H:%M}",
+        "tooltip-format": "{:%a %Y-%m-%d}"
+    },
+    "clock": {
+        "interval": 5,
+        "format": " {:%a %Y-%m-%d %H:%M:%S}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+    },
+    "disk": {
+        "path": "/",
+        "format": " {free} free"
+    },
+    "cpu": {
+        "format": " {usage}%"
+    },
+    "memory": {
+        "format": " {used:0.1f}/{total:0.0f}G",
+        "tooltip-format": "RAM {percentage}% used"
+    },
+    "temperature#nvme": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "critical-threshold": 45,
+        "format": " {temperatureC}°C",
+        "tooltip-format": "NVME"
+    },
+    "temperature#cpu": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 50,
+        "format": " {temperatureC}°C",
+        "tooltip-format": "CPU"
+    },
+    "temperature#gpu": {
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 60,
+        "format": " {temperatureC}°C",
+        "tooltip-format": "GPU"
+    },
+    "network": {
+        "interval": 5,
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": " {ipaddr}/{cidr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠"
+    },
+    "network#vpn": {
+        "interface": "wg-mullvad",
+        "format": " VPN ON",
+        "format-disconnected": " VPN OFF ⚠",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "scroll-step": 10, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "default": ["", "", ""]
+        }
+    }
+}
+

@@ -62,7 +62,6 @@
 /.repo_.gitconfig.json
 /.repoconfig/
 /.rnd
-/.rubinius_last_error
 /.rustup/
 /.rvm/
 /.ssh*
@@ -74,7 +73,6 @@
 /.torcs/
 /.tox/
 /.transifexrc
-/.v8flags.*.json
 /.vagrant.d/
 /.vagrant/
 /.vim/.netrwhist
@@ -87,12 +85,6 @@
 /.wavemonrc
 /.wget-hsts
 /.wireshark/
-/.xinitrc
-/.xournalap/
-/.xprofile
-/.xscreensaver
-/.xsession-errors
-/.xsession-errors.old
 /.yarnrc
 /.zcompdump
 /.zlogin
