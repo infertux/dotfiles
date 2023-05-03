@@ -1,7 +1,13 @@
 # sway config file
 
+# Run a "pure" Wayland session
+xwayland disable
+
+# Swap mouse buttons
+input type:pointer left_handed enabled
+
 set $mod Mod1
-font pango:DejaVuSansMono 12
+font pango:HackRegularNerdFontCompleteMono 12
 default_border normal
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -14,8 +20,8 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# program launcher
+bindsym $mod+d exec wofi --show run
 
 # change focus
 bindsym $mod+j focus left
@@ -146,6 +152,9 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 # Screen brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 9
 bindsym XF86MonBrightnessDown exec xbacklight -dec 9
+# external monitor:
+# sudo ddcutil setvcp 10 + 9
+# sudo ddcutil setvcp 10 - 9
 
 # Music controls
 bindsym XF86AudioMicMute exec pkill -f 'vlc -I ncurses'

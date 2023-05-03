@@ -10,11 +10,6 @@
 ###############################################################################
 # Environment variables
 
-# Set variables for sway first
-# https://github.com/swaywm/sway/wiki/Running-programs-natively-under-Wayland
-export CLUTTER_BACKEND=wayland
-export SDL_VIDEODRIVER=wayland
-
 # Keyboard layout and variant
 export XKB_DEFAULT_LAYOUT=us
 export XKB_DEFAULT_VARIANT=altgr-intl
@@ -22,7 +17,7 @@ export XKB_DEFAULT_VARIANT=altgr-intl
 # https://wiki.archlinux.org/index.php/Android#Android_Studio
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
     exec systemd-cat -t sway sway
 fi
 
@@ -31,8 +26,6 @@ while read dir; do
     [ -d $dir ] && export PATH=$dir:$PATH || echo "Cannot append $dir to \$PATH"
 done <<EOH
 $HOME/.local/bin
-$HOME/.rvm/bin
-$HOME/Android/flutter/bin
 $HOME/bin
 /usr/local/bin
 /usr/local/sbin
@@ -205,7 +198,6 @@ alias sc='sudo systemctl'
 alias y='yay'
 
 alias trash-empty='rm -rfv ~/.local/share/Trash/*'
-alias wifi='sudo wifi-menu'
 alias ethernet='enp0s31f6-ethernet-dhcp'
 alias usb_tehering='sudo netctl restart enp0s20u1 && ip addr'
 alias arm='sudo -u tor arm'
