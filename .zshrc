@@ -220,6 +220,7 @@ alias tv='mpv --playlist-tree https://raw.githubusercontent.com/iptv-org/iptv/ma
 alias speedtest='speedtest-cli --json | jq'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias kitty-icat='kitty +kitten icat'
+alias freetube='freetube --enable-features=UseOzonePlatform --ozone-platform=wayland'
 
 ###############################################################################
 # Additional configuration

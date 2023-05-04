@@ -79,13 +79,13 @@ button:hover {
 #battery,
 #bluetooth,
 #cpu,
+#custom-fan,
 #memory,
 #disk,
 #temperature,
 #backlight,
 #network,
 #pulseaudio,
-#custom-media,
 #user,
 #mode,
 #idle_inhibitor,
@@ -116,7 +116,7 @@ button:hover {
 }
 
 #battery {
-    background-color: #228822;
+    background-color: #ffa000;
 }
 
 #battery.charging, #battery.plugged {
@@ -131,11 +131,15 @@ button:hover {
     background-color: #2ecc71;
 }
 
+#custom-fan {
+    background-color: #aa0066;
+}
+
 #memory {
     background-color: #9b59b6;
 }
 
-#disk {
+#disk, #temperature.disk {
     background-color: #964B00;
 }
 
@@ -161,17 +165,7 @@ button:hover {
     color: #2a5c45;
 }
 
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
+#temperature.gpu {
     background-color: #f0932b;
 }
 
