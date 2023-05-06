@@ -6,19 +6,15 @@
 }
 
 @keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
+    50% {
+        background-color: #ff0000;
     }
 }
 
 .critical {
-    background-color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    animation: blink 1s linear infinite;
+    font-weight: bold;
+    border: 1px solid #ffffff;
 }
 
 label:focus {
@@ -88,7 +84,6 @@ button:hover {
 #pulseaudio,
 #user,
 #mode,
-#idle_inhibitor,
 #scratchpad,
 #mpd {
     padding: 0 10px;
@@ -119,7 +114,7 @@ button:hover {
     background-color: #ffa000;
 }
 
-#battery.charging, #battery.plugged {
+#battery.charging, #battery.plugged, #battery.full {
     background-color: #22cc44;
 }
 
@@ -171,15 +166,6 @@ button:hover {
 
 #user {
     background-color: #66cc99;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
 }
 
 #mpd {
