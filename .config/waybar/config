@@ -91,19 +91,19 @@
         "format": " {} RPM",
     },
     "temperature#disk": {
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "hwmon-path": "/dev/thermal-nvme",
         "critical-threshold": 45,
         "format": " {temperatureC}°C",
         "tooltip-format": "NVME",
     },
     "temperature#cpu": {
-        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "hwmon-path": "/dev/thermal-cpu",
         "critical-threshold": 50,
         "format": " {temperatureC}°C",
         "tooltip-format": "CPU",
     },
     "temperature#gpu": {
-        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "hwmon-path": "/dev/thermal-gpu",
         "critical-threshold": 60,
         "format": " {temperatureC}°C",
         "tooltip-format": "GPU",
