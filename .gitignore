@@ -17,6 +17,8 @@
 /.chef/
 /.chefdk/cache/
 /.cinc-workstation/
+/.cinc/
+/.claws-mail/
 /.config/
 /.csshrc
 /.dia/
@@ -27,6 +29,7 @@
 /.elm/
 /.esd_auth
 /.gem/
+/.ghc/
 /.gnupg/
 /.gnutls/
 /.gradle/
@@ -38,6 +41,7 @@
 /.i3status.conf
 /.icedove/
 /.imsettings.log
+/.inspec/
 /.ipfs/
 /.ipython/
 /.java/
@@ -46,6 +50,7 @@
 /.local/share/
 /.mozilla/
 /.netrc
+/.nix-*
 /.node-gyp/
 /.npm/
 /.nvidia-settings-rc
@@ -88,6 +93,7 @@
 /.wget-hsts
 /.wireshark/
 /.xonotic/
+/.xournalpp/
 /.yarnrc
 /.zcompdump
 /.zlogin
