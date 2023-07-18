@@ -16,10 +16,12 @@
 /.cargo/registry/
 /.chef/
 /.chefdk/cache/
+/.cinc-workstation/
 /.config/
 /.csshrc
 /.dia/
 /.docker/
+/.dokken/
 /.eaglerc
 /.elinks/
 /.elm/
@@ -85,6 +87,7 @@
 /.wavemonrc
 /.wget-hsts
 /.wireshark/
+/.xonotic/
 /.yarnrc
 /.zcompdump
 /.zlogin

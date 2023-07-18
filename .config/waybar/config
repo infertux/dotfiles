@@ -72,8 +72,8 @@
     },
     "disk": {
         "states": {
-            "warning": 50,
-            "critical":10,
+            "warning": 100,
+            "critical": 50,
         },
         "path": "/",
         "format": " {free}",
