@@ -72,7 +72,7 @@
     },
     "disk": {
         "states": {
-            "warning": 100,
+            "warning": 75,
             "critical": 50,
         },
         "path": "/",
