@@ -5,7 +5,7 @@
 set nocompatible
 
 " auto reload .vimrc
-autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd bufwritepost .vimrc source ~/.vimrc
 " set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
@@ -36,8 +36,8 @@ set autoindent
 " use intelligent indentation for C
 set smartindent
 " configure tab width and insert spaces instead of tabs
-set tabstop=4        " tab width is 4 spaces
-set shiftwidth=4     " indent also with 4 spaces
+set tabstop=2        " tab width is 2 spaces
+set shiftwidth=2     " indent also with 2 spaces
 set expandtab        " expand tabs to spaces
 " turn line numbers off
 set number
@@ -79,14 +79,15 @@ highlight ColorColumn ctermbg=darkgrey
 " persistent undo
 set undodir=~/.vim/undodir
 set undofile
-autocmd! BufNewFile /var/tmp/* setlocal undolevels=-1
-autocmd! BufNewFile /tmp/* setlocal undolevels=-1
+autocmd BufNewFile /var/tmp/* setlocal undolevels=-1
+autocmd BufNewFile /tmp/* setlocal undolevels=-1
 
 " Completion
 " ctrl-space mapping
 imap <Nul> <C-x><C-o>
 filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
+filetype indent on
 set completeopt+=menu,longest
 " don't scan included files - tags file is more performant
 set complete-=i
@@ -97,8 +98,8 @@ highlight Pmenu ctermbg=238
 nnoremap Y y$
 
 " laziness
-command! Spell set spell spelllang=en
-command! Ortho set spell spelllang=fr
+command Spell set spell spelllang=en
+command Ortho set spell spelllang=fr
 highlight SpellBad cterm=underline
 
 " custom shortcuts
@@ -122,6 +123,10 @@ nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
 " plugins settings
+"" ALE
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+
 "" Tagbar
 let g:tagbar_compact = 1
 
@@ -140,6 +145,12 @@ let g:NERDTreeIgnore=[
 "" elm
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
+
+" C
+" Vim will default to cpp otherwise
+autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+
+let &path.="src/include,/usr/include,"
 
 " misc
 "au BufRead,BufNewFile *.scss set filetype=css
