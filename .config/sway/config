@@ -1,5 +1,3 @@
-xwayland disable
-
 # Run a "pure" Wayland session
 xwayland disable
 
@@ -166,8 +164,6 @@ bindsym XF86AudioMicMute exec pkill -f 'vlc -I ncurses'
 
 # Background
 output "*" bg ~/.wallpaper.jpg fill
-for_window [app_id="kitty"] opacity 0.9
-#for_window [class=".*"] opacity 0.8
 
 # lock the screen after 10 minutes and turn it off five seconds later
 exec swayidle -w \
