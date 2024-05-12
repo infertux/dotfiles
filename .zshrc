@@ -39,7 +39,7 @@ command -v most >/dev/null && export PAGER=most
 
 export EDITOR=vim
 # export BROWSER=elinks
-# export LC_TIME=en_DK.utf8 # http://www.explainxkcd.com/wiki/index.php?title=1179
+export LC_TIME=en_DK.utf8 # http://www.explainxkcd.com/wiki/index.php?title=1179
 
 ###############################################################################
 # Options
