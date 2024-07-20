@@ -1,0 +1,19 @@
+session_name: system
+start_directory: ~/
+windows:
+- layout: tiled
+  panes:
+  - iwctl
+  - mullvad-status
+  - kernel-follow
+  - journalctl -f
+  window_name: system
+- layout: tiled
+  panes:
+  - y
+  - linux-lts-update
+  window_name: yay
+- layout: tiled
+  panes:
+  - btop
+  window_name: btop

@@ -1,0 +1,10 @@
+session_name: media
+start_directory: ~/
+windows:
+- layout: tiled
+  panes:
+  - zik
+  - nectarine
+  - pulsemixer
+  - bluetoothctl
+  window_name: zik

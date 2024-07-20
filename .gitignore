@@ -1,10 +1,15 @@
 /.*[_-]history
 /.AndroidStudio*/
+/.espressif/
+/.platformio/
 /.ICEauthority
 /.NERDTreeBookmarks
 /.Xauthority
+/.arduino*/
+/.local/
 /.android/
 /.apvlvinfo
+/.msf4/
 /.aws/
 /.babel.json
 /.bash_*
@@ -15,6 +20,7 @@
 /.cargo/
 /.cargo/registry/
 /.chef/
+/.terraform.d/
 /.chefdk/cache/
 /.cinc-workstation/
 /.cinc/
