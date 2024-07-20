@@ -6,6 +6,9 @@
 [submodule "vim-plugin-ale"]
 	path = .vim/pack/plugins/start/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "vim-plugin-caddyfile"]
+	path = .vim/pack/plugins/start/caddyfile
+	url = https://github.com/isobit/vim-caddyfile.git
 [submodule "vim-plugin-completor"]
 	path = .vim/pack/plugins/start/completor
 	url = https://github.com/maralla/completor.vim.git
@@ -55,6 +58,3 @@
 [submodule "zsh-syntax-highlighting"]
 	path = .zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "vim-plugin-caddyfile"]
-	path = .vim/pack/plugins/start/caddyfile
-	url = https://github.com/isobit/vim-caddyfile.git
