@@ -41,9 +41,5 @@
 	date = iso
 [mergetool]
 	keepBackup = false
-[pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
 [rerere]
 	enabled = 1
