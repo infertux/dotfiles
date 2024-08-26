@@ -5,14 +5,20 @@
     font-size: 16px;
 }
 
-@keyframes blink {
-    50% {
-        background-color: #ff0000;
-    }
+@keyframes warning {
+    50% { background-color: orange; }
+}
+
+.warning {
+    animation: warning 2s linear infinite;
+}
+
+@keyframes critial {
+    50% { background-color: red; }
 }
 
 .critical {
-    animation: blink 1s linear infinite;
+    animation: critical 1s linear infinite;
     font-weight: bold;
     border: 1px solid #ffffff;
 }
@@ -166,29 +172,4 @@ button:hover {
 
 #user {
     background-color: #66cc99;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-    background-color: transparent;
 }

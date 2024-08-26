@@ -39,6 +39,7 @@
     "clock#local": {
         "interval": 60,
         "timezone": "Asia/Bangkok",
+        // "timezone": "Europe/Paris",
         "format": " {:%H:%M}",
         "tooltip-format": "{:%a %Y-%m-%d}",
     },
@@ -51,7 +52,7 @@
         "interval": 5,
         "states": {
             "warning": 50,
-            "critical":25,
+            "critical": 25,
         },
         "format": "{icon}  {capacity}% {time} {power:0.0f}W",
         "format-charging": " {capacity}% {power:0.0f}W {cycles} cycles",
@@ -72,8 +73,8 @@
     },
     "disk": {
         "states": {
-            "warning": 75,
-            "critical": 50,
+            "warning": 75, // percent used
+            "critical": 90,
         },
         "path": "/",
         "format": " {free}",
