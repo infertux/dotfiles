@@ -121,8 +121,8 @@ bindkey '^U' backward-kill-line
 # Aliases
 
 # Set up auto extension stuff
-alias -s html=firefox
-alias -s pdf=firefox
+alias -s html=iceweasel
+alias -s pdf=iceweasel
 alias -s png=swayimg
 alias -s jpg=swayimg
 alias -s gif=swayimg

@@ -55,7 +55,7 @@
             "critical": 25,
         },
         "format": "{icon}  {capacity}% {time} {power:0.0f}W",
-        "format-charging": " {capacity}% {power:0.0f}W {cycles} cycles",
+        "format-charging": " {capacity}% {power:0.0f}W {cycles} cy.",
         "format-plugged": " {capacity}% {power:0.0f}W",
         "format-full": "{icon} ",
         "format-icons": ["", "", "", "", ""],
