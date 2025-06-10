@@ -73,6 +73,7 @@
 /.purple/
 /.pyenv/
 /.pythonhist
+/.rbenv/
 /.recently-used
 /.repo_.gitconfig.json
 /.repoconfig/
@@ -109,8 +110,14 @@
 /.zsh_cache/
 /.zshrc.local
 /Android/
+/Backups/
+/CHEF/
+/Documents/
 /Downloads/
 /Music/
+/Pictures/
+/Screenshots/
+/Videos/
 /dev/
 /go/
 /sway.log

@@ -250,9 +250,13 @@ fi
 export GOPATH=~/go
 
 # Ruby
-# https://wiki.archlinux.org/title/ruby#RubyGems
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
+if command -v rbenv > /dev/null; then
+  eval "$(rbenv init -)"
+else
+  # https://wiki.archlinux.org/title/ruby#RubyGems
+  export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+  export PATH="$PATH:$GEM_HOME/bin"
+fi
 
 # Load machine specific configuration if any
 [ ! -f ~/.zshrc.local ] || source ~/.zshrc.local

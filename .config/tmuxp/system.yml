@@ -5,8 +5,8 @@ windows:
   panes:
   - iwctl
   - mullvad-status
-  - kernel-follow
   - journalctl -f
+  - kernel-follow
   window_name: system
 - layout: tiled
   panes:
