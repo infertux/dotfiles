@@ -3,7 +3,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["sway/window"],
-    "modules-right": ["user", "pulseaudio", "bluetooth", "network", "network#vpn", "battery", "disk", "temperature#disk", "cpu", "temperature#cpu", "temperature#gpu", "custom/fan", "memory", "clock#local", "clock"],
+    "modules-right": ["custom/uptime", "custom/backup", "pulseaudio", "bluetooth", "network", "network#vpn", "battery", "disk", "temperature#disk", "cpu", "temperature#cpu", "temperature#gpu", "custom/fan", "memory", "clock#local", "clock"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -33,8 +33,15 @@
         "tooltip": true,
         "tooltip-format": "{app}: {title}",
     },
-    "user": {
-        "format": "{work_d}", // days
+    "custom/backup": {
+        "exec": "~/.config/waybar/scripts/backup",
+        "interval": 600,
+        "tooltip-format": "last backup",
+    },
+    "custom/uptime": {
+        "exec": "uptime -p | cut -d, -f1",
+        "interval": 600,
+        "tooltip-format": "uptime",
     },
     "clock#local": {
         "interval": 60,

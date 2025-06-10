@@ -81,7 +81,9 @@ button:hover {
 #battery,
 #bluetooth,
 #cpu,
+#custom-backup,
 #custom-fan,
+#custom-uptime,
 #memory,
 #disk,
 #temperature,
@@ -132,8 +134,16 @@ button:hover {
     background-color: #2ecc71;
 }
 
+#custom-backup {
+    background-color: #ff0000;
+}
+
 #custom-fan {
     background-color: #aa0066;
+}
+
+#custom-uptime {
+    background-color: #66cc99;
 }
 
 #memory {
@@ -168,8 +178,4 @@ button:hover {
 
 #temperature.gpu {
     background-color: #f0932b;
-}
-
-#user {
-    background-color: #66cc99;
 }
