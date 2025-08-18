@@ -35,7 +35,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # program launcher
-bindsym $mod+d exec wofi --show run
+bindsym $mod+d exec wofi --insensitive --show run
 
 # change focus
 bindsym $mod+j focus left
@@ -132,7 +132,7 @@ bindsym $mod+Delete exec swaylock --show-failed-attempts -i ~/.wallpaper.jpg
 bindsym $mod+Escape exec "swaylock --daemonize --show-failed-attempts -i ~/.wallpaper.jpg; systemctl suspend"
 bindsym $mod+Shift+Escape exec systemctl poweroff
 
-# Screenshot with Scrot
+# Screenshots
 bindsym Print exec --no-startup-id grim $HOME/Screenshots/$(date -Iseconds).png
 bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" $HOME/Screenshots/$(date -Iseconds).png
 
@@ -148,10 +148,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 9
 # sudo ddcutil setvcp 10 + 9
 # sudo ddcutil setvcp 10 - 9
 
-# Music controls
-bindsym XF86AudioMicMute exec pkill -f 'vlc -I ncurses'
-
-# lock the screen after 10 minutes and turn it off five seconds later
+# lock the screen after 10 minutes and turn it off 5 seconds later
 exec swayidle -w \
   timeout 600 'swaylock --daemonize --show-failed-attempts -i ~/.wallpaper.jpg' \
   timeout 605 'swaymsg "output * power off"' \
