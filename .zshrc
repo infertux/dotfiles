@@ -158,7 +158,7 @@ alias open='xdg-open'
 alias vim='vim -p'
 alias vv='vim -O'
 alias vh='vim -o'
-alias v='vim'
+alias v=' NVIM_APPNAME=nvimLazyvim nvim'
 alias ssh='ssh -v'
 alias ssh-no-pubkey='\ssh -v -o PubkeyAuthentication=no -o PasswordAuthentication=yes'
 alias s='kitty +kitten ssh -v'
@@ -248,6 +248,10 @@ fi
 
 # Golang
 export GOPATH=~/go
+
+if command -v fzf > /dev/null; then
+  source <(fzf --zsh)
+fi
 
 # Ruby
 if command -v rbenv > /dev/null; then

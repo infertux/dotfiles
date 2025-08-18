@@ -4,7 +4,7 @@ windows:
 - layout: tiled
   panes:
   - iwctl
-  - mullvad-status
+  - fastfetch
   - journalctl -f
   - kernel-follow
   window_name: system
