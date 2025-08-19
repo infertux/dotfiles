@@ -27,8 +27,6 @@ $HOME/bin
 /usr/local/sbin
 EOH
 
-#eval "$(direnv hook bash)"
-
 # Terminal history
 export HISTORY=100000
 export SAVEHIST=100000
@@ -38,7 +36,8 @@ export HISTFILE=$HOME/.history
 command -v most >/dev/null && export PAGER=most
 
 export EDITOR=vim
-# export BROWSER=elinks
+export BROWSER=firefox
+command -v iceweasel >/dev/null && export BROWSER=iceweasel
 export LC_TIME=en_DK.utf8 # http://www.explainxkcd.com/wiki/index.php?title=1179
 
 ###############################################################################
@@ -121,18 +120,16 @@ bindkey '^U' backward-kill-line
 # Aliases
 
 # Set up auto extension stuff
-alias -s html=iceweasel
-alias -s pdf=iceweasel
-alias -s png=swayimg
-alias -s jpg=swayimg
-alias -s gif=swayimg
-alias -s txt=$EDITOR
 alias -s PKGBUILD=$EDITOR
+alias -s txt=$EDITOR
+alias -s html=$BROWSER
+alias -s pdf=$BROWSER
+alias -s gif=swayimg
+alias -s jpg=swayimg
+alias -s png=swayimg
 
 # Normal aliases
 alias ls='ls --color'
-alias lsd='ls -ld *(-/DN)'
-alias lsa='ls -ld .*'
 alias ll='ls -lh --color'
 alias l='ll'
 alias la='ls -A --color'
@@ -149,7 +146,6 @@ alias cp='cp -i'
 alias rm='rm -i'
 
 # A few more useful aliases
-alias bitch,='sudo' # original idea by rtomayko :D
 alias hey='while true; do espeak -z -a 200 -p 70 --stdout Hey | paplay; sleep 1; done'
 alias se='sudoedit'
 alias kernel='dmesg -dH | tail -20'
@@ -167,7 +163,6 @@ alias venv='read venv && source ~/.virtualenvs/$venv/bin/activate'
 
 alias todo="ag 'TODO|FIXME|XXX|HACK'"
 alias rsynca='rsync -avzPh'
-alias netstat='echo ss -ltnp'
 
 alias g='git'
 alias gs='git status -s'
@@ -185,8 +180,6 @@ alias b='bundle'
 alias be='bundle exec'
 alias ber='bundle exec rake'
 alias bers='bundle exec rspec'
-alias berps='bundle exec rake parallel:spec'
-alias berpps='bundle exec rake parallel:prepare parallel:spec'
 alias rs='bundle exec rails s'
 alias rc='bundle exec rails c'
 alias rr='bundle exec rails restart'
@@ -194,17 +187,12 @@ alias rdbm='rake db:migrate'
 
 alias kcu='knife cookbook upload'
 alias kcsi='knife cookbook site install'
-alias fs='foreman start'
 
 alias sc='sudo systemctl'
-#alias p='sudo pacman'
 alias y='yay'
 alias yay-cleanup='yay -Yc && yay -Sc --noconfirm && yay -Ps'
 
 alias trash-empty='rm -rfv ~/.local/share/Trash/*'
-alias ethernet='enp0s31f6-ethernet-dhcp'
-alias usb_tehering='sudo netctl restart enp0s20u1 && ip addr'
-alias arm='sudo -u tor arm'
 alias xz-compress-extreme='xz --compress --verbose --keep --check sha256 -9 --extreme'
 alias xz-decompress='xz --decompress --verbose --keep'
 alias docker-cleanup='docker system prune -a -f --volumes'
@@ -215,14 +203,10 @@ alias ratm='mpv --shuffle "$HOME/Music/Rage Against the Machine"'
 alias bc_sum='paste -s -d+ | bc'
 alias firefox-profile='firefox --ProfileManager --new-instance'
 alias minicom-screen='sudo screen /dev/ttyUSB0 115200'
-alias packer='packer-io'
-alias gogo='source gogo'
-alias geth='geth --syncmode light'
-alias tv='mpv --playlist-tree https://raw.githubusercontent.com/iptv-org/iptv/master/index.m3u'
+alias tv='mpv https://iptv-org.github.io/iptv/index.m3u'
 alias speedtest='speedtest-cli --json | jq'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias kitty-icat='kitty +kitten icat'
-alias freetube='freetube --enable-features=UseOzonePlatform --ozone-platform=wayland'
 
 ###############################################################################
 # Additional configuration

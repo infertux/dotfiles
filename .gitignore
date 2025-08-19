@@ -65,6 +65,7 @@
 /.ollama/
 /.pEp*
 /.packer.d/
+/.parabola
 /.pgadmin3
 /.pgpass
 /.pki/
@@ -83,6 +84,8 @@
 /.ssh*
 /.ssh/
 /.stack/
+/.stfolder/
+/.stversions/
 /.subversion/
 /.sudo_as_admin_successful
 /.terraform.d/
@@ -111,13 +114,14 @@
 /.zshrc.local
 /Android/
 /Backups/
-/CHEF/
+/Chef/
+/Dev/
 /Documents/
 /Downloads/
 /Music/
 /Pictures/
 /Screenshots/
 /Videos/
-/dev/
 /go/
+/stignore
 /sway.log
