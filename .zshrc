@@ -189,6 +189,7 @@ alias kcu='knife cookbook upload'
 alias kcsi='knife cookbook site install'
 
 alias sc='sudo systemctl'
+alias jc='sudo journalctl'
 alias y='yay'
 alias yay-cleanup='yay -Yc && yay -Sc --noconfirm && yay -Ps'
 
@@ -233,8 +234,14 @@ fi
 # Golang
 export GOPATH=~/go
 
+# Fzf
 if command -v fzf > /dev/null; then
   source <(fzf --zsh)
+fi
+
+# Node.js/npm/nvm
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+  source /usr/share/nvm/init-nvm.sh
 fi
 
 # Ruby
@@ -246,7 +253,7 @@ else
   export PATH="$PATH:$GEM_HOME/bin"
 fi
 
-# Load machine specific configuration if any
+# Load machine-specific configuration if any
 [ ! -f ~/.zshrc.local ] || source ~/.zshrc.local
 
 # EOF
