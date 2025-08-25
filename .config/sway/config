@@ -15,7 +15,7 @@ output eDP-1 pos 320 1440
 # Dell monitor
 output DP-1 pos 0 0 scale 1.5
 # Samsung monitor
-output HDMI-A-1 pos 0 0
+output HDMI-A-2 pos 0 0
 
 # set background
 output * bg ~/.wallpaper.jpg fill
