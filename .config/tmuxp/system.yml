@@ -17,3 +17,11 @@ windows:
   panes:
   - btop
   window_name: btop
+- layout: tiled
+  panes:
+  - journalctl --user -fu borgmatic-user
+  window_name: borg
+- layout: tiled
+  panes:
+  - cd .config/aconfmgr
+  window_name: aconfmgr
