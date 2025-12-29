@@ -3,7 +3,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["sway/window"],
-    "modules-right": ["custom/uptime", "custom/backup", "pulseaudio", "bluetooth", "network", "network#vpn", "battery", "disk", "temperature#disk", "cpu", "temperature#cpu", "temperature#gpu", "custom/fan", "memory", "clock#local", "clock"],
+    "modules-right": ["custom/uptime", "custom/backup", "pulseaudio", "bluetooth", "network", "battery", "disk", "temperature#disk", "cpu", "temperature#cpu", "temperature#gpu", "custom/fan", "memory", "clock#local", "clock"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -69,8 +69,8 @@
         "format-time": "{H}:{m}",
     },
     "bluetooth": {
-        "format": " {status}",
-        "format-disabled": "", // an empty format will hide the module
+        "format": "",
+        "format-disabled": "",
         "format-connected": " {device_alias}",
         "format-connected-battery": " {device_alias} {device_battery_percentage}%",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
@@ -80,7 +80,7 @@
     },
     "disk": {
         "states": {
-            "warning": 75, // percent used
+            "warning": 85, // percent used
             "critical": 90,
         },
         "path": "/",
