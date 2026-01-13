@@ -29,6 +29,9 @@ input type:touchpad {
     pointer_accel 0.5 # increase mouse sensitivity
 }
 
+input type:keyboard xkb_layout us,th
+bindsym $mod+Tab input type:keyboard xkb_switch_layout next
+
 # start a terminal
 bindsym $mod+Return exec kitty
 
