@@ -1,6 +1,8 @@
 # run a "pure" Wayland session
 xwayland disable
 
+include /etc/sway/config.d/*
+
 bar swaybar_command waybar
 default_border pixel 1
 font pango:DejaVuSansMono 12
